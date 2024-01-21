@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="Search"></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+          crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--  <link rel="stylesheet" href="css/searchResultsStyles.css"  />-->
+
+</head>
+<body>
+
+<!--<header th:replace="~{/fragments/header :: header}"></header>-->
+
+<div class="container mt-5">
+<!--  <h1 th:text="#{searchResults.label.articlesFound}"></h1>-->
+
+  <div th:if="${searchResults.isEmpty()}" class="no-results">
+    No results found.
+  </div>
+
+  <div th:unless="${searchResults.isEmpty()}">
+    <ul>
+      <a th:each="article : ${searchResults}" th:href="@{/article/{articleId}(articleId=${article.articleId})}"
+         class="text-decoration-none card-link">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" th:text="${article.title}"></h5>
+          </div>
+        </div>
+      </a>
+    </ul>
+  </div>
+</div>
+
+<!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
+
+</body>
+</html>
