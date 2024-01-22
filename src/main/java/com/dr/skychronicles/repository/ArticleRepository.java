@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -15,4 +16,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Query("SELECT a FROM Article a WHERE a.categoryId.categoryId = :categoryId")
     List<Article> getArticlesByCategoryId(@Param("categoryId") Long categoryId);
+
+    @Query("SELECT a FROM Article a order by a.publicationDate DESC ")
+    List<Article> getArticlesSortedByDate();
 }

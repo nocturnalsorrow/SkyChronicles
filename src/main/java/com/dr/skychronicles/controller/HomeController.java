@@ -53,6 +53,8 @@ public class HomeController {
         model.addAttribute("categories", allCategories);
         model.addAttribute("categoryArticles", categoryArticles);
         model.addAttribute("selectedCategoryId", defaultCategoryId);
+        model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
+
 
         return "index";
     }
@@ -66,6 +68,7 @@ public class HomeController {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("categoryArticles", categoryArticles);
         model.addAttribute("selectedCategoryId", categoryId);
+        model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
 
         return "index";
     }

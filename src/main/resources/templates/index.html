@@ -39,6 +39,20 @@
     </ul>
 </div>
 
+<div class="recent-articles">
+    <h3>Recent articles:</h3>
+    <th:block th:each="article:${recentArticles}">
+        <div class="article-item">
+            <h5>
+                <a th:href="@{/article/{articleId} (articleId=${article.articleId})}"
+                   class="nav-link px-2 link-dark"
+                   th:text="${article.title}"></a>
+            </h5>
+            <p th:text="${article.publicationDate}" class="text-muted"></p>
+        </div>
+    </th:block>
+</div>
+
 
 
 

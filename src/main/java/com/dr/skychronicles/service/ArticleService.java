@@ -7,11 +7,12 @@ import java.util.Optional;
 
 public interface ArticleService {
     List<Article> getAllArticles();
+    Optional<Article> getArticleById(Long id);
     List<Article> getArticlesByTitle(String partialTitle);
 
     List<Article> getArticlesByCategoryId(Long categoryId);
 
-    Optional<Article> getArticleById(Long id);
+    List<Article> getArticlesSortedByDate();
 
     Article createArticle(Article article);
 

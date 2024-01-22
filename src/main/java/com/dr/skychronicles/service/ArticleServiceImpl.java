@@ -35,6 +35,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> getArticlesSortedByDate() {
+        return articleRepository.getArticlesSortedByDate();
+    }
+
+    @Override
     public Optional<Article> getArticleById(Long id) {
         return articleRepository.findById(id);
     }
