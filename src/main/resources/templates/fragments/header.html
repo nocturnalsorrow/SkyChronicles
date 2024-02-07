@@ -10,8 +10,7 @@
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a th:href="@{/}" class="nav-link px-2 text-white" th:text="Home"></a></li>
-        <li><a th:href="@{/profile}" class="nav-link px-2 text-white"
-               th:text="Profile">Profile</a></li>
+        <li><a th:href="@{/profile}" class="nav-link px-2 text-white" th:text="Profile">Profile</a></li>
         <li sec:authorize="hasAuthority('ADMIN')">
           <a th:href="@{/articles}" class="nav-link px-2 text-white">Edit Articles</a>
         </li>

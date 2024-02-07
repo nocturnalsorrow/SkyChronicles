@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create article</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+          crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<header th:replace="~{/fragments/header :: header}"></header>
+
+<div class="container mt-4">
+  <h3>Create article</h3>
+  <form th:action="@{/article}" th:method="POST">
+    <div class="form-group">
+      <input name="articleId" type="hidden" th:value="${article.articleId}" class="form-control"
+             style="width: 33%"/>
+    </div>
+    <div class="form-group">
+      <label for="title"><strong>Title</strong></label>
+      <input name="title" type="text" th:field="${article.title}" id="title" class="form-control"
+             style="width: 33%"/>
+    </div>
+    <div class="form-group">
+      <label for="categoryId"><strong>Category</strong></label>
+      <select name="categoryId" id="categoryId" th:field="${article.categoryId.categoryId}" class="form-control" style="width: 33%">
+        <option th:each="category : ${categories}"  th:value="${category.categoryId}" th:text="${category.name}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="publicationDate"><strong>Publication date</strong></label>
+      <input name="publicationDate" type="date" th:field="${article.publicationDate}" id="publicationDate"
+             class="form-control" style="width: 33%"/>
+    </div>
+    <div class="form-group">
+      <label for="photo"><strong>Photo URL</strong></label>
+      <input name="photo" type="text" th:field="${article.photo}" id="photo" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="content"><strong>Content</strong></label>
+      <textarea name="content" rows="10" th:field="${article.content}" id="content"
+                class="form-control"></textarea>
+    </div>
+    <div class="form-group mt-2">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
+</body>
+</html>
