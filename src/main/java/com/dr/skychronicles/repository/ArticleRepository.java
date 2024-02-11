@@ -5,10 +5,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
-
+@Repository
 @Transactional
 public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT a FROM Article a WHERE LOWER(a.title) LIKE LOWER(concat('%', :partialTitle, '%'))")

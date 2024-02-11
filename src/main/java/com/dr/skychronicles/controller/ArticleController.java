@@ -1,15 +1,21 @@
 package com.dr.skychronicles.controller;
 
 import com.dr.skychronicles.entity.Article;
+import com.dr.skychronicles.entity.Gallery;
 import com.dr.skychronicles.service.ArticleService;
 import com.dr.skychronicles.service.CategoryService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -33,6 +39,21 @@ public class ArticleController {
         }
         model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
         return "article";
+    }
+
+    @GetMapping("/{articleId}/image/{imageId}")
+    public ResponseEntity<byte[]> getArticleImage(@PathVariable Long articleId, @PathVariable Long imageId) {
+        Optional<Gallery> articleImageOptional = articleService.getArticleImage(articleId, imageId);
+
+        if (articleImageOptional.isPresent()) {
+            Gallery articleImage = articleImageOptional.get();
+            byte[] imageBytes = Base64.getDecoder().decode(articleImage.getImage());
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_JPEG);
+            return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new byte[0], HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/articles")
@@ -61,7 +82,7 @@ public class ArticleController {
     }
 
     @GetMapping ("/article")
-    public String getArticleToCreate(Model model) {
+    public String createArticle(Model model) {
         model.addAttribute("article", new Article());
         model.addAttribute("categories", categoryService.getAllCategories());
 
@@ -69,8 +90,8 @@ public class ArticleController {
     }
 
     @PostMapping("/article")
-    public String createArticle(@ModelAttribute Article article) {
-        articleService.createArticle(article);
+    public String createArticle(@ModelAttribute Article article, @RequestParam("imageFiles") List<MultipartFile> imageFiles) throws IOException {
+        articleService.createArticle(article, imageFiles);
 
         return "redirect:/articles";
     }

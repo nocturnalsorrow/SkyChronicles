@@ -1,10 +1,16 @@
 package com.dr.skychronicles.service;
 
 import com.dr.skychronicles.entity.Article;
+import com.dr.skychronicles.entity.Gallery;
 import com.dr.skychronicles.repository.ArticleRepository;
 import com.dr.skychronicles.repository.CategoryRepository;
+import com.dr.skychronicles.repository.GalleryRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,10 +19,12 @@ public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
     private final CategoryRepository categoryRepository;
+    private final GalleryRepository galleryRepository;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository, CategoryRepository categoryRepository) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, CategoryRepository categoryRepository, GalleryRepository galleryRepository) {
         this.articleRepository = articleRepository;
         this.categoryRepository = categoryRepository;
+        this.galleryRepository = galleryRepository;
     }
 
     @Override
@@ -37,6 +45,24 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getArticlesSortedByDate() {
         return articleRepository.getArticlesSortedByDate();
+    }
+
+    @Override
+    public Optional<Gallery> getArticleImage(Long articleId, Long imageId) {
+        return galleryRepository.findByArticle_ArticleIdAndId(articleId, imageId);
+    }
+
+    @Override
+    public Article createArticle(Article article, List<MultipartFile> imageFiles) throws IOException {
+        List<Gallery> articleImages = new ArrayList<>();
+        for (MultipartFile file : imageFiles) {
+            Gallery articleImage = new Gallery();
+            articleImage.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+            articleImage.setArticle(article);
+            articleImages.add(articleImage);
+        }
+        article.setImages(articleImages);
+        return articleRepository.save(article);
     }
 
     @Override

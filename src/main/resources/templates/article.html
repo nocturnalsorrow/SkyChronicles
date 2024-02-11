@@ -19,8 +19,16 @@
             <div class="card-body">
                 <div th:if="${article != null}">
                     <h1 class="card-title" th:utext="${article.title}"></h1>
+                    <td>
+                        <div th:each="image : ${article.images}">
+                            <img th:if="${image != null}"
+                                 th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${image.id})}"
+                                 class="img-thumbnail" alt="Product Image">
+                        </div>
+                    </td>
                     <p class="card-content" th:utext="${article.content}"></p>
                     <p class="card-content" th:utext="${article.publicationDate}"></p>
+
                 </div>
                 <div th:if="${article == null}">
                     <h1>Error 404</h1>
