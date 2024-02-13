@@ -25,12 +25,15 @@
 <!-- Display articles of the selected category -->
 <div class="list-group">
     <th:block th:each="article : ${categoryArticles}">
-        <a class="list-group-item list-group-item-action" th:href="@{/article/{articleId} (articleId=${article.articleId})}"
+        <a class="list-group-item list-group-item-action"
+           th:href="@{/article/{articleId} (articleId=${article.articleId})}"
            th:text="${article.title}"></a>
     </th:block>
 </div>
 
-<recentArticles th:replace="~{/fragments/recentArticles :: recentArticles}"></recentArticles>
+
+<recentArticles class="ml-auto" th:replace="~{/fragments/recentArticles :: recentArticles}"></recentArticles>
+
 
 <!-- Include footer fragment -->
 <footer th:replace="~{/fragments/footer :: footer}" class="bg-dark text-white py-3"></footer>

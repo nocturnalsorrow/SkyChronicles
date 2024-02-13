@@ -4,7 +4,8 @@
         <h3 class="mb-4">Recent Articles</h3>
         <div class="list-group">
             <th:block th:each="article:${recentArticles}">
-                <a th:href="@{/article/{articleId} (articleId=${article.articleId})}" class="list-group-item list-group-item-action">
+                <a th:href="@{/article/{articleId} (articleId=${article.articleId})}"
+                   class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1" th:text="${article.title}"></h5>
                         <small th:text="${article.publicationDate}"></small>
@@ -14,3 +15,5 @@
         </div>
     </div>
 </recentArticles>
+
+

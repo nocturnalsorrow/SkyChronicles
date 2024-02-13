@@ -1,61 +1,63 @@
 <header class="p-3 text-bg-dark" xmlns:th="https://www.thymeleaf.org"
         xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-          <use xlink:href="#bootstrap"></use>
-        </svg>
-      </a>
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
 
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a th:href="@{/}" class="nav-link px-2 text-white" th:text="Home"></a></li>
-        <li><a th:href="@{/profile}" class="nav-link px-2 text-white" th:text="Profile">Profile</a></li>
-        <li sec:authorize="hasAuthority('ADMIN')">
-          <a th:href="@{/articles}" class="nav-link px-2 text-white">Edit Articles</a>
-        </li>
-      </ul>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a th:href="@{/}" class="nav-link px-2 text-white" th:text="Home"></a></li>
+                <li><a th:href="@{/profile}" class="nav-link px-2 text-white" th:text="Profile">Profile</a></li>
+                <li sec:authorize="hasAuthority('ADMIN')">
+                    <a th:href="@{/articles}" class="nav-link px-2 text-white">Edit Articles</a>
+                </li>
+            </ul>
 
-      <form th:action="@{/search}" method="get" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <div class="input-group">
-          <input type="text" class="form-control form-control-dark text-bg-dark" name="keyword"
-                 th:placeholder="search..." aria-label="Search">
-          <button class="btn btn-outline-light" type="submit" th:text="Search">Search
-          </button>
+            <form th:action="@{/search}" method="get" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-dark text-bg-dark" name="keyword"
+                           th:placeholder="search..." aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit" th:text="Search">Search
+                    </button>
+                </div>
+            </form>
+
+
+            <div sec:authorize="!isAuthenticated()" class="me-2">
+                <button type="button" class="btn btn-outline-light me-2"
+                        th:onclick="|window.location.href='@{/login}'|">Login
+                </button>
+                <button type="button" class="btn btn-warning" th:onclick="|window.location.href='@{/signUp}'|">Sign Up
+                </button>
+            </div>
+
+            <div sec:authorize="isAuthenticated()" class="me-2">
+                <form th:action="@{/logout}" method="post">
+                    <button class="btn btn-outline-light me-2" type="submit" th:text="Logout"/>
+                </form>
+            </div>
+
+
+            <!--      &lt;!&ndash; Language switch buttons with custom styles &ndash;&gt;-->
+            <!--      <div class="btn-group me-2">-->
+            <!--        <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
+            <!--          <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'uk').toUriString()}"-->
+            <!--             class="btn btn-outline-light me-2 btn-sm" aria-current="page" th:text="UA">🇺🇦 Ukrainian</a>-->
+            <!--        </div>-->
+            <!--        <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
+            <!--          <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'ru').toUriString()}"-->
+            <!--             class="btn btn-outline-light me-2 btn-sm" th:text="RU">🇷🇺 Russian</a>-->
+            <!--        </div>-->
+            <!--        <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
+            <!--          <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'en').toUriString()}"-->
+            <!--             class="btn btn-outline-light me-2 btn-sm" th:text="EN">🇺🇸 English</a>-->
+            <!--        </div>-->
+            <!--      </div>-->
+
+
         </div>
-      </form>
-
-
-      <div sec:authorize="!isAuthenticated()" class="me-2">
-        <button type="button" class="btn btn-outline-light me-2"
-                th:onclick="|window.location.href='@{/login}'|">Login</button>
-        <button type="button" class="btn btn-warning" th:onclick="|window.location.href='@{/signUp}'|">Sign Up</button>
-      </div>
-
-      <div sec:authorize="isAuthenticated()" class="me-2">
-        <form th:action="@{/logout}" method="post">
-          <button class="btn btn-outline-light me-2" type="submit" th:text="Logout"/>
-        </form>
-      </div>
-
-
-<!--      &lt;!&ndash; Language switch buttons with custom styles &ndash;&gt;-->
-<!--      <div class="btn-group me-2">-->
-<!--        <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
-<!--          <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'uk').toUriString()}"-->
-<!--             class="btn btn-outline-light me-2 btn-sm" aria-current="page" th:text="UA">🇺🇦 Ukrainian</a>-->
-<!--        </div>-->
-<!--        <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
-<!--          <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'ru').toUriString()}"-->
-<!--             class="btn btn-outline-light me-2 btn-sm" th:text="RU">🇷🇺 Russian</a>-->
-<!--        </div>-->
-<!--        <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
-<!--          <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'en').toUriString()}"-->
-<!--             class="btn btn-outline-light me-2 btn-sm" th:text="EN">🇺🇸 English</a>-->
-<!--        </div>-->
-<!--      </div>-->
-
-
     </div>
-  </div>
 </header>
