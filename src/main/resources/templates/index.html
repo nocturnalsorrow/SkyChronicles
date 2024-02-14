@@ -6,15 +6,37 @@
     <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .list-group-item {
+            transition: background-color 0.3s;
+        }
+
+        .nav-category .nav-link {
+            border: 1px solid #6c757d;
+            background-color: #e9ecef;
+            color: #495057;
+            margin-right: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-category .nav-link:hover {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
 
 <!-- Include header fragment -->
-<header th:replace="~{/fragments/header :: header}" class="bg-dark text-white py-3"></header>
+<header th:replace="~{/fragments/header :: header}"></header>
 
 <!-- Display all categories -->
-<nav class="nav mb-4">
+<nav class="nav nav-category mb-4">
     <th:block th:each="category : ${categories}">
         <a class="nav-link link-dark" th:href="@{'/category/' + ${category.categoryId}}"
            th:class="${category.categoryId == selectedCategoryId} ? 'nav-link active' : 'nav-link'"
@@ -23,17 +45,22 @@
 </nav>
 
 <!-- Display articles of the selected category -->
-<div class="list-group">
-    <th:block th:each="article : ${categoryArticles}">
-        <a class="list-group-item list-group-item-action"
-           th:href="@{/article/{articleId} (articleId=${article.articleId})}"
-           th:text="${article.title}"></a>
-    </th:block>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="list-group">
+                <th:block th:each="article : ${categoryArticles}">
+                    <a class="list-group-item list-group-item-action"
+                       th:href="@{/article/{articleId} (articleId=${article.articleId})}"
+                       th:text="${article.title}"></a>
+                </th:block>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <recentArticles th:replace="~{/fragments/recentArticles :: recentArticles}"></recentArticles>
+        </div>
+    </div>
 </div>
-
-
-<recentArticles class="ml-auto" th:replace="~{/fragments/recentArticles :: recentArticles}"></recentArticles>
-
 
 <!-- Include footer fragment -->
 <footer th:replace="~{/fragments/footer :: footer}" class="bg-dark text-white py-3"></footer>
@@ -46,3 +73,6 @@
 </body>
 
 </html>
+
+
+

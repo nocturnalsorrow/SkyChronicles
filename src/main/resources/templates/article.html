@@ -9,6 +9,45 @@
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 400px;
+        }
+
+        .img-container img {
+            width: 60%;
+            height: auto;
+            transition: opacity 0.3s ease-in-out;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .btn-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #prevBtn {
+            left: 0;
+        }
+
+        #nextBtn {
+            right: 0;
+        }
+    </style>
+
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
@@ -19,16 +58,17 @@
             <div class="card-body">
                 <div th:if="${article != null}">
                     <h1 class="card-title" th:utext="${article.title}"></h1>
-                    <td>
+                    <div class="img-container">
+                        <button class="btn btn-primary btn-arrow" id="prevBtn">&#9664;</button>
                         <div th:each="image : ${article.images}">
-                            <img th:if="${image != null}"
-                                 th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${image.id})}"
-                                 class="img-thumbnail" alt="Product Image">
+                            <img th:if="${image != null}" class="img-thumbnail" alt="Product Image"
+                                 th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${image.id})}">
                         </div>
-                    </td>
+                        <button class="btn btn-primary btn-arrow" id="nextBtn">&#9654;</button>
+                    </div>
+
                     <p class="card-content" th:utext="${article.content}"></p>
                     <p class="card-content" th:utext="${article.publicationDate}"></p>
-
                 </div>
                 <div th:if="${article == null}">
                     <h1>Error 404</h1>
@@ -37,19 +77,45 @@
         </div>
     </div>
 
-    <div class="recent-articles">
-        <h3>Recent articles:</h3>
-        <th:block th:each="article:${recentArticles}">
-            <h5>
-                <a th:href="@{/article/{articleId} (articleId=${article.articleId})}"
-                   class="nav-link px-2 link-dark"
-                   th:text="${article.title}"></a>
-            </h5>
-            <p th:text="${article.publicationDate}" class="text-muted"></p>
-        </th:block>
+    <div class="col-lg-4">
+        <recentArticles th:replace="~{/fragments/recentArticles :: recentArticles}"></recentArticles>
     </div>
 </div>
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
+
+<script>
+    $(document).ready(function () {
+        var currentImageIndex = 0;
+        var totalImages = $(".img-container img").length;
+
+        $("#prevBtn").click(function () {
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+            } else {
+                currentImageIndex = totalImages - 1;
+            }
+            showImage();
+        });
+
+        $("#nextBtn").click(function () {
+            if (currentImageIndex < totalImages - 1) {
+                currentImageIndex++;
+            } else {
+                currentImageIndex = 0;
+            }
+            showImage();
+        });
+
+        function showImage() {
+            $(".img-container img").css("opacity", "0"); // Затухание
+            setTimeout(function () {
+                $(".img-container img").hide();
+                $(".img-container img:eq(" + currentImageIndex + ")").css("opacity", "1").show(); // Появление
+            }, 300);
+        }
+    });
+</script>
+
 </body>
 </html>
