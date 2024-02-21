@@ -89,6 +89,11 @@
         var currentImageIndex = 0;
         var totalImages = $(".img-container img").length;
 
+        // Проверка наличия изображений перед отображением стрелок и контейнера
+        if (totalImages === 0) {
+            $(".img-container, #prevBtn, #nextBtn").hide();
+        }
+
         $("#prevBtn").click(function () {
             if (currentImageIndex > 0) {
                 currentImageIndex--;

@@ -18,11 +18,9 @@ public interface ArticleService {
     List<Article> getArticlesSortedByDate();
 
     Optional<Gallery> getArticleImage(Long articleId, Long imageId);
-    Article createArticle(Article article, List<MultipartFile> imageFiles) throws IOException;
+    Article saveArticle(Article article, List<MultipartFile> imageFiles) throws IOException;
 
-    Article createArticle(Article article);
-
-    Article updateArticle(Article article);
+    Article saveArticle(Article article);
 
     void deleteArticleById(Long id);
 }

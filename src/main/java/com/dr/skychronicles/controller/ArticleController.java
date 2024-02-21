@@ -75,8 +75,8 @@ public class ArticleController {
     }
 
     @PostMapping("/article/update")
-    public String updateArticle(@ModelAttribute Article updatedArticle) {
-        articleService.updateArticle(updatedArticle);
+    public String updateArticle(@ModelAttribute Article updatedArticle, @RequestParam("imageFiles") List<MultipartFile> imageFiles) throws IOException {
+        articleService.saveArticle(updatedArticle, imageFiles);
 
         return "redirect:/articles";
     }
@@ -91,7 +91,7 @@ public class ArticleController {
 
     @PostMapping("/article")
     public String createArticle(@ModelAttribute Article article, @RequestParam("imageFiles") List<MultipartFile> imageFiles) throws IOException {
-        articleService.createArticle(article, imageFiles);
+        articleService.saveArticle(article, imageFiles);
 
         return "redirect:/articles";
     }

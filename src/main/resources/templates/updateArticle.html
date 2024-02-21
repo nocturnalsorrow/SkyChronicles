@@ -9,6 +9,15 @@
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 400px;
+        }
+    </style>
 </head>
 <body>
 
@@ -16,7 +25,7 @@
 
 <div class="container mt-4">
     <h3>Update article</h3>
-    <form th:action="@{/article/update}" th:method="POST">
+    <form th:action="@{/article/update}" th:method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <input name="articleId" type="hidden" th:value="${article.articleId}"
                    readonly class="form-control" style="width: 33%"/>
@@ -31,6 +40,17 @@
         <!--      <input name="category" type="text" th:field="${article.categoryId}" id="category" class="form-control"  readonly-->
         <!--             style="width: 33%"/>-->
         <!--    </div>-->
+        <div class="img-container">
+            <div th:each="image : ${article.images}">
+                <img th:if="${image != null}" class="img-thumbnail" alt="Product Image"
+                     th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${image.id})}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="imageFiles">Select images:</label>
+            <input type="file" class="form-control-file" id="imageFiles" name="imageFiles" accept="image/*" multiple
+                   required>
+        </div>
         <div class="form-group">
             <label for="publicationDate"><strong>Publication date</strong></label>
             <input name="publicationDate" type="date" th:field="${article.publicationDate}" id="publicationDate"

@@ -53,7 +53,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article createArticle(Article article, List<MultipartFile> imageFiles) throws IOException {
+    public Article saveArticle(Article article, List<MultipartFile> imageFiles) throws IOException {
         List<Gallery> articleImages = new ArrayList<>();
         for (MultipartFile file : imageFiles) {
             Gallery articleImage = new Gallery();
@@ -71,12 +71,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article createArticle(Article article) {
-        return articleRepository.save(article);
-    }
-
-    @Override
-    public Article updateArticle(Article article) {
+    public Article saveArticle(Article article) {
         return articleRepository.save(article);
     }
 
