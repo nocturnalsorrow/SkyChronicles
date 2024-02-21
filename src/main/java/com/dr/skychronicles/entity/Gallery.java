@@ -16,7 +16,6 @@ public class Gallery {
     @Lob
     @Column(columnDefinition = "LONGBLOB", name = "image")
     private String image;
-
     @ManyToOne
     @JoinColumn(name = "article_id", referencedColumnName = "id")
     private Article article;
