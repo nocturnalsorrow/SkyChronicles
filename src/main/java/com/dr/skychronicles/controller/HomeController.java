@@ -32,7 +32,6 @@ public class HomeController {
             // Например, можно перенаправить пользователя на страницу со всеми статьями.
             return "redirect:/index";
         }
-
         return "searchResults"; // Возвращаем имя HTML шаблона для отображения результатов
     }
 
@@ -54,7 +53,6 @@ public class HomeController {
         model.addAttribute("categoryArticles", categoryArticles);
         model.addAttribute("selectedCategoryId", defaultCategoryId);
         model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
-
 
         return "index";
     }
