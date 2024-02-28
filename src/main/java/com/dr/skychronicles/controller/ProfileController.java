@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ProfileController {
     private  final UserService userService;
 
-    @Autowired
     public ProfileController(UserService userService) {
         this.userService = userService;
     }

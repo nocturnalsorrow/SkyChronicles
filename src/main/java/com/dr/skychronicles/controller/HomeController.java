@@ -24,50 +24,55 @@ public class HomeController {
 
     @GetMapping("/search")
     public String searchArticles(@RequestParam(name = "keyword", required = false) String keyword, Model model) {
-        if (keyword != null && !keyword.isEmpty()) {
-            List<Article> searchResults = articleService.getArticlesByTitle(keyword);
-            model.addAttribute("searchResults", searchResults);
-        } else {
-            // Если поисковой запрос пустой или отсутствует, можно предпринять действие по умолчанию или показать сообщение
-            // Например, можно перенаправить пользователя на страницу со всеми статьями.
-            return "redirect:/index";
+        try {
+            if (keyword == null || keyword.isEmpty()) {
+                return "redirect:/";
+            } else {
+                List<Article> searchResults = articleService.getArticlesByTitle(keyword);
+                model.addAttribute("searchResults", searchResults);
+                return "searchResults";
+            }
+        } catch (Exception e) {
+            //Error logging or other actions for exception handling
+            return "error";
         }
-        return "searchResults"; // Возвращаем имя HTML шаблона для отображения результатов
     }
 
     @GetMapping("/")
     public String getDefaultCategoryArticles(Model model) {
-        // Получите первую категорию (или проверьте, есть ли категории)
-        List<Category> allCategories = categoryService.getAllCategories();
-        Long defaultCategoryId = null;
+        try {
+            List<Category> allCategories = categoryService.getAllCategories();
+            Long defaultCategoryId = (!allCategories.isEmpty()) ? allCategories.getFirst().getCategoryId() : null;
 
-        if (!allCategories.isEmpty()) {
-            defaultCategoryId = allCategories.get(0).getCategoryId();
+            List<Article> categoryArticles = articleService.getArticlesByCategoryId(defaultCategoryId);
+
+            model.addAttribute("categories", allCategories);
+            model.addAttribute("categoryArticles", categoryArticles);
+            model.addAttribute("selectedCategoryId", defaultCategoryId);
+            model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
+
+            return "index";
+        } catch (Exception e) {
+            //Error logging or other actions for exception handling
+            return "error";
         }
-
-        // Получите статьи для выбранной категории (по умолчанию первая категория)
-        List<Article> categoryArticles = articleService.getArticlesByCategoryId(defaultCategoryId);
-
-        // Передайте данные в модель
-        model.addAttribute("categories", allCategories);
-        model.addAttribute("categoryArticles", categoryArticles);
-        model.addAttribute("selectedCategoryId", defaultCategoryId);
-        model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
-
-        return "index";
     }
 
     @GetMapping("/category/{categoryId}")
     public String getCategoryArticles(@PathVariable Long categoryId, Model model) {
-        // Получите статьи для выбранной категории
-        List<Article> categoryArticles = articleService.getArticlesByCategoryId(categoryId);
+        try {
+            List<Article> categoryArticles = articleService.getArticlesByCategoryId(categoryId);
 
-        // Передайте данные в модель
-        model.addAttribute("categories", categoryService.getAllCategories());
-        model.addAttribute("categoryArticles", categoryArticles);
-        model.addAttribute("selectedCategoryId", categoryId);
-        model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
+            model.addAttribute("categories", categoryService.getAllCategories());
+            model.addAttribute("categoryArticles", categoryArticles);
+            model.addAttribute("selectedCategoryId", categoryId);
+            model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
 
-        return "index";
+            return "index";
+        } catch (Exception e) {
+            //Error logging or other actions for exception handling
+            return "error";
+        }
     }
 }
+

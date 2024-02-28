@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -69,9 +71,9 @@ public class ArticleServiceImpl implements ArticleService {
             // Если fileImages не содержит фотографий, присвоить ему null
             article.setImages(null);
         }
+        article.setPublicationDate(Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date())));
         return articleRepository.save(article);
     }
-
 
     @Override
     public Optional<Article> getArticleById(Long id) {
