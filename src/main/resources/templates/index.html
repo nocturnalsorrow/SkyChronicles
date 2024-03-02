@@ -53,6 +53,9 @@
                     <a th:href="@{/article/{articleId} (articleId=${article.articleId})}"
                        class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
+                            <img th:if="${article.images.size() > 0}"
+                                 th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
+                                 alt="Article Cover Image" width="100" height="100" class="img-fluid rounded">
                             <h5 class="mb-1" th:text="${article.title}"></h5>
                             <small th:text="${article.publicationDate}"></small>
                         </div>

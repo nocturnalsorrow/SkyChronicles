@@ -96,8 +96,8 @@ public class ArticleController {
     //Retrieve the details of a specific article for updating and display the update form.
     @GetMapping("/article/update/{articleId}")
     public String getArticleToUpdate(@PathVariable Long articleId, Model model) {
-        articleService.getArticleById(articleId)
-                .ifPresent(article -> model.addAttribute("article", article));
+        articleService.getArticleById(articleId).ifPresent(article -> model.addAttribute("article", article));
+        model.addAttribute("categories", categoryService.getAllCategories());
 
         return "updateArticle";
     }
