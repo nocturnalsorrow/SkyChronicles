@@ -3,14 +3,11 @@ package com.dr.skychronicles.service;
 import com.dr.skychronicles.entity.Article;
 import com.dr.skychronicles.entity.Gallery;
 import com.dr.skychronicles.repository.ArticleRepository;
-import com.dr.skychronicles.repository.CategoryRepository;
 import com.dr.skychronicles.repository.GalleryRepository;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -20,12 +17,10 @@ import java.util.Optional;
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
-    private final CategoryRepository categoryRepository;
     private final GalleryRepository galleryRepository;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository, CategoryRepository categoryRepository, GalleryRepository galleryRepository) {
+    public ArticleServiceImpl(ArticleRepository articleRepository,GalleryRepository galleryRepository) {
         this.articleRepository = articleRepository;
-        this.categoryRepository = categoryRepository;
         this.galleryRepository = galleryRepository;
     }
 
@@ -56,22 +51,34 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article saveArticle(Article article, List<MultipartFile> imageFiles) throws IOException {
-        if (imageFiles != null && !imageFiles.isEmpty()) {
-            List<Gallery> articleImages = new ArrayList<>();
+        List<Gallery> existingImages = article.getImages();
+        List<Gallery> newImages = new ArrayList<>();
+
+        if (!imageFiles.isEmpty()) {
+            // Обработка новых изображений
             for (MultipartFile file : imageFiles) {
-                if (file.getSize() > 0) { // Проверка, что файл не пуст
-                    Gallery articleImage = new Gallery();
-                    articleImage.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
-                    articleImage.setArticle(article);
-                    articleImages.add(articleImage);
-                }
+                Gallery articleImage = new Gallery();
+                articleImage.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+                articleImage.setArticle(article);
+                newImages.add(articleImage);
             }
-            article.setImages(articleImages);
-        } else {
-            // Если fileImages не содержит фотографий, присвоить ему null
-            article.setImages(null);
+        } else if (existingImages != null && !existingImages.isEmpty()) {
+            // Обработка существующих изображений
+            for (Gallery existingImage : existingImages) {
+                // Декодирование существующего изображения
+                byte[] imageBytes = Base64.getDecoder().decode(existingImage.getImage());
+
+                // Создание объекта Gallery для существующего изображения
+                Gallery articleImage = new Gallery();
+                articleImage.setImage(Base64.getEncoder().encodeToString(imageBytes));
+                articleImage.setArticle(article);
+                newImages.add(articleImage);
+            }
         }
-        article.setPublicationDate(Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date())));
+
+        article.setImages(newImages);
+
+        // Сохранение статьи с обновленными или новыми изображениями
         return articleRepository.save(article);
     }
 

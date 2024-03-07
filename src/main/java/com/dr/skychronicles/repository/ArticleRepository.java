@@ -18,6 +18,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT a FROM Article a WHERE a.categoryId.categoryId = :categoryId")
     List<Article> getArticlesByCategoryId(@Param("categoryId") Long categoryId);
 
-    @Query("SELECT a FROM Article a order by a.publicationDate DESC ")
+    @Query("SELECT a FROM Article a ORDER BY a.publicationDate DESC ")
     List<Article> getArticlesSortedByDate();
 }

@@ -19,7 +19,7 @@ public class Article {
     private String title;
     @Column(name = "content", nullable = true, length = -1)
     private String content;
-    @Column(name = "publication_date", nullable = true)
+    @Column(name = "publication_date", nullable = false)
     private Date publicationDate;
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
