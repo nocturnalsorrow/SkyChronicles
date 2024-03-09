@@ -5,6 +5,7 @@ import com.dr.skychronicles.entity.Gallery;
 import com.dr.skychronicles.repository.ArticleRepository;
 import com.dr.skychronicles.repository.GalleryRepository;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
@@ -37,6 +38,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getArticlesByCategoryId(Long categoryId) {
         return articleRepository.getArticlesByCategoryId(categoryId);
+    }
+
+    @Override
+    public List<Article> getArticlesByCategoryId(Long categoryId, Pageable pageable) {
+        return articleRepository.getArticlesByCategoryId(categoryId, pageable);
     }
 
     @Override

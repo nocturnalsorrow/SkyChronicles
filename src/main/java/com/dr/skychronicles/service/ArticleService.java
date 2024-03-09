@@ -2,6 +2,7 @@ package com.dr.skychronicles.service;
 
 import com.dr.skychronicles.entity.Article;
 import com.dr.skychronicles.entity.Gallery;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ public interface ArticleService {
     List<Article> getArticlesByTitle(String partialTitle);
 
     List<Article> getArticlesByCategoryId(Long categoryId);
+    List<Article> getArticlesByCategoryId(Long categoryId, Pageable pageable);
 
     List<Article> getArticlesSortedByDate();
 

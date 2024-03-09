@@ -4,6 +4,7 @@ import com.dr.skychronicles.entity.Article;
 import com.dr.skychronicles.entity.Category;
 import com.dr.skychronicles.service.ArticleService;
 import com.dr.skychronicles.service.CategoryService;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,12 +40,14 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String getDefaultCategoryArticles(Model model) {
+    public String getHomePage(@RequestParam int page, @RequestParam int size, Model model) {
         try {
             List<Category> allCategories = categoryService.getAllCategories();
             Long defaultCategoryId = (!allCategories.isEmpty()) ? allCategories.getFirst().getCategoryId() : null;
 
-            List<Article> categoryArticles = articleService.getArticlesByCategoryId(defaultCategoryId);
+            PageRequest pageRequest = PageRequest.of(page, size);
+
+            List<Article> categoryArticles = articleService.getArticlesByCategoryId(defaultCategoryId, pageRequest);
 
             model.addAttribute("categories", allCategories);
             model.addAttribute("categoryArticles", categoryArticles);
