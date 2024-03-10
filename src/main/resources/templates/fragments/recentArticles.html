@@ -1,18 +1,35 @@
 <recentArticles>
-    <div class="mt-4">
-        <h3 class="mb-4">Recent Articles</h3>
-        <div class="list-group">
-            <th:block th:each="article, iterStat : ${recentArticles.subList(0, 5)}">
-                <a th:href="@{/article/{articleId} (articleId=${article.articleId})}" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1" th:text="${article.title}"></h5>
-                        <small th:text="${article.publicationDate}"></small>
-                    </div>
-                </a>
-            </th:block>
+    <!-- Recent Articles -->
+    <div class="col-lg-16">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="card-title">Recent Articles</h5>
+            </div>
+            <div class="card-body">
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <th:block th:each="article, iterStat : ${recentArticles.subList(0, 5)}">
+                        <div class="col mb-4">
+                            <div class="card h-100">
+                                <a th:href="@{/article/{articleId} (articleId=${article.articleId})}">
+                                    <img th:if="${article.images.size() > 0}"
+                                         th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
+                                         alt="Article Cover Image" class="card-img-top img-fluid rounded">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${article.title}"></h5>
+                                    <p class="card-text"><small class="text-muted" th:text="${article.publicationDate}"></small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
         </div>
     </div>
+
 </recentArticles>
+
+
 
 
 

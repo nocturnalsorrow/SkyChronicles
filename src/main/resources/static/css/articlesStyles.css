@@ -1,0 +1,32 @@
+h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.list-group-item {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.list-group-item:hover {
+    transform: translateX(10px);
+}
+
+.list-group-item a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}

@@ -40,7 +40,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String getHomePage(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, Model model) {
+    public String getHomePage(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size, Model model) {
         try {
             List<Category> allCategories = categoryService.getAllCategories();
             Long defaultCategoryId = (!allCategories.isEmpty()) ? allCategories.getFirst().getCategoryId() : null;

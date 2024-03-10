@@ -9,15 +9,7 @@
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <style>
-        .img-container {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            height: 400px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/updateArticleStyles.css}"/>
 </head>
 <body>
 
@@ -49,7 +41,6 @@
                      th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${image.id})}">
             </div>
         </div>
-
         <div class="form-group">
             <label for="imageFiles">Select images:</label>
             <input type="file" class="form-control-file" id="imageFiles" name="imageFiles" accept="image/*" multiple>

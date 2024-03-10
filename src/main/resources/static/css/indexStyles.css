@@ -1,0 +1,33 @@
+.list-group-item:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.3s;
+}
+
+.list-group-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.list-group-item img {
+    width: 100%;
+    max-width: 200px; /* Adjust as needed */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Navigation styles */
+.nav-category .nav-link {
+    border: 1px solid #6c757d;
+    background-color: #e9ecef;
+    color: #495057;
+    margin-right: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-category .nav-link:hover {
+    background-color: #343a40;
+    color: #ffffff;
+}
