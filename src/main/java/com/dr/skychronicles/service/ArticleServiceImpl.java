@@ -5,6 +5,7 @@ import com.dr.skychronicles.entity.Gallery;
 import com.dr.skychronicles.repository.ArticleRepository;
 import com.dr.skychronicles.repository.GalleryRepository;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,7 +42,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> getArticlesByCategoryId(Long categoryId, Pageable pageable) {
+    public Page<Article> getArticlesByCategoryId(Long categoryId, Pageable pageable) {
         return articleRepository.getArticlesByCategoryId(categoryId, pageable);
     }
 
@@ -56,7 +57,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article saveArticle(Article article, List<MultipartFile> imageFiles) throws IOException {
+    public void saveArticle(Article article, List<MultipartFile> imageFiles) throws IOException {
         List<Gallery> existingImages = article.getImages();
         List<Gallery> newImages = new ArrayList<>();
 
@@ -85,7 +86,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setImages(newImages);
 
         // Сохранение статьи с обновленными или новыми изображениями
-        return articleRepository.save(article);
+        articleRepository.save(article);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.dr.skychronicles.repository;
 
 import com.dr.skychronicles.entity.Article;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,7 +20,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT a FROM Article a WHERE a.categoryId.categoryId = :categoryId")
     List<Article> getArticlesByCategoryId(@Param("categoryId") Long categoryId);
     @Query("SELECT a FROM Article a WHERE a.categoryId.categoryId = :categoryId")
-    List<Article> getArticlesByCategoryId(@Param("categoryId") Long categoryId, Pageable pageable);
+    Page<Article> getArticlesByCategoryId(@Param("categoryId") Long categoryId, Pageable pageable);
 
     @Query("SELECT a FROM Article a ORDER BY a.publicationDate DESC ")
     List<Article> getArticlesSortedByDate();
