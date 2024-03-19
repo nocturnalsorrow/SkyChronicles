@@ -49,7 +49,7 @@ public class HomeController {
                               Model model) {
         try {
             int currentPage = page.orElse(1);
-            int pageSize = size.orElse(2);
+            int pageSize = size.orElse(12);
 
             List<Category> allCategories = categoryService.getAllCategories();
             Long defaultCategoryId = (!allCategories.isEmpty()) ? allCategories.getFirst().getCategoryId() : null;
@@ -83,7 +83,7 @@ public class HomeController {
                                       Model model) {
         try {
             int currentPage = page.orElse(1);
-            int pageSize = size.orElse(2);
+            int pageSize = size.orElse(12);
 
             Page<Article> categoryArticlesPage = articleService.getArticlesByCategoryId(categoryId, PageRequest.of(currentPage - 1, pageSize));
 

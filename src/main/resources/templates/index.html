@@ -4,9 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/indexStyles.css}"/>
+
+    <style>
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+            transition: background-color 0.3s;
+        }
+
+        .list-group-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .list-group-item img {
+            width: 100%;
+            max-width: 200px; /* Adjust as needed */
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* Navigation styles */
+        .nav-category .nav-link {
+            border: 1px solid #6c757d;
+            background-color: #e9ecef;
+            color: #495057;
+            margin-right: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-category .nav-link:hover {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+    </style>
+
 </head>
 
 <body class="bg-light">
@@ -36,7 +75,7 @@
                             <div class="d-flex flex-column justify-content-between">
                                 <img th:if="${article.images.size() > 0}"
                                      th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
-                                     alt="Article Cover Image" class="img-fluid rounded">
+                                     alt="Article Cover Image" class="img-fluid rounded" style="width: 100%; height: 110px;">
                                 <h5 class="mb-1" th:text="${article.title}"></h5>
                                 <small th:text="${article.publicationDate}"></small>
                             </div>
@@ -70,13 +109,7 @@
     </div>
 </div>
 
-<!-- Include footer fragment -->
 <footer th:replace="~{/fragments/footer :: footer}" class="bg-dark text-white py-3"></footer>
-
-<!-- Bootstrap JavaScript dependencies -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
 
 </body>
 

@@ -5,11 +5,23 @@
     <title th:text="${article.title}"></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-            crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/articleStyles.css}"/>
+    <style>
+        .carousel-cell img {
+            display: block;
+        }
+
+        .carousel {
+            position: relative; /* Добавляем относительное позиционирование */
+        }
+
+        .carousel-control-prev {
+            left: -40px;
+        }
+
+        .carousel-control-next {
+            right: 240px;
+        }
+    </style>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
@@ -22,15 +34,29 @@
                     <div class="card-body">
                         <div th:if="${article != null}">
                             <h1 class="card-title" th:utext="${article.title}"></h1>
-                            <div class="img-container">
-                                <button class="btn btn-primary btn-arrow" id="prevBtn">&#9664;</button>
-                                <div th:each="image : ${article.images}">
-                                    <img th:if="${image != null}" class="img-thumbnail" alt="Image"
-                                         th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${image.id})}">
+                            <div class="carousel mb-3">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
+                                             alt="First slide" style="max-height: 840px; max-width: 540px">
+                                    </div>
+                                    <div th:each="image, iterStat : ${article.images}" th:if="${iterStat.index} > 0"
+                                         class="carousel-item">
+                                        <img th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${image.id})}"
+                                             alt="Slide" style="max-height: 840px; max-width: 540px">
+                                    </div>
                                 </div>
-                                <button class="btn btn-primary btn-arrow" id="nextBtn">&#9654;</button>
+                                <button class="carousel-control-prev" type="button" data-bs-target=".carousel"
+                                        data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target=".carousel"
+                                        data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
-
                             <p class="card-content" th:utext="${article.content}"></p>
                             <p class="card-content" th:utext="${article.publicationDate}"></p>
                         </div>
@@ -49,36 +75,40 @@
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    $(document).ready(function () {
-        var currentImageIndex = 0;
-        var totalImages = $(".img-container img").length;
-
-        // Проверка наличия изображений перед отображением стрелок и контейнера
-        if (totalImages === 0) {
-            $(".img-container, #prevBtn, #nextBtn").hide();
-        }
-
-        $("#prevBtn").click(function () {
-            currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : totalImages - 1;
-            showImage();
+    // JavaScript for carousel control
+    document.addEventListener("DOMContentLoaded", function () {
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const prevButton = document.querySelector('.carousel-control-prev');
+        const nextButton = document.querySelector('.carousel-control-next');
+        let currentIndex = 0;
+        // Show initial slide
+        showSlide(currentIndex);
+        // Event listeners for prev and next buttons
+        prevButton.addEventListener('click', function () {
+            currentIndex = (currentIndex === 0) ? carouselItems.length - 1 : currentIndex - 1;
+            showSlide(currentIndex);
+        });
+        nextButton.addEventListener('click', function () {
+            currentIndex = (currentIndex === carouselItems.length - 1) ? 0 : currentIndex + 1;
+            showSlide(currentIndex);
         });
 
-        $("#nextBtn").click(function () {
-            currentImageIndex = (currentImageIndex < totalImages - 1) ? currentImageIndex + 1 : 0;
-            showImage();
-        });
-
-        function showImage() {
-            $(".img-container img").css("opacity", "0"); // Затухание
-            setTimeout(function () {
-                $(".img-container img").hide();
-                $(".img-container img:eq(" + currentImageIndex + ")").css("opacity", "1").show(); // Появление
-            }, 300);
+        // Function to show slide at given index
+        function showSlide(index) {
+            carouselItems.forEach((item, i) => {
+                if (i === index) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
         }
     });
 </script>
-
 </body>
 </html>
+
 

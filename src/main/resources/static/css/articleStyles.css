@@ -6,8 +6,9 @@
 }
 
 .img-container img {
-    width: 60%;
-    height: auto;
+    width: 100px;
+    height: 400px;
+    object-fit: cover; /* Сохраняем пропорции и обрезаем лишнее */
     transition: opacity 0.3s ease-in-out;
     margin: 0 auto;
     display: block;
