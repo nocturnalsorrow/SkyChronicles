@@ -4,68 +4,77 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-            crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
     <style>
         .list-group-item:hover {
             background-color: #f8f9fa;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease-in-out;
+            border-radius: 10px;
+            overflow: hidden;
+            transform: scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .list-group-item {
-            display: flex;
+        .list-group-item .d-flex {
             flex-direction: column;
+            justify-content: center;
             align-items: center;
             text-align: center;
-            transition: background-color 0.3s;
         }
 
         .list-group-item img {
-            width: 100%;
-            max-width: 200px; /* Adjust as needed */
-            height: auto;
-            margin-bottom: 10px;
+            object-fit: cover;
         }
 
-        /* Navigation styles */
         .nav-category .nav-link {
-            border: 1px solid #6c757d;
-            background-color: #e9ecef;
+            border: none;
+            background-color: transparent;
             color: #495057;
-            margin-right: 5px;
-            transition: background-color 0.3s, color 0.3s;
+            margin-right: 10px;
+            transition: all 0.3s ease-in-out;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .nav-category .nav-link:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 2px;
+            background-color: #343a40;
+            transition: all 0.3s ease-in-out;
+            z-index: 1;
+        }
+
+        .nav-category .nav-link:hover:before {
+            width: 100%;
         }
 
         .nav-category .nav-link:hover {
+            color: #343a40;
+        }
+
+        .nav-category .nav-link.active {
             background-color: #343a40;
             color: #ffffff;
         }
     </style>
-
 </head>
 
 <body class="bg-light">
-
 <!-- Include header fragment -->
 <header th:replace="~{/fragments/header :: header}"></header>
-
-<!-- Display all categories -->
-<nav class="nav nav-category mb-4">
-    <th:block th:each="category : ${categories}">
-        <a class="nav-link link-dark" th:href="@{'/category/' + ${category.categoryId}}"
-           th:class="${category.categoryId == selectedCategoryId} ? 'nav-link active' : 'nav-link'"
-           th:text="${category.name}"></a>
-    </th:block>
-</nav>
 
 <!-- Display articles of the selected category and recent articles -->
 <div class="container mt-4">
     <div class="row">
-        <!-- Main Articles -->
         <div class="col-lg-8">
             <div class="row row-cols-1 row-cols-md-4">
                 <th:block th:each="article:${categoryArticles}">
@@ -75,7 +84,7 @@
                             <div class="d-flex flex-column justify-content-between">
                                 <img th:if="${article.images.size() > 0}"
                                      th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
-                                     alt="Article Cover Image" class="img-fluid rounded" style="width: 100%; height: 110px;">
+                                     alt="Article Cover Image" class="img-fluid rounded" style="width: 100%; height: 150px;">
                                 <h5 class="mb-1" th:text="${article.title}"></h5>
                                 <small th:text="${article.publicationDate}"></small>
                             </div>
@@ -84,28 +93,32 @@
                 </th:block>
             </div>
         </div>
-
         <!-- Recent Articles -->
         <div class="col-lg-4">
             <recentArticles th:replace="~{/fragments/recentArticles :: recentArticles}"></recentArticles>
         </div>
-    </div>
 
-    <!-- Pagination -->
-    <div th:if="${categoryArticles.totalPages > 1}" class="pagination">
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <li th:class="${categoryArticles.first} ? 'page-item disabled' : 'page-item'">
-                    <a class="page-link" th:href="@{'/category/' + ${selectedCategoryId} + '?size=' + ${categoryArticles.size} + '&page=1'}">&laquo;&laquo;</a>
-                </li>
-                <li th:each="pageNumber, iterStat : ${pageNumbers}" th:class="${pageNumber == categoryArticles.number + 1} ? 'page-item active' : 'page-item'">
-                    <a class="page-link" th:href="@{'/category/' + ${selectedCategoryId} + '?size=' + ${categoryArticles.size} + '&page=' + ${pageNumber} }" th:text="${pageNumber}"></a>
-                </li>
-                <li th:class="${categoryArticles.last} ? 'page-item disabled' : 'page-item'">
-                    <a class="page-link" th:href="@{'/category/' + ${selectedCategoryId} + '?size=' + ${categoryArticles.size} + '&page=' + ${categoryArticles.totalPages} }">&raquo;&raquo;</a>
-                </li>
-            </ul>
-        </nav>
+        <!-- Pagination -->
+        <div th:if="${categoryArticles.totalPages > 1}" class="pagination">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li th:class="${categoryArticles.first} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link"
+                           th:href="@{'/category/' + ${selectedCategoryId} + '?size=' + ${categoryArticles.size} + '&page=1'}">&laquo;&laquo;</a>
+                    </li>
+                    <li th:each="pageNumber, iterStat : ${pageNumbers}"
+                        th:class="${pageNumber == categoryArticles.number + 1} ? 'page-item active' : 'page-item'">
+                        <a class="page-link"
+                           th:href="@{'/category/' + ${selectedCategoryId} + '?size=' + ${categoryArticles.size} + '&page=' + ${pageNumber} }"
+                           th:text="${pageNumber}"></a>
+                    </li>
+                    <li th:class="${categoryArticles.last} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link"
+                           th:href="@{'/category/' + ${selectedCategoryId} + '?size=' + ${categoryArticles.size} + '&page=' + ${categoryArticles.totalPages} }">&raquo;&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 
@@ -114,6 +127,8 @@
 </body>
 
 </html>
+
+
 
 
 

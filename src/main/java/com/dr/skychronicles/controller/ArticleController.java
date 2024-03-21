@@ -35,6 +35,7 @@ public class ArticleController {
             articleService.getArticleById(articleId)
                     .ifPresent(article -> model.addAttribute("article", article));
 
+            model.addAttribute("categories", categoryService.getAllCategories());
             model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
             return "article";
         } catch (Exception e) {
@@ -67,6 +68,7 @@ public class ArticleController {
     //Retrieve and display a list of all articles, sorted by date.
     @GetMapping("/articles")
     public String getAllArticles(Model model) {
+        model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("articles", articleService.getArticlesSortedByDate());
 
         return "articles";

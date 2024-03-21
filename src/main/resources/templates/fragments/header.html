@@ -9,7 +9,27 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a th:href="@{/}" class="nav-link px-2 text-white" th:text="Home"></a></li>
+                <li class="nav-item">
+                    <a th:href="@{/}" class="nav-link px-2 text-white">
+                        <img class="fit-picture" src="https://www.pngmart.com/files/23/Miata-PNG-Image.png" alt="logp"
+                             style="max-height: 100px; max-width: 100px"/>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link px-2 text-white dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Category
+                    </a>
+                    <ul class="dropdown-menu fade" aria-labelledby="navbarDropdown">
+                        <!-- Просто используйте цикл для создания элементов списка -->
+                        <li th:each="category : ${categories}">
+                            <a class="dropdown-item" th:href="@{'/category/' + ${category.categoryId}}"
+                               th:class="${category.categoryId == selectedCategoryId} ? 'active' : ''">
+                                <span th:text="${category.name}"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
                     <a th:href="@{/profile}" class="nav-link px-2 text-white" th:text="Profile">Profile</a>
                 </li>
@@ -22,11 +42,9 @@
                 <div class="input-group">
                     <input type="text" class="form-control form-control-dark text-bg-dark" name="keyword"
                            th:placeholder="search..." aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit" th:text="Search">Search
-                    </button>
+                    <button class="btn btn-outline-light" type="submit" th:text="Search">Search</button>
                 </div>
             </form>
-
 
             <div sec:authorize="!isAuthenticated()" class="me-2">
                 <button type="button" class="btn btn-outline-light me-2"
@@ -41,7 +59,6 @@
                     <button class="btn btn-outline-light me-2" type="submit" th:text="Logout"/>
                 </form>
             </div>
-
 
             <!--      &lt;!&ndash; Language switch buttons with custom styles &ndash;&gt;-->
             <!--      <div class="btn-group me-2">-->
@@ -58,8 +75,7 @@
             <!--             class="btn btn-outline-light me-2 btn-sm" th:text="EN">🇺🇸 English</a>-->
             <!--        </div>-->
             <!--      </div>-->
-
-
         </div>
     </div>
 </header>
+
