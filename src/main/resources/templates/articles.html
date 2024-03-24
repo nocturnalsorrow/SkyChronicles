@@ -5,36 +5,84 @@
     <title>Articles to edit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-            crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/articlesStyles.css}"/>
+
+    <style>
+        .article-title {
+            font-size: larger;
+            font-weight: bold;
+        }
+
+        .list-group-item {
+            font-weight: bold;
+        }
+
+        .article-image {
+            object-fit: cover;
+            width: 100%;
+            height: 100px;
+        }
+    </style>
 </head>
 <body>
 
 <header th:replace="~{/fragments/header :: header}"></header>
 
 <div class="container mt-4">
-    <h3>Articles to edit</h3>
+    <h3 style="font-weight: bold">Articles to edit</h3>
     <div class="list-group">
         <th:block th:each="article:${articles}">
             <div class="list-group-item list-group-item-action">
-                <a th:href="@{/article/update/{articleId} (articleId=${article.articleId})}"
-                   th:text="${article.title}"></a>
-                <button type="button" class="btn btn-danger float-end">
-                    <a th:href="@{/article/delete/{articleId} (articleId=${article.articleId})}">
-                        <span class="text-white">Delete</span>
-                    </a>
-                </button>
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <div th:if="${article.images.size() > 0}">
+                            <a th:href="@{/article/update/{articleId} (articleId=${article.articleId})}">
+                            <img th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
+                                 alt="Article Cover Image" class="img-fluid rounded article-image">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <a th:href="@{/article/update/{articleId} (articleId=${article.articleId})}"
+                           th:text="${article.title}" class="article-title"></a>
+                        <button type="button" class="btn btn-danger float-end">
+                            <a th:href="@{/article/delete/{articleId} (articleId=${article.articleId})}">
+                                <span class="text-white">Delete</span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
             </div>
         </th:block>
     </div>
+
     <button type="button" class="btn btn-success btn-lg form-group mt-2">
         <a th:href="@{/article}" style="text-decoration: none; color: inherit;">
             <span class="text-white">Add</span>
         </a>
     </button>
+
+    <!-- Pagination -->
+    <div th:if="${articles.totalPages > 1}" class="pagination justify-content-center">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li th:class="${articles.first} ? 'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{'/articles' + '?size=' + ${articles.size} + '&page=1'}">&laquo;&laquo;</a>
+                </li>
+                <li th:each="pageNumber : ${pageNumbers}"
+                    th:class="${pageNumber == articles.number + 1} ? 'page-item active' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{'/articles' +'?size=' + ${articles.size} + '&page=' + ${pageNumber} }"
+                       th:text="${pageNumber}"></a>
+                </li>
+                <li th:class="${articles.last} ? 'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{'/articles' + '?size=' + ${articles.size} + '&page=' + ${articles.totalPages} }">&raquo;&raquo;</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </div>
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>

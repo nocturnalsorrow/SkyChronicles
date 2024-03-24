@@ -52,6 +52,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Page<Article> getArticlesSortedByDate(Pageable pageable) {
+        return articleRepository.getArticlesSortedByDate(pageable);
+    }
+
+    @Override
     public Optional<Gallery> getArticleImage(Long articleId, Long imageId) {
         return galleryRepository.findByArticle_ArticleIdAndId(articleId, imageId);
     }

@@ -14,16 +14,12 @@ public interface ArticleService {
     List<Article> getAllArticles();
     Optional<Article> getArticleById(Long id);
     List<Article> getArticlesByTitle(String partialTitle);
-
     List<Article> getArticlesByCategoryId(Long categoryId);
     Page<Article> getArticlesByCategoryId(Long categoryId, Pageable pageable);
-
     List<Article> getArticlesSortedByDate();
-
+    Page<Article> getArticlesSortedByDate(Pageable pageable);
     Optional<Gallery> getArticleImage(Long articleId, Long imageId);
     void saveArticle(Article article, List<MultipartFile> imageFiles) throws IOException;
-
     Article saveArticle(Article article);
-
     void deleteArticleById(Long id);
 }

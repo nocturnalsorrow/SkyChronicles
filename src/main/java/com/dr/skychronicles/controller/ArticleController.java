@@ -4,6 +4,8 @@ import com.dr.skychronicles.entity.Article;
 import com.dr.skychronicles.entity.Gallery;
 import com.dr.skychronicles.service.ArticleService;
 import com.dr.skychronicles.service.CategoryService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,6 +19,8 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 public class ArticleController {
@@ -67,11 +71,30 @@ public class ArticleController {
 
     //Retrieve and display a list of all articles, sorted by date.
     @GetMapping("/articles")
-    public String getAllArticles(Model model) {
-        model.addAttribute("categories", categoryService.getAllCategories());
-        model.addAttribute("articles", articleService.getArticlesSortedByDate());
+    public String getAllArticles(@RequestParam("page") Optional<Integer> page,
+                                 @RequestParam("size") Optional<Integer> size,
+                                 Model model) {
+        try {
+            int currentPage = page.orElse(1);
+            int pageSize = size.orElse(7);
 
-        return "articles";
+            Page<Article> articlesSortedByDate = articleService.getArticlesSortedByDate(PageRequest.of(currentPage - 1, pageSize));
+
+            int totalPages = articlesSortedByDate.getTotalPages();
+            if (totalPages > 0) {
+                List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                        .boxed()
+                        .collect(Collectors.toList());
+                model.addAttribute("pageNumbers", pageNumbers);
+            }
+
+            model.addAttribute("categories", categoryService.getAllCategories());
+            model.addAttribute("articles", articlesSortedByDate);
+
+            return "articles";
+        } catch (Exception ex) {
+            return "error";
+        }
     }
 
     //Display the form for creating a new article with an empty model and available categories.

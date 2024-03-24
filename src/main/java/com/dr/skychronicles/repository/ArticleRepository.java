@@ -24,4 +24,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Query("SELECT a FROM Article a ORDER BY a.publicationDate DESC ")
     List<Article> getArticlesSortedByDate();
+
+    @Query("SELECT a FROM Article a ORDER BY a.publicationDate DESC ")
+    Page<Article> getArticlesSortedByDate(Pageable pageable);
 }
