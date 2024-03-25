@@ -21,7 +21,6 @@
                         Category
                     </a>
                     <ul class="dropdown-menu fade" aria-labelledby="navbarDropdown">
-                        <!-- Просто используйте цикл для создания элементов списка -->
                         <li th:each="category : ${categories}">
                             <a class="dropdown-item" th:href="@{'/category/' + ${category.categoryId}}"
                                th:class="${category.categoryId == selectedCategoryId} ? 'active' : ''">

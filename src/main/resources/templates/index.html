@@ -6,73 +6,16 @@
     <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <style>
-        .list-group-item:hover {
-            background-color: #f8f9fa;
-            transition: all 0.3s ease-in-out;
-            border-radius: 10px;
-            overflow: hidden;
-            transform: scale(1.05);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .list-group-item .d-flex {
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .list-group-item img {
-            object-fit: cover;
-        }
-
-        .nav-category .nav-link {
-            border: none;
-            background-color: transparent;
-            color: #495057;
-            margin-right: 10px;
-            transition: all 0.3s ease-in-out;
-            font-size: 16px;
-            padding: 10px 15px;
-            border-radius: 5px;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .nav-category .nav-link:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0%;
-            height: 2px;
-            background-color: #343a40;
-            transition: all 0.3s ease-in-out;
-            z-index: 1;
-        }
-
-        .nav-category .nav-link:hover:before {
-            width: 100%;
-        }
-
-        .nav-category .nav-link:hover {
-            color: #343a40;
-        }
-
-        .nav-category .nav-link.active {
-            background-color: #343a40;
-            color: #ffffff;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
 </head>
 
 <body class="bg-light">
-<!-- Include header fragment -->
 <header th:replace="~{/fragments/header :: header}"></header>
 
-<!-- Display articles of the selected category and recent articles -->
 <div class="container mt-4">
     <div class="row">
         <div class="col-lg-8">
@@ -84,7 +27,7 @@
                             <div class="d-flex flex-column justify-content-between">
                                 <img th:if="${article.images.size() > 0}"
                                      th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
-                                     alt="Article Cover Image" class="img-fluid rounded" style="width: 100%; height: 150px;">
+                                     alt="Article Cover Image" class="img-fluid rounded">
                                 <h5 class="mb-1" style="font-weight: bold" th:text="${article.title}"></h5>
                                 <small th:text="${article.publicationDate}"></small>
                             </div>

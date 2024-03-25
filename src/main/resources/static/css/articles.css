@@ -30,3 +30,18 @@ h3 {
 .btn-success:hover {
     background-color: #218838;
 }
+
+.article-title {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.list-group-item {
+    font-weight: bold;
+}
+
+.article-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100px;
+}
