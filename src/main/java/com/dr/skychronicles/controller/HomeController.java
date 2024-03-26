@@ -35,6 +35,7 @@ public class HomeController {
             } else {
                 List<Article> searchResults = articleService.getArticlesByTitle(keyword);
                 model.addAttribute("searchResults", searchResults);
+                model.addAttribute("categories", categoryService.getAllCategories());
                 return "searchResults";
             }
         } catch (Exception e) {

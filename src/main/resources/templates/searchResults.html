@@ -18,7 +18,7 @@
     <h1>Search results:</h1>
 
     <div th:if="${searchResults.isEmpty()}" class="no-results">
-        No results found.
+        <h4>No results found.</h4>
     </div>
 
     <div th:unless="${searchResults.isEmpty()}">

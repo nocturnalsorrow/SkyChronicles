@@ -1,0 +1,34 @@
+.btn-outline-light:hover,
+.logo:hover,
+.category:hover,
+.sign-in:hover,
+.profile:hover,
+.edit-articles:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.dropdown-menu.fade {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    z-index: 1000;
+    background-color: #fff; /* цвет фона выпадающего списка */
+    border: 1px solid #ccc; /* граница выпадающего списка */
+    border-radius: 4px; /* скругление углов */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* тень */
+}
+
+.dropdown-menu.fade.show {
+    display: block;
+    opacity: 1;
+}
+
+.dropdown-menu.fade li {
+    padding: 10px 15px;
+}
+
+.dropdown-menu.fade li:hover {
+    background-color: #f8f9fa; /* цвет фона при наведении на элемент */
+}

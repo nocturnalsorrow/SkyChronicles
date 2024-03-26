@@ -24,7 +24,7 @@
         }
 
         .carousel-control-next {
-            right: 240px; /* Изменяем значение right для сдвига влево */
+            right: -40px; /* Изменяем значение right для сдвига влево */
         }
     </style>
 </head>
@@ -43,12 +43,12 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <img th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
-                                             alt="First slide" style="max-height: 840px; max-width: 540px">
+                                             alt="First slide" style="height: 300px; width: 100%; object-fit: cover">
                                     </div>
                                     <div th:each="image, iterStat : ${article.images}" th:if="${iterStat.index} > 0"
                                          class="carousel-item">
                                         <img th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${image.id})}"
-                                             alt="Slide" style="max-height: 840px; max-width: 540px">
+                                             alt="Slide" style="height: 300px; width: 100%; object-fit: cover">
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target=".carousel"

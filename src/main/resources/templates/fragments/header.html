@@ -1,8 +1,9 @@
 <header class="p-3 text-bg-dark" xmlns:th="https://www.thymeleaf.org"
         xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+            <a href="/" class="logo d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                 <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
                     <use xlink:href="#bootstrap"></use>
                 </svg>
@@ -24,16 +25,16 @@
                         <li th:each="category : ${categories}">
                             <a class="dropdown-item" th:href="@{'/category/' + ${category.categoryId}}"
                                th:class="${category.categoryId == selectedCategoryId} ? 'active' : ''">
-                                <span th:text="${category.name}"></span>
+                                <span th:text="${category.name}" style="font-weight: bold; color: black; text-decoration: none;"></span>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
-                    <a th:href="@{/profile}" class="nav-link px-2 text-white" th:text="Profile">Profile</a>
+                    <a th:href="@{/profile}" class="profile nav-link px-2 text-white" th:text="Profile">Profile</a>
                 </li>
                 <li sec:authorize="hasAuthority('ADMIN')">
-                    <a th:href="@{/articles}" class="nav-link px-2 text-white">Edit Articles</a>
+                    <a th:href="@{/articles}" class="edit-articles nav-link px-2 text-white">Edit Articles</a>
                 </li>
             </ul>
 
@@ -49,7 +50,8 @@
                 <button type="button" class="btn btn-outline-light me-2"
                         th:onclick="|window.location.href='@{/login}'|">Login
                 </button>
-                <button type="button" class="btn btn-warning" th:onclick="|window.location.href='@{/signUp}'|">Sign Up
+                <button type="button" class="sign-in btn btn-warning me-2"
+                        th:onclick="|window.location.href='@{/login}'|">Sign In
                 </button>
             </div>
 
@@ -77,3 +79,5 @@
         </div>
     </div>
 </header>
+
+
