@@ -1,14 +1,14 @@
 <recentArticles>
     <style>
-        .card:hover {
-        transform: scale(1.05); /* увеличиваем размер при наведении */
-        transition: transform 0.3s ease; /* плавное изменение размера */
+        .recent-article-card:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
         }
     </style>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card border-0">
+                <div class="card recent-article-card border-0">
                     <div class="card-header bg-dark text-white">
                         <h5 class="card-title m-0">Recent Articles</h5>
                     </div>
@@ -16,7 +16,7 @@
                         <div class="row row-cols-1 row-cols-md-2 g-4">
                             <th:block th:each="article, iterStat : ${recentArticles.subList(0, 4)}">
                                 <div class="col">
-                                    <div class="card h-100 border-0">
+                                    <div class="card h-100 border-0 recent-article-card"> <!-- Add additional class here -->
                                         <a th:href="@{/article/{articleId} (articleId=${article.articleId})}" style="text-decoration: none; color: inherit;">
                                             <img th:if="${article.images.size() > 0}"
                                                  th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
@@ -36,6 +36,7 @@
         </div>
     </div>
 </recentArticles>
+
 
 
 

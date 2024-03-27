@@ -9,31 +9,50 @@
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/searchResults.css}"/>
 </head>
 <body>
 
 <header th:replace="~{/fragments/header :: header}"></header>
 
-<div class="container mt-5">
-    <h1>Search results:</h1>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <h4>Search results:</h4>
+            <div class="row row-cols-1 row-cols-md-4">
 
-    <div th:if="${searchResults.isEmpty()}" class="no-results">
-        <h4>No results found.</h4>
-    </div>
 
-    <div th:unless="${searchResults.isEmpty()}">
-        <ul>
-            <a th:each="article : ${searchResults}" th:href="@{/article/{articleId}(articleId=${article.articleId})}"
-               class="text-decoration-none card-link">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${article.title}"></h5>
-                    </div>
+                <div th:if="${searchResults.isEmpty()}" class="no-results">
+                    <h4>No results found.</h4>
                 </div>
-            </a>
-        </ul>
+
+                <div th:unless="${searchResults.isEmpty()}">
+
+                    <th:block th:each="article : ${searchResults}">
+                        <div class="col mb-4">
+                            <a th:href="@{/article/{articleId}(articleId=${article.articleId})}"
+                               class="list-group-item list-group-item-action">
+                                <div class="d-flex flex-column justify-content-between">
+                                    <img th:if="${article.images.size() > 0}"
+                                         th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
+                                         alt="Article Cover Image" class="img-fluid rounded">
+                                    <h5 class="mb-1" style="font-weight: bold" th:text="${article.title}"></h5>
+                                    <small th:text="${article.publicationDate}"></small>
+                                </div>
+                            </a>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Articles -->
+        <div class="col-lg-4">
+            <recentArticles th:replace="~{/fragments/recentArticles :: recentArticles}"></recentArticles>
+        </div>
     </div>
 </div>
+
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
 
