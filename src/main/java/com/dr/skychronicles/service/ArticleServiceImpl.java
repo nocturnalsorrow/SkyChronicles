@@ -37,6 +37,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Page<Article> getArticlesByTitle(String partialTitle, Pageable pageable) {
+        return articleRepository.getArticlesByTitle(partialTitle, pageable);
+    }
+
+    @Override
     public List<Article> getArticlesByCategoryId(Long categoryId) {
         return articleRepository.getArticlesByCategoryId(categoryId);
     }

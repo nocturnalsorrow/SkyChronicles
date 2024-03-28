@@ -16,6 +16,8 @@ import java.util.List;
 public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT a FROM Article a WHERE LOWER(a.title) LIKE LOWER(concat('%', :partialTitle, '%'))")
     List<Article> getArticlesByTitle(@Param("partialTitle") String partialTitle);
+    @Query("SELECT a FROM Article a WHERE LOWER(a.title) LIKE LOWER(concat('%', :partialTitle, '%'))")
+    Page<Article> getArticlesByTitle(@Param("partialTitle") String partialTitle, Pageable pageable);
 
     @Query("SELECT a FROM Article a WHERE a.categoryId.categoryId = :categoryId")
     List<Article> getArticlesByCategoryId(@Param("categoryId") Long categoryId);

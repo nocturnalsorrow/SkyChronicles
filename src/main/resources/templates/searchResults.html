@@ -21,7 +21,6 @@
             <h4>Search results:</h4>
             <div class="row row-cols-1 row-cols-md-4">
 
-
                 <div th:if="${searchResults.isEmpty()}" class="no-results">
                     <h4>No results found.</h4>
                 </div>
@@ -50,9 +49,35 @@
         <div class="col-lg-4">
             <recentArticles th:replace="~{/fragments/recentArticles :: recentArticles}"></recentArticles>
         </div>
+
+        <!-- Pagination -->
+        <div th:if="${searchResults.totalPages > 1}" class="pagination justify-content-center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <!-- Предыдущая страница -->
+                    <li th:class="${searchResults.first} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link"
+                           th:href="@{'/search?keyword=' + ${keyword} + '&size=' + ${searchResults.size} + '&page=1'}">&laquo;&laquo;</a>
+                    </li>
+
+                    <!-- Ссылки на промежуточные страницы -->
+                    <li th:each="pageNumber : ${pageNumbers}"
+                        th:class="${pageNumber == searchResults.number + 1} ? 'page-item active' : 'page-item'">
+                        <a class="page-link"
+                           th:href="@{'/search?keyword=' + ${keyword} + '&size=' + ${searchResults.size} + '&page=' + ${pageNumber}}"
+                           th:text="${pageNumber}"></a>
+                    </li>
+
+                    <!-- Следующая страница -->
+                    <li th:class="${searchResults.last} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link"
+                           th:href="@{'/search?keyword=' + ${keyword} + '&size=' + ${searchResults.size} + '&page=' + ${searchResults.totalPages}}">&raquo;&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
-
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
 

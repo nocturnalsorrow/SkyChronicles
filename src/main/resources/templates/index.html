@@ -19,6 +19,7 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-lg-8">
+            <h4 th:if="${categoryName}" th:text="${categoryName}" class="mb-4" style="font-weight: bold"></h4>
             <div class="row row-cols-1 row-cols-md-4">
                 <th:block th:each="article:${categoryArticles}">
                     <div class="col mb-4">
@@ -36,6 +37,7 @@
                 </th:block>
             </div>
         </div>
+
         <!-- Recent Articles -->
         <div class="col-lg-4">
             <recentArticles th:replace="~{/fragments/recentArticles :: recentArticles}"></recentArticles>

@@ -28,13 +28,29 @@ public class HomeController {
     }
 
     @GetMapping("/search")
-    public String searchArticles(@RequestParam(name = "keyword", required = false) String keyword, Model model) {
+    public String searchArticles(@RequestParam(name = "keyword", required = false) String keyword,
+                                 @RequestParam("page") Optional<Integer> page,
+                                 @RequestParam("size") Optional<Integer> size,
+                                 Model model) {
         try {
+            int currentPage = page.orElse(1);
+            int pageSize = size.orElse(8);
+
             if (keyword == null || keyword.isEmpty()) {
                 return "redirect:/";
             } else {
-                List<Article> searchResults = articleService.getArticlesByTitle(keyword);
-                model.addAttribute("searchResults", searchResults);
+                Page<Article> searchResultsPage = articleService.getArticlesByTitle(keyword, PageRequest.of(currentPage - 1, pageSize));
+
+                int totalPages = searchResultsPage.getTotalPages();
+                if (totalPages > 0) {
+                    List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                            .boxed()
+                            .collect(Collectors.toList());
+                    model.addAttribute("pageNumbers", pageNumbers);
+                }
+
+                model.addAttribute("keyword", keyword);
+                model.addAttribute("searchResults", searchResultsPage);
                 model.addAttribute("categories", categoryService.getAllCategories());
                 model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
                 return "searchResults";
@@ -66,7 +82,12 @@ public class HomeController {
                 model.addAttribute("pageNumbers", pageNumbers);
             }
 
+            // Получение объекта Category по defaultCategoryId
+            Optional<Category> categoryOptional = categoryService.getCategoryById(defaultCategoryId);
+            String categoryName = categoryOptional.map(Category::getName).orElse("Unknown Category"); // Если категория не найдена, можно использовать какое-то стандартное значение
+
             model.addAttribute("categories", allCategories);
+            model.addAttribute("categoryName", categoryName);
             model.addAttribute("categoryArticles", categoryArticlePage);
             model.addAttribute("selectedCategoryId", defaultCategoryId);
             model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
@@ -97,7 +118,12 @@ public class HomeController {
                 model.addAttribute("pageNumbers", pageNumbers);
             }
 
+            // Получение объекта Category по categoryId
+            Optional<Category> categoryOptional = categoryService.getCategoryById(categoryId);
+            String categoryName = categoryOptional.map(Category::getName).orElse("Unknown Category"); // Если категория не найдена, можно использовать какое-то стандартное значение
+
             model.addAttribute("categories", categoryService.getAllCategories());
+            model.addAttribute("categoryName", categoryName);
             model.addAttribute("categoryArticles", categoryArticlesPage);
             model.addAttribute("selectedCategoryId", categoryId);
             model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
