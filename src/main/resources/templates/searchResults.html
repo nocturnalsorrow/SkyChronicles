@@ -25,23 +25,20 @@
                     <h4>No results found.</h4>
                 </div>
 
-                <div th:unless="${searchResults.isEmpty()}">
-
-                    <th:block th:each="article : ${searchResults}">
-                        <div class="col mb-4">
-                            <a th:href="@{/article/{articleId}(articleId=${article.articleId})}"
-                               class="list-group-item list-group-item-action">
-                                <div class="d-flex flex-column justify-content-between">
-                                    <img th:if="${article.images.size() > 0}"
-                                         th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
-                                         alt="Article Cover Image" class="img-fluid rounded">
-                                    <h5 class="mb-1" style="font-weight: bold" th:text="${article.title}"></h5>
-                                    <small th:text="${article.publicationDate}"></small>
-                                </div>
-                            </a>
-                        </div>
-                    </th:block>
-                </div>
+                <th:block th:each="article : ${searchResults}">
+                    <div class="col mb-4">
+                        <a th:href="@{/article/{articleId}(articleId=${article.articleId})}"
+                           class="list-group-item list-group-item-action">
+                            <div class="d-flex flex-column justify-content-between">
+                                <img th:if="${article.images.size() > 0}"
+                                     th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
+                                     alt="Article Cover Image" class="img-fluid rounded">
+                                <h5 class="mb-1" style="font-weight: bold" th:text="${article.title}"></h5>
+                                <small th:text="${article.publicationDate}"></small>
+                            </div>
+                        </a>
+                    </div>
+                </th:block>
             </div>
         </div>
 
@@ -59,16 +56,12 @@
                         <a class="page-link"
                            th:href="@{'/search?keyword=' + ${keyword} + '&size=' + ${searchResults.size} + '&page=1'}">&laquo;&laquo;</a>
                     </li>
-
-                    <!-- Ссылки на промежуточные страницы -->
                     <li th:each="pageNumber : ${pageNumbers}"
                         th:class="${pageNumber == searchResults.number + 1} ? 'page-item active' : 'page-item'">
                         <a class="page-link"
                            th:href="@{'/search?keyword=' + ${keyword} + '&size=' + ${searchResults.size} + '&page=' + ${pageNumber}}"
                            th:text="${pageNumber}"></a>
                     </li>
-
-                    <!-- Следующая страница -->
                     <li th:class="${searchResults.last} ? 'page-item disabled' : 'page-item'">
                         <a class="page-link"
                            th:href="@{'/search?keyword=' + ${keyword} + '&size=' + ${searchResults.size} + '&page=' + ${searchResults.totalPages}}">&raquo;&raquo;</a>

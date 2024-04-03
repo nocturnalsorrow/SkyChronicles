@@ -53,12 +53,12 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> getArticlesSortedByDate() {
-        return articleRepository.getArticlesSortedByDate();
+        return articleRepository.getArticlesSortedByPublicationDate();
     }
 
     @Override
     public Page<Article> getArticlesSortedByDate(Pageable pageable) {
-        return articleRepository.getArticlesSortedByDate(pageable);
+        return articleRepository.getArticlesSortedByPublicationDate(pageable);
     }
 
     @Override

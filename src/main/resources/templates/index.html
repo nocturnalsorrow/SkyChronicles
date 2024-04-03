@@ -29,7 +29,7 @@
                                 <img th:if="${article.images.size() > 0}"
                                      th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
                                      alt="Article Cover Image" class="img-fluid rounded">
-                                <h5 class="mb-1" style="font-weight: bold" th:text="${article.title}"></h5>
+                                <h6 class="mb-1" style="font-weight: bold" th:text="${article.title}"></h6>
                                 <small th:text="${article.publicationDate}"></small>
                             </div>
                         </a>

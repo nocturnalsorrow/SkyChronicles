@@ -22,8 +22,8 @@
                                                  th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
                                                  alt="Article Cover Image" class="card-img-top img-fluid rounded" style="width: 100%; height: 115px; object-fit: cover;">
                                             <div class="card-body">
-                                                <h5 class="card-title mb-0" th:text="${article.title}" style="font-weight: bold; color: inherit;"></h5>
-                                                <p class="card-text"><small class="text-muted" th:text="${article.publicationDate}" style="color: inherit;"></small></p>
+                                                <h6 class="card-title mb-0" th:text="${article.title}" style="font-weight: bold; color: inherit;"></h6>
+                                                <p class="card-text"><small class="text-muted" th:text="${article.publicationDate}" style="font-size: 12px; color: inherit;"></small></p>
                                             </div>
                                         </a>
                                     </div>

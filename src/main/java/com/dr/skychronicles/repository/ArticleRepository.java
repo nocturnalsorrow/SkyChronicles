@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
 @Repository
 @Transactional
@@ -19,14 +18,14 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT a FROM Article a WHERE LOWER(a.title) LIKE LOWER(concat('%', :partialTitle, '%'))")
     Page<Article> getArticlesByTitle(@Param("partialTitle") String partialTitle, Pageable pageable);
 
-    @Query("SELECT a FROM Article a WHERE a.categoryId.categoryId = :categoryId")
+    @Query("SELECT a FROM Article a WHERE a.categoryId.categoryId = :categoryId ORDER BY a.publicationDate DESC")
     List<Article> getArticlesByCategoryId(@Param("categoryId") Long categoryId);
-    @Query("SELECT a FROM Article a WHERE a.categoryId.categoryId = :categoryId")
+    @Query("SELECT a FROM Article a WHERE a.categoryId.categoryId = :categoryId ORDER BY a.publicationDate DESC")
     Page<Article> getArticlesByCategoryId(@Param("categoryId") Long categoryId, Pageable pageable);
 
     @Query("SELECT a FROM Article a ORDER BY a.publicationDate DESC ")
-    List<Article> getArticlesSortedByDate();
+    List<Article> getArticlesSortedByPublicationDate();
 
     @Query("SELECT a FROM Article a ORDER BY a.publicationDate DESC ")
-    Page<Article> getArticlesSortedByDate(Pageable pageable);
+    Page<Article> getArticlesSortedByPublicationDate(Pageable pageable);
 }

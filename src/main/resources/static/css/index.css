@@ -12,6 +12,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-size: 14px;
 }
 
 .list-group-item img {
@@ -39,7 +40,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 0%;
+    width: 0;
     height: 2px;
     background-color: #343a40;
     transition: all 0.3s ease-in-out;

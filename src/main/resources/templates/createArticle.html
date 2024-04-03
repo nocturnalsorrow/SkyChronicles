@@ -14,7 +14,7 @@
 <header th:replace="~{/fragments/header :: header}"></header>
 
 <div class="container mt-4">
-    <h3>Create article</h3>
+    <h3 style="text-align: center">Create article</h3>
     <form th:action="@{/article}" th:method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <input name="articleId" type="hidden" th:value="${article.articleId}" class="form-control"
@@ -42,8 +42,11 @@
             <input name="publicationDate" type="date" th:field="${article.publicationDate}" id="publicationDate"
                    class="form-control" required style="width: 33%"/>
         </div>
+        <h5>&lt;h5&gt; - Subtitle
+            &lt;p&gt; - Paragraph</h5>
         <div class="form-group">
             <label for="content"><strong>Content</strong></label>
+            <p>&lt;h5&gt;Subtitle&lt;/h5&gt;; &lt;p&gt;Paragraph&lt;/p&gt;</p>
             <textarea name="content" rows="10" th:field="${article.content}" id="content"
                       class="form-control"></textarea>
         </div>
