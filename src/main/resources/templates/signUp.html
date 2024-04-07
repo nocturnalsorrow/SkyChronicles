@@ -16,48 +16,38 @@
 
 <header th:replace="~{/fragments/header :: header}"></header>
 
-<div class="container-fluid d-flex h-100 justify-content-center align-items-center p-0">
-    <div class="col-lg-8 col-lg-offset-2">
-        <h3 class="text-center">Sign Up</h3>
-        <form th:method="POST" th:action="@{/signUp}" th:object="${user}">
-            <div class="messages"></div>
-            <div class="controls">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="form_login">Email</label>
-                            <input id="form_login" type="email" th:field="*{email}" class="form-control" required="required" th:placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="form_password">Password</label>
-                            <input id="form_password" type="password" th:field="*{password}" class="form-control js-name" required="required">
-                        </div>
-                    </div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Sign Up</h3>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="form_name">Username</label>
-                            <input id="form_name" type="text" th:field="*{username}" class="form-control js-name" required="required" th:placeholder="Username" pattern="[A-Z\u0410-\u042F]{1}[a-z\u0430-\u044f]{2-44}">
+                <div class="card-body">
+                    <form th:method="POST" th:action="@{/signUp}" th:object="${user}">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input id="email" type="email" class="form-control" name="email" th:field="*{email}" required="required" th:placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input id="password" type="password" class="form-control" name="password" th:field="*{password}" required="required" th:placeholder="Password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input id="username" type="text" class="form-control" name="username" th:field="*{username}" required="required" th:placeholder="Username" pattern="[A-Z\u0410-\u042F]{1}[a-z\u0430-\u044f]{2-44}">
+                        </div>
+                        <div class="mb-3">
                             <!-- Replace data-sitekey with your own one, generated at https://www.google.com/recaptcha/admin -->
                             <div class="g-recaptcha" id="captcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S"></div>
                         </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <button type="submit" id="submitBtn" class="btn btn-primary">Submit</button>
-                    </div>
+                        <div class="text-center">
+                            <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 
