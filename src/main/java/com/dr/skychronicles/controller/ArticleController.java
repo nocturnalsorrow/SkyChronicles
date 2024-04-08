@@ -2,6 +2,7 @@ package com.dr.skychronicles.controller;
 
 import com.dr.skychronicles.entity.Article;
 import com.dr.skychronicles.entity.Gallery;
+import com.dr.skychronicles.exception.ArticleNotFoundException;
 import com.dr.skychronicles.service.ArticleService;
 import com.dr.skychronicles.service.CategoryService;
 import org.springframework.data.domain.Page;
@@ -35,16 +36,15 @@ public class ArticleController {
     //Retrieve and display the details of a specific article.
     @GetMapping("/article/{articleId}")
     public String getArticlePage(@PathVariable Long articleId, Model model) {
-        try {
-            articleService.getArticleById(articleId)
-                    .ifPresent(article -> model.addAttribute("article", article));
-
+        Optional<Article> optionalArticle = articleService.getArticleById(articleId);
+        if (optionalArticle.isPresent()) {
+            Article article = optionalArticle.get();
+            model.addAttribute("article", article);
             model.addAttribute("categories", categoryService.getAllCategories());
             model.addAttribute("recentArticles", articleService.getArticlesSortedByDate());
             return "article";
-        } catch (Exception e) {
-            //Error logging or other actions for exception handling
-            return "error";
+        } else {
+            throw new ArticleNotFoundException("Article with id " + articleId + " not found");
         }
     }
 
@@ -64,7 +64,6 @@ public class ArticleController {
                 return new ResponseEntity<>(new byte[0], HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            //Error logging or other actions for exception handling
             return new ResponseEntity<>(new byte[0], HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -113,18 +112,22 @@ public class ArticleController {
             articleService.saveArticle(article, imageFiles);
             return "redirect:/articles";
         } catch (IOException e) {
-            //Error logging or other actions for exception handling
-            return "error"; // Вернуть страницу ошибки
+            return "error";
         }
     }
 
     //Retrieve the details of a specific article for updating and display the update form.
     @GetMapping("/article/update/{articleId}")
     public String getArticleToUpdate(@PathVariable Long articleId, Model model) {
-        articleService.getArticleById(articleId).ifPresent(article -> model.addAttribute("article", article));
-        model.addAttribute("categories", categoryService.getAllCategories());
-
-        return "updateArticle";
+        Optional<Article> optionalArticle = articleService.getArticleById(articleId);
+        if (optionalArticle.isPresent()) {
+            Article article = optionalArticle.get();
+            model.addAttribute("article", article);
+            model.addAttribute("categories", categoryService.getAllCategories());
+            return "updateArticle";
+        } else {
+            throw new ArticleNotFoundException("Article with id " + articleId + " not found");
+        }
     }
 
     //Update an existing article with the provided data and images, then redirect to the articles listing page.
@@ -134,8 +137,7 @@ public class ArticleController {
             articleService.saveArticle(updatedArticle, imageFiles);
             return "redirect:/articles";
         } catch (IOException e) {
-            //Error logging or other actions for exception handling
-            return "error"; // Вернуть страницу ошибки
+            return "error";
         }
     }
 

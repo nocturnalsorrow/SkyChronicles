@@ -82,9 +82,8 @@ public class HomeController {
                 model.addAttribute("pageNumbers", pageNumbers);
             }
 
-            // Получение объекта Category по defaultCategoryId
             Optional<Category> categoryOptional = categoryService.getCategoryById(defaultCategoryId);
-            String categoryName = categoryOptional.map(Category::getName).orElse("Unknown Category"); // Если категория не найдена, можно использовать какое-то стандартное значение
+            String categoryName = categoryOptional.map(Category::getName).orElse("Unknown Category");
 
             model.addAttribute("categories", allCategories);
             model.addAttribute("categoryName", categoryName);
@@ -94,7 +93,6 @@ public class HomeController {
 
             return "index";
         } catch (Exception e) {
-            //Error logging or other actions for exception handling
             return "error";
         }
     }
@@ -130,7 +128,6 @@ public class HomeController {
 
             return "index";
         } catch (Exception e) {
-            //Error logging or other actions for exception handling
             return "error";
         }
     }
