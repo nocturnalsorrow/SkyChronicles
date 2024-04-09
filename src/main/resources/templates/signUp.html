@@ -27,15 +27,15 @@
                     <form th:method="POST" th:action="@{/signUp}" th:object="${user}">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input id="email" type="email" class="form-control" name="email" th:field="*{email}" required="required" th:placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                            <input id="email" type="email" class="form-control" name="email" th:field="*{email}" required th:placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input id="password" type="password" class="form-control" name="password" th:field="*{password}" required="required" th:placeholder="Password">
+                            <input id="password" type="password" class="form-control" name="password" th:field="*{password}" required th:placeholder="Password">
                         </div>
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input id="username" type="text" class="form-control" name="username" th:field="*{username}" required="required" th:placeholder="Username" pattern="[A-Z\u0410-\u042F]{1}[a-z\u0430-\u044f]{2-44}">
+                            <input id="username" type="text" class="form-control" name="username" th:field="*{username}" required th:placeholder="Username" pattern="[A-Z\u0410-\u042F]{1}[a-z\u0430-\u044f]{2-44}">
                         </div>
                         <div class="mb-3">
                             <!-- Replace data-sitekey with your own one, generated at https://www.google.com/recaptcha/admin -->

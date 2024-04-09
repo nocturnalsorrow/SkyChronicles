@@ -56,7 +56,6 @@ public class HomeController {
                 return "searchResults";
             }
         } catch (Exception e) {
-            //Error logging or other actions for exception handling
             return "error";
         }
     }

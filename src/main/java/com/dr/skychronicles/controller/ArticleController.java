@@ -144,8 +144,12 @@ public class ArticleController {
     //Delete a specific article by its ID and redirect to the articles listing page.
     @GetMapping("/article/delete/{articleId}")
     public String deleteArticle(@PathVariable Long articleId) {
-        articleService.deleteArticleById(articleId);
-
-        return "redirect:/articles";
+        try {
+            articleService.deleteArticleById(articleId);
+            return "redirect:/articles";
+        } catch (ArticleNotFoundException e) {
+            throw new ArticleNotFoundException("Article with id " + articleId + " not found. " +
+                    "Maybe this article has been deleted.");
+        }
     }
 }
