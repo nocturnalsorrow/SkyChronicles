@@ -42,14 +42,11 @@
                             <h1 class="card-title" th:utext="${article.title}"></h1>
                             <div class="carousel mb-3">
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
-                                             alt="First slide" style="height: 300px; width: 100%; object-fit: cover">
-                                    </div>
-                                    <div th:each="image, iterStat : ${article.images}" th:if="${iterStat.index} > 0"
-                                         class="carousel-item">
-                                        <img th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${image.id})}"
-                                             alt="Slide" style="height: 300px; width: 100%; object-fit: cover">
+                                    <div class="carousel-item" th:each="image, iterStat : ${article.images}"
+                                         th:class="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
+                                        <img class="d-block w-100"
+                                             th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${image.id})}"
+                                             alt="Slide" style="height: 300px; width: 100%; object-fit: cover"/>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target=".carousel"
@@ -66,9 +63,6 @@
                             <p class="card-content" th:utext="${article.content}"></p>
                             <p class="card-content" th:utext="${article.publicationDate}"></p>
                         </div>
-                        <div th:if="${article == null}">
-                            <h1>Error 404</h1>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -78,9 +72,6 @@
         </div>
     </div>
 </div>
-
-<script src="/js/carousel.js"></script>
-
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
 </body>
 </html>
