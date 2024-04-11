@@ -6,8 +6,9 @@ import lombok.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Data
 public class Article {

@@ -1,11 +1,12 @@
 package com.dr.skychronicles.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Arrays;
-import java.util.Objects;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Data
 public class Gallery {

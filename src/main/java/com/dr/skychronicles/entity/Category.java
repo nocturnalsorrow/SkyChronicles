@@ -6,6 +6,8 @@ import lombok.*;
 import java.util.Collection;
 import java.util.Objects;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Data
 public class Category {

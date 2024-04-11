@@ -3,8 +3,8 @@ package com.dr.skychronicles.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Objects;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Data
 public class User {
