@@ -49,9 +49,9 @@
             <div class="carousel-inner">
                 <div class="carousel-item" th:each="image, iterStat : ${article.images}"
                      th:class="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
-                    <img class="d-block w-100"
+                    <img class="d-block"
                          th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${image.id})}"
-                         alt="Slide" style="height: 300px; width: 100%; object-fit: cover"/>
+                         alt="Slide" style="height: 360px; width: 638px; object-fit: cover"/>
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target=".carousel" data-bs-slide="prev">

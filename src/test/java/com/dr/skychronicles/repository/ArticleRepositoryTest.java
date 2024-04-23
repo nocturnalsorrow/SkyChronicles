@@ -30,13 +30,14 @@ class ArticleRepositoryTest {
     @Test
     void getArticlesByTitle() {
         List<Article> expectedArticles = new ArrayList<>();
-        expectedArticles.add(new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(), new ArrayList<>()));
+        expectedArticles.add(new Article(1L, "Title 1", "Content", Date.valueOf("2002-04-13"), new Category(), new ArrayList<>()));
         expectedArticles.add(new Article(2L, "Title 2", "Content 2", Date.valueOf("2002-04-14"), new Category(), new ArrayList<>()));
 
         when(articleRepository.getArticlesByTitle("Title")).thenReturn(expectedArticles);
 
         List<Article> actualArticles = articleRepository.getArticlesByTitle("Title");
 
+        assertEquals(expectedArticles.getFirst().getTitle(), actualArticles.getFirst().getTitle());
         assertEquals(expectedArticles.size(), actualArticles.size());
         assertEquals(expectedArticles, actualArticles);
     }

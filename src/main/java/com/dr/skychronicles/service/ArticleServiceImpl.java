@@ -68,6 +68,15 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void saveArticle(Article article, List<MultipartFile> imageFiles) throws IOException {
+        List<Gallery> newImages = processImages(article, imageFiles);
+
+        article.setImages(newImages);
+
+        // Сохранение статьи с обновленными или новыми изображениями
+        articleRepository.save(article);
+    }
+
+    public List<Gallery> processImages(Article article, List<MultipartFile> imageFiles) throws IOException {
         List<Gallery> existingImages = article.getImages();
         List<Gallery> newImages = new ArrayList<>();
 
@@ -92,11 +101,7 @@ public class ArticleServiceImpl implements ArticleService {
                 newImages.add(articleImage);
             }
         }
-
-        article.setImages(newImages);
-
-        // Сохранение статьи с обновленными или новыми изображениями
-        articleRepository.save(article);
+        return newImages;
     }
 
     @Override
