@@ -4,6 +4,7 @@
 .sign-in:hover,
 .profile:hover,
 .edit-articles:hover {
+    background-color: #dde2ff;
     transform: scale(1.05);
     transition: transform 0.3s ease;
 }
@@ -14,8 +15,8 @@
     transition: opacity 0.3s ease;
     position: absolute;
     z-index: 1000;
-    background-color: #fff; /* цвет фона выпадающего списка */
-    border: 1px solid #ccc; /* граница выпадающего списка */
+    background-color: #dde2ff; /* цвет фона выпадающего списка */
+    border: 1px solid #dde2ff; /* граница выпадающего списка */
     border-radius: 4px; /* скругление углов */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* тень */
 }
@@ -30,5 +31,5 @@
 }
 
 .dropdown-menu.fade li:hover {
-    background-color: #f8f9fa; /* цвет фона при наведении на элемент */
+    background-color: rgba(192, 200, 239, 0.4); /* цвет фона при наведении на элемент */
 }

@@ -1,4 +1,4 @@
-<header class="p-3 text-bg-dark" xmlns:th="https://www.thymeleaf.org"
+<header class="p-3" xmlns:th="https://www.thymeleaf.org" style="background-color: #00062f"
         xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
     <div class="container">
@@ -24,8 +24,8 @@
                     <ul class="dropdown-menu fade" aria-labelledby="navbarDropdown">
                         <li th:each="category : ${categories}">
                             <a class="dropdown-item" th:href="@{'/category/' + ${category.categoryId}}"
-                               th:class="${category.categoryId == selectedCategoryId} ? 'active' : ''">
-                                <span th:text="${category.name}" style="font-weight: bold; color: black; text-decoration: none;"></span>
+                               th:class="${category.categoryId == selectedCategoryId} ? 'active' : ''" style="text-decoration: none;">
+                                <span th:text="${category.name}" style="font-weight: bold; color: black;"></span>
                             </a>
                         </li>
                     </ul>
@@ -40,8 +40,8 @@
 
             <form th:action="@{/search}" method="get" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                 <div class="input-group">
-                    <input type="text" class="form-control form-control-dark text-bg-dark" name="keyword"
-                           th:placeholder="search..." aria-label="Search">
+                    <input type="text" class="form-control" name="keyword"
+                           th:placeholder="..." aria-label="Search" style="background-color: #dde2ff">
                     <button class="btn btn-outline-light" type="submit" th:text="Search">Search</button>
                 </div>
             </form>
@@ -50,7 +50,7 @@
                 <button type="button" class="btn btn-outline-light me-2"
                         th:onclick="|window.location.href='@{/login}'|">Login
                 </button>
-                <button type="button" class="sign-in btn btn-warning me-2"
+                <button type="button" class="sign-in btn me-2" style="background-color: #dde2ff"
                         th:onclick="|window.location.href='@{/signUp}'|">Sign In
                 </button>
             </div>
