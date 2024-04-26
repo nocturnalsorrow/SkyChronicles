@@ -10,12 +10,11 @@ public interface UserService {
 
     User getUserByEmail(String email);
 
-    User createUser(User user);
 
     User signUpUser(User user);
 
-    User updateUser(User user);
-    public User updateUser(User user, Authentication authentication);
+    User saveUser(User user);
+    User saveUser(User user, Authentication authentication);
 
     void deleteUserByEmail(String email);
 }

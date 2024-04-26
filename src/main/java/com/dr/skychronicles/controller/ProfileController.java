@@ -30,7 +30,7 @@ public class ProfileController {
 
     @PostMapping("/profile/edit")
     public String edit(@ModelAttribute User updatedUser, Authentication authentication){
-        userService.updateUser(updatedUser, authentication);
+        userService.saveUser(updatedUser, authentication);
 
         return "redirect:/profile";
     }

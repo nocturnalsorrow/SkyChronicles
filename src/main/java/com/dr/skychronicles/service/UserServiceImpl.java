@@ -28,11 +28,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
     public User signUpUser(User user) {
         user.setRole("USER");
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
@@ -40,12 +35,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User user) {
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
 
     @Override
-    public User updateUser(User user, Authentication authentication) {
+    public User saveUser(User user, Authentication authentication) {
         User oldUser = userRepository.getUserByEmail(authentication.getName());
         oldUser.setUsername(user.getUsername());
         oldUser.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));

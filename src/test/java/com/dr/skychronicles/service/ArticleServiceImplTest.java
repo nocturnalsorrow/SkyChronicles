@@ -188,13 +188,10 @@ class ArticleServiceImplTest {
 
     @Test
     void deleteArticleById() {
-        // Устанавливаем id статьи для удаления
         long articleId = 2L;
 
-        // Вызываем метод deleteArticleById через сервис
         articleServiceImpl.deleteArticleById(articleId);
 
-        // Проверяем, что метод deleteArticleById был вызван с правильным articleId
         verify(articleServiceImpl, times(1)).deleteArticleById(articleId);
     }
 }
