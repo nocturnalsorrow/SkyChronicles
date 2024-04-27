@@ -9,6 +9,7 @@
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/createArticle.css}"/>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
@@ -34,13 +35,13 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="imageFiles">Select images:</label>
+            <label for="imageFiles"><strong>Select images:</strong></label>
             <input type="file" class="form-control-file" id="imageFiles" name="imageFiles" accept="image/*" multiple>
         </div>
         <div class="form-group">
             <label for="publicationDate"><strong>Publication date</strong></label>
             <input name="publicationDate" type="date" th:field="${article.publicationDate}" id="publicationDate"
-                   class="form-control" required style="width: 33%"/>
+                   class="form-control" required style="width: 15%"/>
         </div>
         <div class="form-group">
             <label for="content"><strong>Content</strong></label>

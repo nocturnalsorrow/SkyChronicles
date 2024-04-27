@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class CategoryServiceImplTest {
+class CategoryServiceTest {
 
     @Mock
-    CategoryServiceImpl categoryServiceImpl;
+    CategoryService categoryService;
 
     @BeforeEach
     void setUp() {
@@ -29,8 +29,8 @@ class CategoryServiceImplTest {
         expectedCategories.add(new Category());
         expectedCategories.add(new Category());
 
-        when(categoryServiceImpl.getAllCategories()).thenReturn(expectedCategories);
-        List<Category> actualCategories = categoryServiceImpl.getAllCategories();
+        when(categoryService.getAllCategories()).thenReturn(expectedCategories);
+        List<Category> actualCategories = categoryService.getAllCategories();
 
         assertEquals(expectedCategories.size(), actualCategories.size());
         assertEquals(expectedCategories, actualCategories);
@@ -40,8 +40,8 @@ class CategoryServiceImplTest {
     void getCategoryById() {
         Category expectedCategory = new Category(3L, "Name3", "photo_url", new ArrayList<>());
 
-        when(categoryServiceImpl.getCategoryById(3L)).thenReturn(Optional.of(expectedCategory));
-        Optional<Category> actualCategory = categoryServiceImpl.getCategoryById(3L);
+        when(categoryService.getCategoryById(3L)).thenReturn(Optional.of(expectedCategory));
+        Optional<Category> actualCategory = categoryService.getCategoryById(3L);
 
         assertEquals(Optional.of(expectedCategory), actualCategory);
     }
@@ -50,8 +50,8 @@ class CategoryServiceImplTest {
     void saveCategory() {
         Category expectedCategory = new Category(3L, "Name3", "photo_url", new ArrayList<>());
 
-        when(categoryServiceImpl.saveCategory(expectedCategory)).thenReturn(expectedCategory);
-        Category actualCategory = categoryServiceImpl.saveCategory(expectedCategory);
+        when(categoryService.saveCategory(expectedCategory)).thenReturn(expectedCategory);
+        Category actualCategory = categoryService.saveCategory(expectedCategory);
 
         assertEquals(expectedCategory, actualCategory);
     }
@@ -60,8 +60,8 @@ class CategoryServiceImplTest {
     void deleteCategoryById() {
         long categoryId = 2L;
 
-        categoryServiceImpl.deleteCategoryById(categoryId);
+        categoryService.deleteCategoryById(categoryId);
 
-        verify(categoryServiceImpl, times(1)).deleteCategoryById(categoryId);
+        verify(categoryService, times(1)).deleteCategoryById(categoryId);
     }
 }
