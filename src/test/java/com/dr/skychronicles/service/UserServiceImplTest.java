@@ -16,10 +16,10 @@ import static org.mockito.Mockito.*;
 
 class UserServiceImplTest {
     @Mock
-    UserServiceImpl userServiceImpl;
+    private UserServiceImpl userServiceImpl;
 
     @Mock
-    Authentication authentication;
+    private Authentication authentication;
 
     @BeforeEach
     void setUp() {

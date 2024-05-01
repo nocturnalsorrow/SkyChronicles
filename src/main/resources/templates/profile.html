@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title th:text="#{profile.page.title}"></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
@@ -16,12 +16,12 @@
 
 <div class="container">
     <div class="row">
-        <strong><span>Username: </span></strong><span th:text="${user.username}"> </span>
-        <strong><span>Email: </span></strong><span th:text="${user.email}"> </span>
+        <strong><span th:text="#{profile.label.username} "></span></strong><span th:text="${user.username}"> </span>
+        <strong><span th:text="#{profile.label.email} "></span></strong><span th:text="${user.email}"> </span>
         <h4 class="front-weight-bold blue-text">
             <button type="button" class="btn btn-primary form-group mt-2" data-bs-toggle="modal"
                     data-bs-target="#profileEditModal">
-                <span>Edit</span>
+                <span th:text="#{profile.label.edit}"></span>
             </button>
         </h4>
     </div>
@@ -35,19 +35,19 @@
                 <div class="modal-body">
                     <form th:action="@{/profile/edit}" th:method="POST">
                         <div class="form-group">
-                            <label><span>Username: </span></label>
+                            <label><strong><span th:text="#{profile.label.username} "></span></strong></label>
                             <input name="username" type="text" th:field="${user.username}" th:value="${user.username}"
                                    class="form-control" pattern="[A-Z][a-z]*(([,.] |[ '-])[A-Za-z][a-z]*)*(\.?)"
                                    required="required">
                         </div>
                         <div class="form-group">
-                            <label><span>Password: </span></label>
+                            <label><strong><span th:text="#{profile.label.password} "></span></strong></label>
                             <input name="password" type="password" required="required" th:field="${user.password}"
                                    class="form-control"/>
                         </div>
                         <div class="form-group mt-2">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" th:text="#{profile.button.submit}"></button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{profile.button.close}"></button>
                         </div>
                     </form>
                 </div>

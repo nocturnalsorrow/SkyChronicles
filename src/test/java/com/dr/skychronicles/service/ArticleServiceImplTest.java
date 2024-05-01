@@ -25,7 +25,7 @@ import static org.mockito.Mockito.*;
 class ArticleServiceImplTest {
 
     @Mock
-    ArticleServiceImpl articleServiceImpl;
+    private ArticleServiceImpl articleServiceImpl;
 
     @BeforeEach
     void setUp() {

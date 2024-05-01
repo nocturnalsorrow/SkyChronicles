@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserRepositoryTest {
     @Mock
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @BeforeEach
     void setUp() {

@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 class CategoryServiceImplTest {
 
     @Mock
-    CategoryServiceImpl categoryServiceImpl;
+    private CategoryServiceImpl categoryServiceImpl;
 
     @BeforeEach
     void setUp() {

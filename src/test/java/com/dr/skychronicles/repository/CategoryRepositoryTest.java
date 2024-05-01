@@ -6,7 +6,7 @@ import org.mockito.MockitoAnnotations;
 
 class CategoryRepositoryTest {
     @Mock
-    CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @BeforeEach
     void setUp() {

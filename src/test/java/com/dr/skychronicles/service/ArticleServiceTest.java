@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 
 class ArticleServiceTest {
     @Mock
-    ArticleService articleService;
+    private ArticleService articleService;
 
     @BeforeEach
     void setUp() {
