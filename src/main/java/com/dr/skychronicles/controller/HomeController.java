@@ -130,5 +130,11 @@ public class HomeController {
             return "error";
         }
     }
+
+    @GetMapping("/aboutUs")
+    public String getAboutUsPage() {
+
+        return "aboutUs";
+    }
 }
 
