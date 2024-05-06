@@ -10,17 +10,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -28,9 +23,6 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -83,7 +75,7 @@ class ArticleControllerTest {
 
     @Test
     void getAllArticles() throws Exception {
-        List<Article> articles = new ArrayList<Article>();
+        List<Article> articles = new ArrayList<>();
         articles.add(new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(), new ArrayList<>()));
         articles.add(new Article(2L, "Title 2", "Content 2", Date.valueOf("2002-04-14"), new Category(), new ArrayList<>()));
 
@@ -117,21 +109,42 @@ class ArticleControllerTest {
 
     @Test
     void getArticleToUpdate() throws Exception {
-        Article article = new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(), new ArrayList<>());
+        Long articleId = 1L;
+        Article article = new Article(articleId, "Title", "Content", Date.valueOf("2002-04-13"), new Category(), new ArrayList<>());
 
-        when(articleService.saveArticle(article)).thenReturn(article);
+        when(articleService.getArticleById(articleId)).thenReturn(Optional.of(article));
+        when(categoryService.getAllCategories()).thenReturn(new ArrayList<>());
 
-        mockMvc.perform(get("/article/update/{articleId}"))
+        mockMvc.perform(get("/article/update/{articleId}", articleId))
                 .andExpect(status().isOk())
                 .andExpect(view().name("updateArticle"))
                 .andReturn();
     }
 
+
     @Test
-    void updateArticle() {
+    void updateArticle() throws Exception {
+        MockMultipartFile file = new MockMultipartFile("imageFiles", "filename.txt", "text/plain", "some bytes".getBytes());
+
+        doNothing().when(articleService).saveArticle(any(Article.class), anyList());
+
+        mockMvc.perform(multipart("/article/update")
+                        .file(file)
+                        .param("title", "Test Article")
+                        .param("content", "Test Content"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/articles"));
     }
 
     @Test
-    void deleteArticle() {
+    void deleteArticle() throws Exception {
+        Long articleId = 1L;
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/article/delete/{articleId}", articleId))
+                .andExpect(status().is3xxRedirection()) // Проверяем, что запрос вернул редирект
+                .andExpect(redirectedUrl("/articles")); // Проверяем, что редирект ведет на ожидаемый URL
+
+        // Проверяем, что метод deleteArticleById() был вызван с ожидаемым articleId
+        verify(articleService, times(1)).deleteArticleById(articleId);
     }
 }

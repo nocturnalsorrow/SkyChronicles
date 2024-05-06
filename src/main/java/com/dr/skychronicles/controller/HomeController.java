@@ -132,9 +132,9 @@ public class HomeController {
     }
 
     @GetMapping("/aboutUs")
-    public String getAboutUsPage() {
+    public String getAboutUs() {
 
-        return "aboutUs";
+        return "aboutSkyChronicles";
     }
 }
 
