@@ -9,13 +9,14 @@
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}"/>
 </head>
 <body>
 
 <header th:replace="~{/fragments/header :: header}"></header>
 
 <div class="container">
-    <div class="row">
+    <div class="row mt-3">
         <strong><span th:text="#{profile.label.username} "></span></strong><span th:text="${user.username}"> </span>
         <strong><span th:text="#{profile.label.email} "></span></strong><span th:text="${user.email}"> </span>
         <h4 class="front-weight-bold blue-text">
@@ -47,7 +48,7 @@
                         </div>
                         <div class="form-group mt-2">
                             <button type="submit" class="btn btn-primary" th:text="#{profile.button.submit}"></button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{profile.button.close}"></button>
+                            <button type="button" class="btn btn-secondary float-end" data-bs-dismiss="modal" th:text="#{profile.button.close}"></button>
                         </div>
                     </form>
                 </div>

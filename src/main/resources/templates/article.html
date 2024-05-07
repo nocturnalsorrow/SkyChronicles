@@ -39,7 +39,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div th:if="${article != null}">
-                            <h1 class="card-title" th:utext="${article.title}"></h1>
+                            <h1 class="card-title" th:utext="${article.title}" style="color: white"></h1>
                             <div class="carousel mb-3">
                                 <div class="carousel-inner">
                                     <div class="carousel-item" th:each="image, iterStat : ${article.images}"

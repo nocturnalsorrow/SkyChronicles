@@ -1,0 +1,67 @@
+* {
+    font-family: Nunito, sans-serif;
+}
+
+.responsive-container-block {
+    min-height: 75px;
+    height: fit-content;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: flex-start;
+}
+
+.responsive-container-block.bigContainer {
+    padding: 10px 30px;
+    background-image: url("https://getwallpapers.com/wallpaper/full/f/e/6/1360311-airplane-wallpaper-hd-1920x1149-for-4k.jpg");
+    background-size: cover;
+}
+
+.responsive-container-block.Container {
+    max-width: 600px; /* Уменьшаем максимальную ширину контейнера */
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 50px auto;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.text-blk {
+    margin: 0;
+    padding: 0;
+    line-height: 22px; /* Уменьшаем высоту строки */
+}
+
+.text-blk.heading {
+    font-size: 24px; /* Уменьшаем размер заголовка */
+    font-weight: 800;
+    margin: 0 0 20px;
+}
+
+.text-blk.subHeading {
+    text-align: center;
+    font-size: 14px; /* Уменьшаем размер подзаголовка */
+    margin: 0 0 30px;
+}
+
+.social-icons-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.social-icon {
+    margin: 0 20px; /* Уменьшаем отступ между иконками */
+}
+
+.socialIcon {
+    width: 25px; /* Уменьшаем размер иконок */
+    height: 25px; /* Уменьшаем размер иконок */
+}
+
+.social-icon:hover {
+    cursor: pointer;
+}

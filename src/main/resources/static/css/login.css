@@ -1,3 +1,19 @@
+body {
+    background-color: #191919;
+}
+
+.card {
+    background-color: #323232;
+}
+
+h3 {
+    color: #ffffff
+}
+
+label {
+    color: #ffffff
+}
+
 @keyframes login-animation {
     0% {
         opacity: 0;

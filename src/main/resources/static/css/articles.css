@@ -1,7 +1,11 @@
+body {
+    background-color: #191919;
+}
+
 h3 {
-    font-size: 24px;
     margin-bottom: 20px;
-    color: #333;
+    color: #ffffff;
+    font-weight: bold
 }
 
 .list-group-item {
@@ -11,13 +15,19 @@ h3 {
     transition: transform 0.3s ease-in-out;
 }
 
+.list-group-item {
+    background-color: #323232;
+}
+
 .list-group-item:hover {
     transform: translateX(10px);
+    background-color: #292929;
+    box-shadow: 0 0 3px rgb(221, 226, 255);
 }
 
 .list-group-item a {
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
     font-size: 18px;
 }
 

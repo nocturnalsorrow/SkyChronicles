@@ -1,3 +1,27 @@
+body {
+    background-color: #191919;
+}
+
+p {
+    color: #ffffff;
+}
+
+.main-content {
+    background-color: #292929; /* Устанавливаем цвет фона */
+    padding: 20px; /* Добавляем отступы для контента */
+    border-radius: 10px; /* Добавляем скругление углов */
+    box-shadow: 0 0 3px rgb(221, 226, 255); /* Добавляем тень */
+}
+
+.card {
+    background-color: #292929;
+    border-color: #292929;
+}
+
+.card-content {
+    margin-top: 20px; /* Добавляем отступ сверху для контента */
+}
+
 .carousel-cell img {
     display: block;
 }

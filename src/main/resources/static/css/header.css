@@ -1,3 +1,10 @@
+header {
+    background-image: url('https://wallpapercave.com/wp/wp3761426.jpg');
+    /*background-color: #00062f; */
+    background-size: cover;
+    background-position: center;
+}
+
 .btn-outline-light:hover,
 .logo:hover,
 .category:hover,
@@ -16,7 +23,7 @@
     position: absolute;
     z-index: 1000;
     background-color: #dde2ff; /* цвет фона выпадающего списка */
-    border: 1px solid #dde2ff; /* граница выпадающего списка */
+    border: 1px solid #e6e6e6; /* граница выпадающего списка */
     border-radius: 4px; /* скругление углов */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* тень */
 }

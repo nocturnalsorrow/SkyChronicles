@@ -1,27 +1,23 @@
-<header class="p-3" xmlns:th="https://www.thymeleaf.org" style="background-color: #00062f"
+<header class="p-3" xmlns:th="https://www.thymeleaf.org"
         xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="logo d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
-            </a>
-
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li class="nav-item">
                     <a th:href="@{/}" class="nav-link px-2 text-white">
-                        <img class="fit-picture"
+                        <img id="logo" class="fit-picture"
                              src="https://preview.redd.it/i-found-this-funny-v0-374pu49s84mb1.jpg?width=640&crop=smart&auto=webp&s=4fa4b2ad7055a42f000fc9511b0d0aad1fb4c909"
-                             alt="logo"
-                             style="max-height: 100px; max-width: 100px"/>
+                             alt="logo" style="max-height: 100px; max-width: 100px"/>
                     </a>
                 </li>
+            </ul>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle btn btn-outline-light me-2 border-0" href="#" id="navbarDropdown"
-                       role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false" th:text="#{header.label.category}"></a>
+                       role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                       th:text="#{header.label.category}"></a>
                     <ul class="dropdown-menu fade" aria-labelledby="navbarDropdown">
                         <li th:each="category : ${categories}">
                             <a class="dropdown-item" th:href="@{'/category/' + ${category.categoryId}}"
@@ -46,7 +42,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" name="keyword"
                            th:placeholder="'Type article title...'" aria-label="Search"
-                           style="background-color: #dde2ff">
+                           style="background-color: #ffffff">
                     <button class="btn btn-outline-light" type="submit" th:text="#{header.button.search}"></button>
                 </div>
             </form>
@@ -66,21 +62,21 @@
                 </form>
             </div>
 
-<!--            &lt;!&ndash; Language switch buttons with custom styles &ndash;&gt;-->
-<!--            <div class="btn-group me-2">-->
-<!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
-<!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'uk').toUriString()}"-->
-<!--                       class="btn btn-outline-light me-2 btn-sm" aria-current="page" th:text="UA">🇺🇦 Ukrainian</a>-->
-<!--                </div>-->
-<!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
-<!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'en').toUriString()}"-->
-<!--                       class="btn btn-outline-light me-2 btn-sm" th:text="EN">🇺🇸 English</a>-->
-<!--                </div>-->
-<!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
-<!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'ru').toUriString()}"-->
-<!--                       class="btn btn-outline-light me-2 btn-sm" th:text="RU">🇷🇺 Russian</a>-->
-<!--                </div>-->
-<!--            </div>-->
+            <!--            &lt;!&ndash; Language switch buttons with custom styles &ndash;&gt;-->
+            <!--            <div class="btn-group me-2">-->
+            <!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
+            <!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'uk').toUriString()}"-->
+            <!--                       class="btn btn-outline-light me-2 btn-sm" aria-current="page" th:text="UA">🇺🇦 Ukrainian</a>-->
+            <!--                </div>-->
+            <!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
+            <!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'en').toUriString()}"-->
+            <!--                       class="btn btn-outline-light me-2 btn-sm" th:text="EN">🇺🇸 English</a>-->
+            <!--                </div>-->
+            <!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
+            <!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'ru').toUriString()}"-->
+            <!--                       class="btn btn-outline-light me-2 btn-sm" th:text="RU">🇷🇺 Russian</a>-->
+            <!--                </div>-->
+            <!--            </div>-->
         </div>
     </div>
 </header>

@@ -10,28 +10,47 @@
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/aboutSkyChronicles.css}"/>
 </head>
 <body>
-<div class="container py-5">
-    <header class="text-center mb-5">
-        <h1>About Sky Chronicles</h1>
-    </header>
-    <section>
-        <h2>Who We Are</h2>
-        <p>Sky Chronicles is your premier source for aviation articles and news. Our team is passionate about aviation and dedicated to providing you with the latest updates, insights, and stories from the world of flight.</p>
-    </section>
-    <section class="mt-5">
-        <h2>Our Mission</h2>
-        <p>Our mission is to inform, inspire, and engage aviation enthusiasts around the globe. Whether you're a seasoned pilot, an aspiring aviator, or simply fascinated by flight, Sky Chronicles has something for you.</p>
-    </section>
-    <section class="mt-5">
-        <h2>Contact Us</h2>
-        <p>If you have any questions, feedback, or suggestions, please don't hesitate to contact us:</p>
-        <ul>
-            <li>Email: info@skychronicles.com</li>
-            <li>Phone: +1 (555) 123-4567</li>
-        </ul>
-    </section>
+
+<header th:replace="~{/fragments/header :: header}"></header>
+
+<div class="responsive-container-block bigContainer">
+    <div class="responsive-container-block Container">
+        <p class="text-blk heading">
+            About Us
+        </p>
+        <p class="text-blk subHeading">
+            Sky Chronicles is your premier source for aviation articles and news. Our team is passionate about aviation and dedicated to providing you with the latest updates, insights, and stories from the world of flight.
+        </p>
+        <p class="text-blk heading">
+            Our Mission
+        </p>
+        <p class="text-blk subHeading">
+            Our mission is to inform, inspire, and engage aviation enthusiasts around the globe. Whether you're a seasoned pilot, an aspiring aviator, or simply fascinated by flight, Sky Chronicles has something for you.
+        </p>
+        <p class="text-blk heading">
+            Contact Us
+        </p>
+        <p class="text-blk subHeading">
+            If you have any questions, feedback, or suggestions, please don't hesitate to contact us:
+        </p>
+        <div class="social-icons-container">
+            <a class="social-icon" href="https://www.facebook.com/danial.rehman.37/">
+                <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb33.png"  alt="si">
+            </a>
+            <a class="social-icon" href="www.linkedin.com/in/danial-rekhman">
+                <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb34.png" alt="si">
+            </a>
+            <a class="social-icon" href="https://www.instagram.com/nocturnalsorrow/">
+                <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb35.png" alt="si">
+            </a>
+        </div>
+    </div>
 </div>
+
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
+
 </body>
 </html>

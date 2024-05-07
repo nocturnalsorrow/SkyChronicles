@@ -1,4 +1,26 @@
-.recent-article-card:hover {
+.recent-article-card .card:hover {
     transform: scale(1.05);
     transition: transform 0.3s ease;
+}
+
+.recent-article-card {
+    background-color: #191919;
+
+}
+
+.card-header {
+     background-image: url('https://wallpapercave.com/wp/wp3761426.jpg');
+     background-color: #00062f;
+     background-position: center;
+
+ }
+
+.card-title {
+    font-weight: bold;
+    color: inherit;
+}
+
+.card-text small {
+    font-size: 12px;
+    color: #b6b6b6;
 }
