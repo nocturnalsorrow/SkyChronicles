@@ -8,6 +8,10 @@ h3 {
     font-weight: bold
 }
 
+.list-group {
+    margin-bottom: 30px;
+}
+
 .list-group-item {
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

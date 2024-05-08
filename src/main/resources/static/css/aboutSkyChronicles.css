@@ -1,4 +1,9 @@
-* {
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("https://wallpapersmug.com/download/1920x1080/dd8f3f/aircraft-landing-sunset.jpg");
+    background-size: cover;
+    background-position: center;
     font-family: Nunito, sans-serif;
 }
 
@@ -15,12 +20,11 @@
 
 .responsive-container-block.bigContainer {
     padding: 10px 30px;
-    background-image: url("https://getwallpapers.com/wallpaper/full/f/e/6/1360311-airplane-wallpaper-hd-1920x1149-for-4k.jpg");
-    background-size: cover;
+    background-image: none; /* Убираем задний фон, так как он уже установлен для body */
 }
 
 .responsive-container-block.Container {
-    max-width: 600px; /* Уменьшаем максимальную ширину контейнера */
+    max-width: 600px;
     flex-direction: column;
     align-items: center;
     padding: 20px;
@@ -32,18 +36,18 @@
 .text-blk {
     margin: 0;
     padding: 0;
-    line-height: 22px; /* Уменьшаем высоту строки */
+    line-height: 22px;
 }
 
 .text-blk.heading {
-    font-size: 24px; /* Уменьшаем размер заголовка */
+    font-size: 24px;
     font-weight: 800;
     margin: 0 0 20px;
 }
 
 .text-blk.subHeading {
     text-align: center;
-    font-size: 14px; /* Уменьшаем размер подзаголовка */
+    font-size: 14px;
     margin: 0 0 30px;
 }
 
@@ -54,14 +58,15 @@
 }
 
 .social-icon {
-    margin: 0 20px; /* Уменьшаем отступ между иконками */
+    margin: 0 20px;
 }
 
 .socialIcon {
-    width: 25px; /* Уменьшаем размер иконок */
-    height: 25px; /* Уменьшаем размер иконок */
+    width: 25px;
+    height: 25px;
 }
 
 .social-icon:hover {
     cursor: pointer;
 }
+

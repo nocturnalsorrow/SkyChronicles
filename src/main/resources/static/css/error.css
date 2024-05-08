@@ -1,0 +1,26 @@
+body {
+    background-color: #191919
+}
+
+h2 {
+    padding-top: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.center-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    padding: 20px;
+}

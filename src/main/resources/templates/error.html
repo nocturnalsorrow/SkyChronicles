@@ -9,13 +9,16 @@
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/error.css}"/>
 </head>
 <body>
 
 <header th:replace="~{/fragments/header :: header}"></header>
 
-<h1 th:text="#{error.label.errorMessage}"></h1>
-
+<h2 th:text="#{error.label.errorMessage}"></h2>
+<div class="center-image">
+    <img src="https://i.gifer.com/origin/6a/6a30cf49d4dc2db0682292febd438987_w200.gif" alt="support">
+</div>
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
 
 </body>

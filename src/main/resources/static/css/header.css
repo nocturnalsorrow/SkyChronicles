@@ -3,6 +3,8 @@ header {
     /*background-color: #00062f; */
     background-size: cover;
     background-position: center;
+    border-bottom: 1px solid #686868;
+    box-shadow: 0 1px 2px rgba(151, 151, 151, 0.64);
 }
 
 .btn-outline-light:hover,
@@ -22,7 +24,7 @@ header {
     transition: opacity 0.3s ease;
     position: absolute;
     z-index: 1000;
-    background-color: #dde2ff; /* цвет фона выпадающего списка */
+
     border: 1px solid #e6e6e6; /* граница выпадающего списка */
     border-radius: 4px; /* скругление углов */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* тень */
@@ -38,5 +40,5 @@ header {
 }
 
 .dropdown-menu.fade li:hover {
-    background-color: rgba(192, 200, 239, 0.4); /* цвет фона при наведении на элемент */
+    background-color: rgba(186, 186, 186, 0.38); /* цвет фона при наведении на элемент */
 }

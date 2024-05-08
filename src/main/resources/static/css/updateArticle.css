@@ -1,3 +1,22 @@
+body {
+    /*background-image: url("https://www.hdwallpapers.in/download/grey_world_map_background_hd_gray-1920x1080.jpg");*/
+    background-color: #252525;
+}
+
+h4 {
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold
+}
+
+label {
+    color: #ffffff;
+}
+
+p {
+    color: #ffffff;
+}
+
 .img-container {
     position: relative;
     overflow: hidden;

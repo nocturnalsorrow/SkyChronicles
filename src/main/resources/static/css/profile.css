@@ -13,3 +13,12 @@ h4 {
 .modal-content {
     background-color: #323232;
 }
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    padding: 20px;
+}
