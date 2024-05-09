@@ -10,7 +10,7 @@ h3 {
 
 h6 {
     font-weight: bold;
-    color: white
+    color: #ffffff;
 }
 
 small {
@@ -19,11 +19,10 @@ small {
 
 .list-group-item:hover {
     background-color: #292929;
-    transition: all 0.3s ease-in-out;
-    border-radius: 10px;
-    overflow: hidden;
     transform: scale(1.05);
-    box-shadow: 0 0 3px rgb(221, 226, 255);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    box-shadow: 0 0 3px rgb(255, 255, 255);
 }
 
 .list-group-item .d-flex {
@@ -77,4 +76,38 @@ small {
 .nav-category .nav-link.active {
     background-color: #343a40;
     color: #ffffff;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination .page-item {
+    margin-right: 5px;
+}
+
+.pagination .page-link {
+    color: #000000;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.pagination .page-link:hover {
+    background-color: #dde2ff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #191919;
+    color: #fff;
+    border-color: #ffffff;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: default;
+    background-color: #fff;
+    border-color: #dee2e6;
 }

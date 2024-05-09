@@ -1,25 +1,18 @@
-<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 mb-0"
-        style="background-image: url('https://images.pexels.com/photos/414659/pexels-photo-414659.jpeg');
-        /*background-color: #00062f; */
-        background-size: cover; background-position: center; border-top: 1px solid #6a6a6a;">
-    <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-decoration-none lh-1">
-            <svg class="bi" width="30" height="24">
-                <use xlink:href="#bootstrap"></use>
-            </svg>
-        </a>
-        <span class="mb-3 mb-md-0" style="color: #ffffff;">© 2024 Sky Chronicles, Inc</span>
-    </div>
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 mb-0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}"/>
 
-    <div class="col-md-4 text-md-end">
-        <a th:href="@{/aboutUs}" class="text-decoration-none me-3" style="color: #ffffff;">About us</a>
-    </div>
+    <span class="skyChronicles">© 2024 Sky Chronicles, Inc</span>
+
+    <button th:href="@{/aboutUs}" th:text="#{footer.button.aboutUs}" class="aboutUs">About us</button>
 
     <div>
-        <p class="mb-auto col-md-4" style="color: #ffffff;">Contacts:</p>
-        <a href="mailto:danial.rehman36@gmail.com" class=" text-decoration-none me-3" style="color: #ffffff; text-decoration: none;">danial.rehman36@gmail.com</a>
-        <a href="https://www.facebook.com/skychronicles" class="text-decoration-none me-3" style="color: #ffffff; text-decoration: none;">Facebook</a>
-        <a href="www.linkedin.com/in/danial-rekhman" class="text-decoration-none me-3" style="color: #ffffff; text-decoration: none;">LinkedIn</a>
+        <p class="mb-auto col-md-4" style="color: #ffffff;" th:text="#{footer.label.contacts} + ':'"></p>
+        <a href="mailto:danial.rehman36@gmail.com" class=" text-decoration-none me-3"
+           style="color: #ffffff; text-decoration: none;">danial.rehman36@gmail.com</a>
+        <a href="https://www.facebook.com/skychronicles" class="text-decoration-none me-3"
+           style="color: #ffffff; text-decoration: none;">Facebook</a>
+        <a href="www.linkedin.com/in/danial-rekhman" class="text-decoration-none me-3"
+           style="color: #ffffff; text-decoration: none;">LinkedIn</a>
     </div>
 </footer>
 

@@ -1,21 +1,73 @@
 header {
-    background-image: url('https://wallpapercave.com/wp/wp3761426.jpg');
-    /*background-color: #00062f; */
+    /*background-image: url('https://wallpapercave.com/wp/wp3761426.jpg');*/
+    background-color: #000000;
     background-size: cover;
     background-position: center;
-    border-bottom: 1px solid #686868;
-    box-shadow: 0 1px 2px rgba(151, 151, 151, 0.64);
+    border-bottom: 1px solid #ffffff;
 }
 
 .btn-outline-light:hover,
 .logo:hover,
 .category:hover,
+.login:hover,
 .sign-in:hover,
 .profile:hover,
 .edit-articles:hover {
-    background-color: #dde2ff;
+    background-color: #ffffff;
     transform: scale(1.05);
     transition: transform 0.3s ease;
+}
+
+.category {
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.profile {
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.editArticles {
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.searchInput {
+    border: 1px solid #ffffff;
+    border-radius: 0;
+}
+
+.search {
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.login {
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.sign-in {
+    color: #000000;
+    /*background-color: #b68f3e;*/
+    background-color: #e6af51;
+    border: 1px solid #000000;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.logout {
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
 }
 
 .dropdown-menu.fade {
@@ -25,8 +77,8 @@ header {
     position: absolute;
     z-index: 1000;
 
-    border: 1px solid #e6e6e6; /* граница выпадающего списка */
-    border-radius: 4px; /* скругление углов */
+    border: 1px solid #ffffff;
+    border-radius: 0; /* скругление углов */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* тень */
 }
 

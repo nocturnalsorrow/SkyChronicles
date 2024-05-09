@@ -1,0 +1,25 @@
+footer {
+    background-color: #000000;
+    background-position: center;
+    border-top: 1px solid #ffffff;
+}
+
+.skyChronicles {
+    margin-left: 110px;
+    color: #ffffff;
+}
+
+.aboutUs {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.aboutUs:hover {
+    color: #000000;
+    background-color: #ffffff;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}

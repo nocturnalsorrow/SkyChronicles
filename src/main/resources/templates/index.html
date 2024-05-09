@@ -28,7 +28,7 @@
                             <div class="d-flex flex-column justify-content-between">
                                 <img th:if="${article.images.size() > 0}"
                                      th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
-                                     alt="Article Cover Image" class="img-fluid rounded">
+                                     alt="Article Cover Image">
                                 <h6 class="mb-1" th:text="${article.title}"></h6>
                                 <small th:text="${article.publicationDate}"></small>
                             </div>
@@ -44,7 +44,7 @@
         </div>
 
         <!-- Pagination -->
-        <div th:if="${categoryArticles.totalPages > 1}" class="pagination">
+        <div th:if="${categoryArticles.totalPages > 1}">
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li th:class="${categoryArticles.first} ? 'page-item disabled' : 'page-item'">
@@ -67,7 +67,7 @@
     </div>
 </div>
 
-<footer th:replace="~{/fragments/footer :: footer}" class="bg-dark text-white py-3"></footer>
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
 
 </body>
 

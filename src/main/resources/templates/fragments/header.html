@@ -13,7 +13,7 @@
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li class="nav-item dropdown">
-                    <a class="dropdown-toggle btn btn-outline-light me-2 border-0" href="#" id="navbarDropdown"
+                    <a class="category dropdown-toggle btn btn-outline-light me-2" href="#" id="navbarDropdown"
                        role="button" data-bs-toggle="dropdown" aria-expanded="false"
                        th:text="#{header.label.category}"></a>
                     <ul class="dropdown-menu fade" aria-labelledby="navbarDropdown">
@@ -27,36 +27,36 @@
                     </ul>
                 </li>
                 <li sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
-                    <a th:href="@{/profile}" class="profile btn btn-outline-light me-2 border-0"
+                    <a th:href="@{/profile}" id="profile" class="profile btn btn-outline-light me-2"
                        th:text="#{header.label.profile}"></a>
                 </li>
                 <li sec:authorize="hasAuthority('ADMIN')">
-                    <a th:href="@{/articles}" class="edit-articles btn btn-outline-light me-2 border-0"
+                    <a th:href="@{/articles}" class="editArticles btn btn-outline-light me-2"
                        th:text="#{header.label.editArticles}"></a>
                 </li>
             </ul>
 
             <form th:action="@{/search}" method="get" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="keyword"
+                    <input type="text" class="searchInput form-control" name="keyword"
                            th:placeholder="'Type article title...'" aria-label="Search"
                            style="background-color: #ffffff">
-                    <button class="btn btn-outline-light" type="submit" th:text="#{header.button.search}"></button>
+                    <button class="search btn btn-outline-light" type="submit" th:text="#{header.button.search}"></button>
                 </div>
             </form>
 
             <div sec:authorize="!isAuthenticated()" class="me-2">
-                <button type="button" class="btn btn-outline-light me-2"
+                <button type="button" class="login btn me-2"
                         th:onclick="|window.location.href='@{/login}'|" th:text="#{header.button.login}">
                 </button>
-                <button type="button" class="sign-in btn me-2" style="background-color: #dde2ff"
+                <button type="button" class="sign-in btn me-2"
                         th:onclick="|window.location.href='@{/signUp}'|" th:text="#{header.button.signUp}">
                 </button>
             </div>
 
             <div sec:authorize="isAuthenticated()" class="me-2">
                 <form th:action="@{/logout}" method="post">
-                    <button class="btn btn-outline-light me-2" type="submit" th:text="#{header.button.logout}"/>
+                    <button class="logout btn btn-outline-light me-2" type="submit" th:text="#{header.button.logout}"/>
                 </form>
             </div>
 

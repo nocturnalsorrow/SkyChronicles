@@ -3,11 +3,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card recent-article-card border-0" style="box-shadow: 0 0 3px rgb(221, 226, 255);">
-                    <div class="card-header text-white">
-                        <h5 class="card-title m-0" th:text="#{recentArticles.label.recentArticles}"></h5>
+                <div class="card recent-article-card">
+                    <div class="card-header">
+                        <h5 class="recentArticleLabel m-0" th:text="#{recentArticles.label.recentArticles}"></h5>
                     </div>
-                    <div id="recent-article-body" class="card-body" >
+                    <div id="recent-article-body" class="card-body">
                         <div class="row row-cols-1 row-cols-md-2 g-4">
                             <th:block th:each="article, iterStat : ${recentArticles.subList(0, 4)}">
                                 <div class="col">
@@ -15,9 +15,9 @@
                                         <a th:href="@{/article/{articleId} (articleId=${article.articleId})}" style="text-decoration: none; color: white;">
                                             <img id="article-image" th:if="${article.images.size() > 0}"
                                                  th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
-                                                 alt="Article Cover Image" class="card-img-top img-fluid rounded" style="width: 100%; height: 115px; object-fit: cover;">
+                                                 alt="Article Cover Image" style="width: 100%; height: 115px; object-fit: cover;">
                                             <div class="card-body">
-                                                <h6 class="card-title mb-0" th:text="${article.title}"></h6>
+                                                <h6 class="card-title mb-0" th:text="${#strings.length(article.title) > 20 ? #strings.substring(article.title, 0, 38) + '...' : article.title}"></h6>
                                                 <p class="card-text"><small th:text="${article.publicationDate}"></small></p>
                                             </div>
                                         </a>

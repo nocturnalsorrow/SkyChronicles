@@ -5,19 +5,27 @@
 
 .recent-article-card {
     background-color: #191919;
-
+    border: 1px solid #ffffff;
+    border-radius: 0;
 }
 
 .card-header {
-     background-image: url('https://wallpapercave.com/wp/wp3761426.jpg');
-     background-color: #00062f;
-     background-position: center;
+    color: #ffffff;
+    /*background-image: url('https://wallpapercave.com/wp/wp3761426.jpg');*/
+    /*background-color: #323232;*/
+    background-position: center;
+    border-bottom: 1px solid #ffffff;
+    border-radius: 0;
+}
 
- }
+.recentArticleLabel {
+    font-weight: bold;
+}
 
 .card-title {
     font-weight: bold;
-    color: inherit;
+    color: #ffffff;
+
 }
 
 .card-text small {
