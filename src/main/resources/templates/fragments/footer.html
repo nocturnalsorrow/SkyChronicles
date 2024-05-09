@@ -3,7 +3,8 @@
 
     <span class="skyChronicles">© 2024 Sky Chronicles, Inc</span>
 
-    <button th:href="@{/aboutUs}" th:text="#{footer.button.aboutUs}" class="aboutUs">About us</button>
+    <a class="aboutUs btn btn-outline-light me-2" th:href="@{/aboutUs}"
+       th:text="#{footer.button.aboutUs}" >About us</a>
 
     <div>
         <p class="mb-auto col-md-4" style="color: #ffffff;" th:text="#{footer.label.contacts} + ':'"></p>

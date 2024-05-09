@@ -10,6 +10,7 @@ h3 {
 
 .list-group {
     margin-bottom: 30px;
+    /*border-radius: 0;*/
 }
 
 .list-group-item {
@@ -21,6 +22,7 @@ h3 {
 
 .list-group-item {
     background-color: #323232;
+
 }
 
 .list-group-item:hover {
@@ -37,8 +39,13 @@ h3 {
 
 .btn-success {
     background-color: #28a745;
+    border-radius: 0;
     border: none;
     transition: background-color 0.3s ease-in-out;
+}
+
+.btn-danger {
+    /*border-radius: 0;*/
 }
 
 .btn-success:hover {

@@ -8,12 +8,17 @@ h2 {
     color: #ffffff;
 }
 
-.center-image {
+.error-image {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    height: 300px;
+}
 
+.error-image img {
+    object-fit: cover;
+    width: 250px;
+    height: 250px
 }
 
 footer {

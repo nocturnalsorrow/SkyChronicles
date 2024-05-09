@@ -11,10 +11,11 @@ p {
 }
 
 .main-content {
-    background-color: #292929; /* Устанавливаем цвет фона */
-    padding: 20px; /* Добавляем отступы для контента */
-    border-radius: 10px; /* Добавляем скругление углов */
-    box-shadow: 0 0 3px rgb(221, 226, 255); /* Добавляем тень */
+    background-color: #292929;
+    padding: 20px;
+    border-radius: 0;
+    /*border: 1px solid #ffffff;*/
+    box-shadow: 0 0 3px rgb(221, 226, 255);
 }
 
 .card {
@@ -39,7 +40,7 @@ p {
 }
 
 .carousel-control-next {
-    right: 240px; /* Изменяем значение right для сдвига влево */
+    right: -40px; /* Изменяем значение right для сдвига влево */
 }
 
 .main-content {
@@ -48,4 +49,10 @@ p {
 
 .col-lg-8 {
     padding-right: 0; /* Внутренний отступ справа равен 0 */
+}
+
+.card-body small {
+    font-size: 14px;
+    color: #b6b6b6;
+
 }

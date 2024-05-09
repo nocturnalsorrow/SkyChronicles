@@ -132,8 +132,9 @@ public class HomeController {
     }
 
     @GetMapping("/aboutUs")
-    public String getAboutUs() {
+    public String getAboutUs(Model model) {
 
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "aboutSkyChronicles";
     }
 }

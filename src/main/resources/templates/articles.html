@@ -36,7 +36,7 @@
                         <div th:if="${article.images.size() > 0}">
                             <a th:href="@{/article/update/{articleId} (articleId=${article.articleId})}">
                                 <img th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
-                                     alt="Article Cover Image" class="img-fluid rounded article-image">
+                                     alt="Article Cover Image" class="img-fluid article-image">
                             </a>
                         </div>
                     </div>

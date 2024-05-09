@@ -11,25 +11,9 @@
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/css/article.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/carouselAnimation.css}"/>
-    <style>
-        .carousel-cell img {
-            display: block;
-        }
-
-        .carousel {
-            position: relative; /* Добавляем относительное позиционирование */
-        }
-
-        .carousel-control-prev {
-            left: -40px; /* Изменяем значение left для центрирования влево */
-        }
-
-        .carousel-control-next {
-            right: -40px; /* Изменяем значение right для сдвига влево */
-        }
-    </style>
 </head>
 <body>
+
 <header th:replace="~{/fragments/header :: header}"></header>
 
 <div class="container mt-4">
@@ -61,7 +45,7 @@
                                 </button>
                             </div>
                             <p class="card-content" th:utext="${article.content}"></p>
-                            <p class="card-content" th:utext="${article.publicationDate}"></p>
+                            <small th:utext="${article.publicationDate}"></small>
                         </div>
                     </div>
                 </div>
