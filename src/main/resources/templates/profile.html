@@ -20,19 +20,22 @@
         <strong><span th:text="#{profile.label.username} "></span></strong><span th:text="${user.username}"> </span>
         <strong><span th:text="#{profile.label.email} "></span></strong><span th:text="${user.email}"> </span>
         <h4 class="front-weight-bold blue-text">
-            <button type="button" class="btn btn-primary form-group mt-2" data-bs-toggle="modal"
-                    data-bs-target="#profileEditModal">
-                <span th:text="#{profile.label.edit}"></span>
+            <button type="button" class="edit btn form-group mt-2" data-bs-toggle="modal"
+                    data-bs-target="#profileEditModal" th:text="#{profile.label.edit}">
             </button>
         </h4>
     </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditModalLabel" aria-hidden="true">
+<div class="modal fade mt-5" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" th:text="#{profile.label.editYourProfile}"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <div class="modal-body">
                     <form th:action="@{/profile/edit}" th:method="POST">
                         <div class="form-group">
@@ -47,8 +50,8 @@
                                    class="form-control"/>
                         </div>
                         <div class="form-group mt-2">
-                            <button type="submit" class="btn btn-primary" th:text="#{profile.button.submit}"></button>
-                            <button type="button" class="btn btn-secondary float-end" data-bs-dismiss="modal" th:text="#{profile.button.close}"></button>
+                            <button type="submit" class="submit btn mt-3" th:text="#{profile.button.save}"></button>
+                            <button type="button" class="close btn float-end mt-3" data-bs-dismiss="modal" th:text="#{profile.button.close}"></button>
                         </div>
                     </form>
                 </div>

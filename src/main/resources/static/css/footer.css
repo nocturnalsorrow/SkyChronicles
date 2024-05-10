@@ -1,6 +1,5 @@
 footer {
     background-color: #000000;
-    background-position: center;
     border-top: 1px solid #ffffff;
 }
 
@@ -22,4 +21,37 @@ footer {
     background-color: #ffffff;
     transform: scale(1.05);
     transition: transform 0.3s ease;
+}
+
+h6 {
+    color: #ffffff;
+    font-weight: bolder
+}
+
+.email {
+    text-decoration: none;
+}
+.email:hover {
+    text-decoration: underline;
+}
+
+.linkedin {
+    text-decoration: none;
+}
+.linkedin:hover {
+    text-decoration: underline;
+}
+
+.facebook {
+    text-decoration: none;
+}
+.facebook:hover {
+    text-decoration: underline;
+}
+
+.instagram {
+    text-decoration: none;
+}
+.instagram:hover {
+    text-decoration: underline;
 }

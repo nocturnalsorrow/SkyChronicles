@@ -19,17 +19,17 @@
     <form th:action="@{/article}" th:method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <input name="articleId" type="hidden" th:value="${article.articleId}" class="form-control"
-                   style="width: 33%"/>
+                   style="width: 33%;"/>
         </div>
         <div class="form-group">
             <strong><label for="title" th:text="#{createArticle.label.title}"></label></strong>
             <input name="title" type="text" th:field="${article.title}" id="title" class="form-control"
-                   required style="width: 33%"/>
+                   required style="width: 33%;"/>
         </div>
         <div class="form-group">
             <strong><label for="categoryId" th:text="#{createArticle.label.category}"></label></strong>
             <select name="categoryId" id="categoryId" th:field="${article.categoryId.categoryId}" class="form-control"
-                    style="width: 33%">
+                    style="width: 25%">
                 <option th:each="category : ${categories}" th:value="${category.categoryId}"
                         th:text="${category.name}"></option>
             </select>
@@ -47,10 +47,10 @@
             <strong><label for="content" th:text="#{createArticle.label.content}"></label></strong>
             <p th:text="#{createArticle.label.subtitleParagraph}"></p>
             <textarea name="content" rows="10" th:field="${article.content}" id="content"
-                      class="form-control"></textarea>
+                      class="form-control" style="width: 60%"></textarea>
         </div>
-        <div class="form-group mt-2">
-            <button type="submit" class="btn btn-primary" th:text="#{createArticle.button.submit}"></button>
+        <div class="mt-5">
+            <button type="submit" class="submit btn" th:text="#{createArticle.button.submit}"></button>
         </div>
     </form>
 </div>

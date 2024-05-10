@@ -32,20 +32,20 @@
     <form th:action="@{/article/update}" th:method="POST" enctype="multipart/form-data">
         <input name="articleId" type="hidden" th:value="${article.articleId}" readonly class="form-control mb-3"
                style="width: 33%"/>
-        <div class="mb-3">
-            <strong><label for="title" class="form-label" th:text="#{updateArticle.label.title}"></label></strong>
+        <div class="form-group">
+            <strong><label for="title" th:text="#{updateArticle.label.title}"></label></strong>
             <input name="title" type="text" th:field="${article.title}" id="title" class="form-control"
-                   style="width: 33%"/>
+                   required style="width: 33%;"/>
         </div>
-        <div class="mb-3">
-            <strong><label for="categoryId" class="form-label" th:text="#{updateArticle.label.category}"></label></strong>
+        <div class="form-group">
+            <strong><label for="categoryId" th:text="#{updateArticle.label.category}"></label></strong>
             <select name="categoryId" id="categoryId" th:field="${article.categoryId.categoryId}" class="form-control"
-                    style="width: 33%">
+                    style="width: 25%">
                 <option th:each="category : ${categories}" th:value="${category.categoryId}"
                         th:text="${category.name}"></option>
             </select>
         </div>
-        <div class="carousel mb-3">
+        <div class="carousel form-group">
             <div class="carousel-inner">
                 <div class="carousel-item" th:each="image, iterStat : ${article.images}"
                      th:class="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
@@ -63,24 +63,23 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <div class="mb-3">
-            <strong><label for="imageFiles" class="form-label" th:text="#{updateArticle.label.selectImages}"></label></strong>
+        <div class="form-group">
+            <strong><label for="imageFiles" th:text="#{updateArticle.label.selectImages}"></label></strong>
             <input type="file" class="form-control-file" id="imageFiles" name="imageFiles" accept="image/*" multiple>
         </div>
-        <div class="mb-3">
-            <strong><label for="publicationDate" class="form-label" th:text="#{updateArticle.label.publicationDate}"></label></strong>
+        <div class="form-group">
+            <strong><label for="publicationDate" th:text="#{updateArticle.label.publicationDate}"></label></strong>
             <input name="publicationDate" type="date" th:field="${article.publicationDate}" id="publicationDate"
-                   class="form-control" style="width: 15%"/>
+                   class="form-control" required style="width: 15%"/>
         </div>
-
-        <div class="mb-3">
-            <strong><label for="content" class="form-label" th:text="#{updateArticle.label.content}"></label></strong>
+        <div class="form-group">
+            <strong><label for="content" th:text="#{updateArticle.label.content}"></label></strong>
             <p th:text="#{updateArticle.label.subtitleParagraph}"></p>
             <textarea name="content" rows="10" th:field="${article.content}" id="content"
-                      class="form-control"></textarea>
+                      class="form-control" style="width: 60%"></textarea>
         </div>
-        <div class="mb-3">
-            <button type="submit" class="btn btn-primary" th:text="#{updateArticle.button.submit}"></button>
+        <div class="mt-5">
+            <button type="submit" class="submit btn" th:text="#{updateArticle.button.submit}"></button>
         </div>
     </form>
 </div>

@@ -1,6 +1,6 @@
 body {
     /*background-image: url("https://www.hdwallpapers.in/download/grey_world_map_background_hd_gray-1920x1080.jpg");*/
-    background-color: #252525;
+    background-color: #191919;
 }
 
 h4 {
@@ -15,9 +15,38 @@ label {
 
 p {
     color: #ffffff;
+    font-size: 14px;
 }
 
 .form-group {
+
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.form-control-file::-webkit-file-upload-button {
+    color: #ffffff;
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+}
+
+.form-control-file::-webkit-file-upload-button:hover  {
+    color: #000000;
+    background-color: white;
+}
+
+.submit {
+    color: #ffffff;
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.submit:hover {
+    color: #000000;
+    background-color: white;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }

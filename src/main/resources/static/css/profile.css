@@ -10,8 +10,61 @@ h4 {
     color: #ffffff;
 }
 
+.edit {
+    color: #ffffff;
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.edit:hover {
+    color: #000000;
+    background-color: white;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
 .modal-content {
+    border-radius: 0;
+    border: 1px solid #ffffff;
+    margin-top: 150px;
     background-color: #323232;
+}
+
+.modal-title {
+    color: white;
+    font-weight: bolder;
+}
+
+.submit {
+    color: #ffffff;
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.submit:hover {
+    color: #000000;
+    background-color: white;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.close {
+    color: #ffffff;
+    background-color: #910000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.close:hover {
+    color: #000000;
+    background-color: white;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 footer {

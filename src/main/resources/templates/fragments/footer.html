@@ -3,17 +3,21 @@
 
     <span class="skyChronicles">© 2024 Sky Chronicles, Inc</span>
 
-    <a class="aboutUs btn btn-outline-light me-2" th:href="@{/aboutUs}"
-       th:text="#{footer.button.aboutUs}" >About us</a>
-
+    <div class="ms-auto">
+        <a class="aboutUs btn btn-outline-light me-3" th:href="@{/aboutUs}"
+           th:text="#{footer.button.aboutUs}"></a>
+    </div>
     <div>
-        <p class="mb-auto col-md-4" style="color: #ffffff;" th:text="#{footer.label.contacts} + ':'"></p>
-        <a href="mailto:danial.rehman36@gmail.com" class=" text-decoration-none me-3"
-           style="color: #ffffff; text-decoration: none;">danial.rehman36@gmail.com</a>
-        <a href="https://www.facebook.com/skychronicles" class="text-decoration-none me-3"
-           style="color: #ffffff; text-decoration: none;">Facebook</a>
-        <a href="www.linkedin.com/in/danial-rekhman" class="text-decoration-none me-3"
-           style="color: #ffffff; text-decoration: none;">LinkedIn</a>
+        <h6 class="mb-auto col-md-7" th:text="#{footer.label.contacts} + ':'"></h6>
+        <a href="mailto:danial.rehman36@gmail.com" class="email me-3"
+           style="color: #ffffff;">danial.rehman36@gmail.com</a>
+        <a href="www.linkedin.com/in/danial-rekhman" class="linkedin me-3"
+           style="color: #ffffff;">LinkedIn</a>
+        <a href="https://www.facebook.com/danial.rehman.37/" class="facebook me-3"
+           style="color: #ffffff;">Facebook</a>
+        <a href="https://www.instagram.com/nocturnalsorrow/" class="instagram me-3"
+           style="color: #ffffff;">Instagram</a>
+
     </div>
 </footer>
 

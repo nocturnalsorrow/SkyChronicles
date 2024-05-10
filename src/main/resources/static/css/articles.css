@@ -38,20 +38,30 @@ h3 {
 }
 
 .btn-success {
-    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+    background-color: #00b82a;
     border-radius: 0;
     border: none;
     transition: background-color 0.3s ease-in-out;
-}
-
-.btn-danger {
-    /*border-radius: 0;*/
 }
 
 .btn-success:hover {
     background-color: #218838;
     transform: scale(1.05);
     transition: transform 0.3s ease;
+}
+
+.btn-danger {
+    border-radius: 0;
+    background-color: #910000;
+}
+
+.btn-danger:hover {
+    background-color: #590000;
+    /*transform: scale(1.05);*/
+    /*transition: transform 0.3s ease;*/
 }
 
 .article-title {
@@ -67,4 +77,50 @@ h3 {
     object-fit: cover;
     width: 100%;
     height: 100px;
+}
+
+.modal-content {
+    border-radius: 0;
+    border: 1px solid #ffffff;
+    margin-top: 200px;
+    background-color: #323232;
+}
+.modal-title {
+    color: white;
+    font-weight: bolder;
+}
+
+.modal-body {
+    color: white;
+    font-weight: bolder;
+}
+
+.delete {
+    color: #ffffff;
+    background-color: #910000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.delete:hover {
+    color: #000000;
+    background-color: white;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.cancel {
+    color: #ffffff;
+   background-color: #292929;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.cancel:hover {
+    color: #000000;
+    background-color: white;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
