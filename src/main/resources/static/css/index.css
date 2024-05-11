@@ -2,7 +2,7 @@ body {
     background-color: #191919;
 }
 
-h3 {
+.categoryName {
     font-weight: bold;
     text-align: center;
     color: white ;

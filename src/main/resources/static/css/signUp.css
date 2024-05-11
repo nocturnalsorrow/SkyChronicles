@@ -11,12 +11,14 @@ h3 {
 }
 
 label {
+    font-weight: bolder;
     color: #ffffff
 }
 
 .card {
+    border-radius: 0;
+    background-color: #323232;
     border: solid 1px #ffffff;
-    box-shadow: 0 3px 6px rgba(239, 239, 239, 0.49);
 }
 
 .card-body {
@@ -26,24 +28,50 @@ label {
 @keyframes signup-animation {
     0% {
         opacity: 0;
-        transform: translateY(-50px);
+        transform: translateY(-50px) scale(0.8);
+        background-color: rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+    50% {
+        background-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     }
 }
+
 
 .col-md-6 {
     animation: signup-animation 0.5s ease-out;
 }
 
-.btn-primary {
+.submit {
+    color: #000000;
+    background-color: #cb98ff;
+    border: 1px solid #000000;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.submit:hover {
+    background-color: #ffffff;
+    transform: scale(1.05);
     transition: transform 0.3s ease;
 }
 
-.btn-primary:hover {
-    transform: scale(1.05);
+.haveAccount {
+    color: white; !important
 }
 
+.loginOnForm {
+    color: #cb98ff;
+    text-decoration: none;
+}
+
+.loginOnForm:hover {
+    text-decoration: underline;
+}
 

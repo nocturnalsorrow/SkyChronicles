@@ -32,8 +32,8 @@
                             <div class="d-flex flex-column justify-content-between">
                                 <img th:if="${article.images.size() > 0}"
                                      th:src="@{/{articleId}/image/{imageId}(articleId=${article.articleId}, imageId=${article.images[0].id})}"
-                                     alt="Article Cover Image" class="img-fluid rounded">
-                                <h6 class="mb-1" style="font-weight: bold" th:text="${article.title}"></h6>
+                                     alt="Article Cover Image">
+                                <h6 class="mb-1" th:text="${article.title}"></h6>
                                 <small th:text="${article.publicationDate}"></small>
                             </div>
                         </a>

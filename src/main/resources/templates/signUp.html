@@ -37,12 +37,16 @@
                             <label for="username" class="form-label" th:text="#{signUp.label.username}"></label>
                             <input id="username" type="text" class="form-control" name="username" th:field="*{username}" required th:placeholder="YourUsername" pattern="[A-Z\u0410-\u042F]{1}[a-z\u0430-\u044f]{2-44}">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <!-- Replace data-sitekey with your own one, generated at https://www.google.com/recaptcha/admin -->
                             <div class="g-recaptcha" id="captcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S"></div>
                         </div>
+                        <div class="text-center mb-3">
+                            <button type="submit" class="submit btn" th:text="#{signup.button.submit}"></button>
+                        </div>
                         <div class="text-center">
-                            <button id="submitBtn" type="submit" class="btn btn-primary" th:text="#{signup.button.submit}"></button>
+                            <span th:text="#{signUp.label.alreadyHaveAccount}" class="haveAccount"></span>
+                            <a th:href="@{/login}" th:text="#{signUp.label.login}" class="loginOnForm"></a>
                         </div>
                     </form>
                 </div>

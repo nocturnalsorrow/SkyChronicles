@@ -8,14 +8,14 @@ h2 {
     color: #ffffff;
 }
 
-.error-image {
+.error-image-area {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 300px;
 }
 
-.error-image img {
+.error-image-area img {
     object-fit: cover;
     width: 250px;
     height: 250px

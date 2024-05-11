@@ -24,10 +24,9 @@ small {
 
 .list-group-item:hover {
     background-color: #292929;
-    transition: all 0.3s ease-in-out;
-    border-radius: 10px;
-    overflow: hidden;
     transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
     box-shadow: 0 0 3px rgb(221, 226, 255);
 }
 

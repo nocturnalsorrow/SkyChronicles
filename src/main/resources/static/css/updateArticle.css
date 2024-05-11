@@ -31,16 +31,15 @@ p {
 }
 
 .submit {
-    color: #ffffff;
-    background-color: #000000;
-    border: 1px solid #ffffff;
+    color: #000000;
+    background-color: #cb98ff;
+    border: 1px solid #000000;
     border-radius: 0;
     font-weight: bolder;
 }
 
 .submit:hover {
-    color: #000000;
-    background-color: white;
+    background-color: #ffffff;
     transform: scale(1.05);
     transition: transform 0.3s ease;
 }

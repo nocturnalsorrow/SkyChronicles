@@ -17,8 +17,8 @@
 
 <h2 th:text="#{error.label.errorMessage}"></h2>
 
-<div class="error-image">
-    <img src="https://i.gifer.com/origin/6a/6a30cf49d4dc2db0682292febd438987_w200.gif" alt="support">
+<div class="error-image-area">
+    <img th:src="@{/img/errorCat.gif}" alt="errorCat">
 </div>
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
