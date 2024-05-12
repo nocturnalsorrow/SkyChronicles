@@ -41,7 +41,8 @@
                     <input type="text" class="searchInput form-control" name="keyword"
                            th:placeholder="'Type article title...'" aria-label="Search"
                            style="background-color: #ffffff">
-                    <button class="search btn btn-outline-light" type="submit" th:text="#{header.button.search}"></button>
+                    <button class="search btn btn-outline-light" type="submit"
+                            th:text="#{header.button.search}"></button>
                 </div>
             </form>
 
@@ -60,21 +61,21 @@
                 </form>
             </div>
 
-            <!--            &lt;!&ndash; Language switch buttons with custom styles &ndash;&gt;-->
-            <!--            <div class="btn-group me-2">-->
-            <!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
-            <!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'uk').toUriString()}"-->
-            <!--                       class="btn btn-outline-light me-2 btn-sm" aria-current="page" th:text="UA">🇺🇦 Ukrainian</a>-->
-            <!--                </div>-->
-            <!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
-            <!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'en').toUriString()}"-->
-            <!--                       class="btn btn-outline-light me-2 btn-sm" th:text="EN">🇺🇸 English</a>-->
-            <!--                </div>-->
-            <!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
-            <!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'ru').toUriString()}"-->
-            <!--                       class="btn btn-outline-light me-2 btn-sm" th:text="RU">🇷🇺 Russian</a>-->
-            <!--                </div>-->
-            <!--            </div>-->
+            <!-- Language switch buttons with custom styles -->
+<!--            <div class="btn-group me-2">-->
+<!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
+<!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'uk').toUriString()}"-->
+<!--                       class="btn btn-outline-light me-2 btn-sm" aria-current="page" th:text="UA">🇺🇦 Ukrainian</a>-->
+<!--                </div>-->
+<!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
+<!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'en').toUriString()}"-->
+<!--                       class="btn btn-outline-light me-2 btn-sm" th:text="EN">🇺🇸 English</a>-->
+<!--                </div>-->
+<!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
+<!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'ru').toUriString()}"-->
+<!--                       class="btn btn-outline-light me-2 btn-sm" th:text="RU">🇷🇺 Russian</a>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </header>
