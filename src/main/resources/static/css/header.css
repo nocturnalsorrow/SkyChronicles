@@ -91,5 +91,16 @@ header {
 }
 
 .dropdown-menu.fade li:hover {
-    background-color: rgba(186, 186, 186, 0.38); /* цвет фона при наведении на элемент */
+    background-color: rgba(186, 186, 186, 0.38);
+}
+
+.language-select {
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    font-weight: bolder;
+}
+
+.dropdown-item {
+    color: black;
+    font-weight: bolder;
 }

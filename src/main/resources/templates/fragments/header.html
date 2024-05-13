@@ -1,5 +1,6 @@
 <header class="p-3" xmlns:th="https://www.thymeleaf.org"
         xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <script src="/js/changeLang.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -13,10 +14,10 @@
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li class="nav-item dropdown">
-                    <a class="category dropdown-toggle btn btn-outline-light me-3" href="#" id="navbarDropdown"
+                    <a class="category dropdown-toggle btn btn-outline-light me-3" href="#"
                        role="button" data-bs-toggle="dropdown" aria-expanded="false"
                        th:text="#{header.label.category}"></a>
-                    <ul class="dropdown-menu fade" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu fade">
                         <li th:each="category : ${categories}">
                             <a class="dropdown-item" th:href="@{'/category/' + ${category.categoryId}}"
                                th:class="${category.categoryId == selectedCategoryId} ? 'active' : ''"
@@ -50,32 +51,31 @@
                 <button type="button" class="login btn me-2"
                         th:onclick="|window.location.href='@{/login}'|" th:text="#{header.button.login}">
                 </button>
-                <button type="button" class="sign-in btn me-2"
+                <button type="button" class="sign-in btn me-5"
                         th:onclick="|window.location.href='@{/signUp}'|" th:text="#{header.button.signUp}">
                 </button>
             </div>
 
             <div sec:authorize="isAuthenticated()">
                 <form th:action="@{/logout}" method="post">
-                    <button class="logout btn btn-outline-light me-2" type="submit" th:text="#{header.button.logout}"/>
+                    <button class="logout btn btn-outline-light me-5" type="submit" th:text="#{header.button.logout}"/>
                 </form>
             </div>
 
-            <!-- Language switch buttons with custom styles -->
-<!--            <div class="btn-group me-2">-->
-<!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
-<!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'uk').toUriString()}"-->
-<!--                       class="btn btn-outline-light me-2 btn-sm" aria-current="page" th:text="UA">🇺🇦 Ukrainian</a>-->
-<!--                </div>-->
-<!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
-<!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'en').toUriString()}"-->
-<!--                       class="btn btn-outline-light me-2 btn-sm" th:text="EN">🇺🇸 English</a>-->
-<!--                </div>-->
-<!--                <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder)}">-->
-<!--                    <a th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('lang', 'ru').toUriString()}"-->
-<!--                       class="btn btn-outline-light me-2 btn-sm" th:text="RU">🇷🇺 Russian</a>-->
-<!--                </div>-->
-<!--            </div>-->
+            <a class="language-select dropdown-toggle btn btn-outline-light me-2" href="#"
+               role="button" data-bs-toggle="dropdown" aria-expanded="false"
+               th:text="${#locale.language}"></a>
+            <ul class="dropdown-menu fade">
+                <li>
+                    <a class="dropdown-item" th:href="@{'/?lang=en'}" th:text="#{lang.eng}"></a>
+                </li>
+                <li>
+                    <a class="dropdown-item" th:href="@{'/?lang=uk'}" th:text="#{lang.uk}">Українська</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" th:href="@{'/?lang=ru'}" th:text="#{lang.ru}">Русский</a>
+                </li>
+            </ul>
         </div>
     </div>
 </header>
