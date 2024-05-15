@@ -25,7 +25,7 @@ public class ProfileController {
         model.addAttribute("user", userService.getUserByEmail(authentication.getName()));
         model.addAttribute("categories", categoryService.getAllCategories());
 
-        return "profile";
+        return "userProfile";
     }
 
     @PostMapping("/profile/edit")

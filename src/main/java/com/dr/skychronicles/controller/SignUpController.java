@@ -23,7 +23,7 @@ public class SignUpController {
     public String signUpForm(Model model){
         model.addAttribute("user", new User());
         model.addAttribute("categories", categoryService.getAllCategories());
-        return "signUp";
+        return "signUpPage";
     }
 
     @PostMapping("/signUp")
