@@ -142,6 +142,18 @@ class ArticleServiceImplTest {
     }
 
     @Test
+    void simpleSaveArticle() {
+        Article expectedArticle = new Article(1L, "Title", "Content", Date.valueOf("2024-04-19"), new Category(), new ArrayList<>());
+
+        when(articleServiceImpl.saveArticle(expectedArticle)).thenReturn(expectedArticle);
+        Article actualArticle = articleServiceImpl.saveArticle(expectedArticle);
+
+        assertNotNull(actualArticle);
+        assertEquals(expectedArticle, actualArticle);
+        verify(articleServiceImpl, times(1)).saveArticle(expectedArticle);
+    }
+
+    @Test
     void saveArticle() throws IOException {
         Article article = new Article();
         List<MultipartFile> imageFiles = new ArrayList<>();
@@ -154,7 +166,14 @@ class ArticleServiceImplTest {
 
     @Test
     void processImages() throws IOException {
+        Article article = new Article(1L, "Title", "Content", Date.valueOf("2024-04-19"), new Category(), new ArrayList<>());
+        List<MultipartFile> imageFiles = List.of(
+                new MockMultipartFile("image1", new byte[0]),
+                new MockMultipartFile("image1", new byte[0]));
 
+        List<Gallery> result = articleServiceImpl.processImages(article, imageFiles);
+
+        verify(articleServiceImpl, times(1)).processImages(article, imageFiles);
     }
 
     @Test
@@ -168,19 +187,6 @@ class ArticleServiceImplTest {
         assertTrue(actualArticle.isPresent());
         assertEquals(expectedArticle, actualArticle.get());
     }
-
-    @Test
-    void simpleSaveArticle() {
-        Article expectedArticle = new Article(1L, "Title", "Content", Date.valueOf("2024-04-19"), new Category(), new ArrayList<>());
-
-        when(articleServiceImpl.saveArticle(expectedArticle)).thenReturn(expectedArticle);
-        Article actualArticle = articleServiceImpl.saveArticle(expectedArticle);
-
-        assertNotNull(actualArticle);
-        assertEquals(expectedArticle, actualArticle);
-        verify(articleServiceImpl, times(1)).saveArticle(expectedArticle);
-    }
-
 
     @Test
     void deleteArticleById() {
