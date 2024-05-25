@@ -135,7 +135,7 @@ public class HomeController {
     public String getAboutUs(Model model) {
 
         model.addAttribute("categories", categoryService.getAllCategories());
-        return "aboutSkyChronicles";
+        return "about";
     }
 }
 

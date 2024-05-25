@@ -78,7 +78,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void saveArticle(Article article, List<MultipartFile> imageFiles) throws IOException {
-        if(imageFiles.getFirst().getSize() == 0) {
+        if(imageFiles.getFirst().getSize() == 0 && article.getArticleId() != null) {
             article.setImages(articleRepository.getReferenceById(article.getArticleId()).getImages());
             articleRepository.save(article);
         } else {
