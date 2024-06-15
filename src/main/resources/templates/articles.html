@@ -57,7 +57,7 @@
     </div>
 
     <!-- Pagination -->
-    <div th:if="${articles.totalPages > 1}" class="justify-content-center">
+    <div th:if="${articles.totalPages > 1}" >
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 <li th:class="${articles.first} ? 'page-item disabled' : 'page-item'">

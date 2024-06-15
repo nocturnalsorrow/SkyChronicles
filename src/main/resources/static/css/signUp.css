@@ -28,21 +28,13 @@ label {
 @keyframes signup-animation {
     0% {
         opacity: 0;
-        transform: translateY(-50px) scale(0.8);
-        background-color: rgba(255, 255, 255, 0);
-        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    }
-    50% {
-        background-color: rgba(255, 255, 255, 0.1);
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        transform: translateY(-50px);
     }
     100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        transform: translateY(0);
     }
 }
-
 
 .col-md-6 {
     animation: signup-animation 0.5s ease-out;

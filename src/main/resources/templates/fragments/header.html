@@ -40,7 +40,7 @@
             <form th:action="@{/search}" method="get" class="col-12 col-lg-auto mb-3 mb-lg-0 me-3">
                 <div class="input-group">
                     <input type="text" class="searchInput form-control" name="keyword"
-                           th:placeholder="'Type article title...'" aria-label="Search"
+                           th:placeholder="#{header.button.typeArticleTitle}" aria-label="Search"
                            style="background-color: #ffffff">
                     <button class="search btn btn-outline-light" type="submit"
                             th:text="#{header.button.search}"></button>
@@ -63,7 +63,7 @@
             </div>
 
             <a class="language-select dropdown-toggle btn btn-outline-light me-2" href="#"
-               role="button" data-bs-toggle="dropdown" aria-expanded="false"
+               role="button" data-bs-toggle="dropdown"
                th:text="${#locale.language}"></a>
             <ul class="dropdown-menu fade">
                 <li>

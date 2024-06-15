@@ -20,4 +20,7 @@ public class User {
     @Basic
     @Column(name = "role")
     private String role;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB", name = "profile_image")
+    private String profileImage;
 }

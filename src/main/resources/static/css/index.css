@@ -89,25 +89,26 @@ small {
 }
 
 .pagination .page-link {
-    color: #000000;
-    background-color: #fff;
-    border-radius: 4px;
+    color: white;
+    background-color: black;
+    border-radius: 0;
 }
 
 .pagination .page-link:hover {
-    background-color: #dde2ff;
+    color: black;
+    background-color: white;
 }
 
 .pagination .page-item.active .page-link {
-    background-color: #191919;
-    color: #fff;
-    border-color: #ffffff;
+    background-color: white;
+    color: black;
+    border-color: white;
 }
 
 .pagination .page-item.disabled .page-link {
-    color: #6c757d;
+    color: black;
     pointer-events: none;
     cursor: default;
-    background-color: #fff;
+    background-color: white;
     border-color: #dee2e6;
 }

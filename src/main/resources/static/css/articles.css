@@ -124,3 +124,38 @@ h3 {
     transform: scale(1.05);
     transition: transform 0.3s ease;
 }
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination .page-item {
+    margin-right: 5px;
+}
+
+.pagination .page-link {
+    color: white;
+    background-color: black;
+    border-radius: 0;
+}
+
+.pagination .page-link:hover {
+    color: black;
+    background-color: white;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: white;
+    color: black;
+    border-color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: black;
+    pointer-events: none;
+    cursor: default;
+    background-color: white;
+    border-color: #dee2e6;
+}

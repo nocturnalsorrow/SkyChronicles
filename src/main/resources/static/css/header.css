@@ -77,8 +77,8 @@ header {
     z-index: 1000;
 
     border: 1px solid #ffffff;
-    border-radius: 0; /* скругление углов */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* тень */
+    border-radius: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* shadow */
 }
 
 .dropdown-menu.fade.show {
