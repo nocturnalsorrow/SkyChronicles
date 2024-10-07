@@ -47,7 +47,7 @@ class ArticleControllerTest {
 
     @Test
     void getArticlePage() throws Exception {
-        Article article = new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(1L, "Name", "photo_url", new ArrayList<>()), new ArrayList<>());
+        Article article = new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(1L, "Name", new ArrayList<>()), new ArrayList<>());
 
         when(articleService.getArticleById(1L)).thenReturn(Optional.of(article));
 

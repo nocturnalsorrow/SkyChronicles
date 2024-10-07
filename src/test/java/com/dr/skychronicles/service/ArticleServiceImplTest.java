@@ -77,9 +77,9 @@ class ArticleServiceImplTest {
     @Test
     void getArticlesByCategoryId() {
         List<Article> expectedArticles = new ArrayList<>();
-        expectedArticles.add(new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(1L, "Name", "photo_url", new ArrayList<>()), new ArrayList<>()));
-        expectedArticles.add(new Article(2L, "Title 2", "Content 2", Date.valueOf("2002-04-14"), new Category(1L, "Name 2", "photo_url", new ArrayList<>()), new ArrayList<>()));
-        expectedArticles.add(new Article(3L, "Title 3", "Content 3", Date.valueOf("2002-04-15"), new Category(2L, "Name 3", "photo_url", new ArrayList<>()), new ArrayList<>()));
+        expectedArticles.add(new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(1L, "Name", new ArrayList<>()), new ArrayList<>()));
+        expectedArticles.add(new Article(2L, "Title 2", "Content 2", Date.valueOf("2002-04-14"), new Category(1L, "Name 2", new ArrayList<>()), new ArrayList<>()));
+        expectedArticles.add(new Article(3L, "Title 3", "Content 3", Date.valueOf("2002-04-15"), new Category(2L, "Name 3", new ArrayList<>()), new ArrayList<>()));
 
         when(articleServiceImpl.getArticlesByCategoryId(1L)).thenReturn(expectedArticles);
         List<Article> actualArticles = articleServiceImpl.getArticlesByCategoryId(1L);
@@ -91,9 +91,9 @@ class ArticleServiceImplTest {
     @Test
     void getArticlesByCategoryIdPage() {
         List<Article> expectedArticles = new ArrayList<>();
-        expectedArticles.add(new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(1L, "Name", "photo_url", new ArrayList<>()), new ArrayList<>()));
-        expectedArticles.add(new Article(2L, "Title 2", "Content 2", Date.valueOf("2002-04-14"), new Category(1L, "Name 2", "photo_url", new ArrayList<>()), new ArrayList<>()));
-        expectedArticles.add(new Article(3L, "Title 3", "Content 3", Date.valueOf("2002-04-15"), new Category(2L, "Name 3", "photo_url", new ArrayList<>()), new ArrayList<>()));
+        expectedArticles.add(new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(1L, "Name", new ArrayList<>()), new ArrayList<>()));
+        expectedArticles.add(new Article(2L, "Title 2", "Content 2", Date.valueOf("2002-04-14"), new Category(1L, "Name 2", new ArrayList<>()), new ArrayList<>()));
+        expectedArticles.add(new Article(3L, "Title 3", "Content 3", Date.valueOf("2002-04-15"), new Category(2L, "Name 3", new ArrayList<>()), new ArrayList<>()));
         Page<Article> expectedPage = new PageImpl<>(expectedArticles);
 
         when(articleServiceImpl.getArticlesByCategoryId(1L, PageRequest.of(0, 5))).thenReturn(expectedPage);
@@ -165,15 +165,15 @@ class ArticleServiceImplTest {
     }
 
     @Test
-    void processImages() throws IOException {
+    void processArticleImages() throws IOException {
         Article article = new Article(1L, "Title", "Content", Date.valueOf("2024-04-19"), new Category(), new ArrayList<>());
         List<MultipartFile> imageFiles = List.of(
                 new MockMultipartFile("image1", new byte[0]),
                 new MockMultipartFile("image1", new byte[0]));
 
-        List<Gallery> result = articleServiceImpl.processImages(article, imageFiles);
+        List<Gallery> result = articleServiceImpl.processArticleImages(article, imageFiles);
 
-        verify(articleServiceImpl, times(1)).processImages(article, imageFiles);
+        verify(articleServiceImpl, times(1)).processArticleImages(article, imageFiles);
     }
 
     @Test

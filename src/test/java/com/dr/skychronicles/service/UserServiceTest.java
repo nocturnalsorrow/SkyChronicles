@@ -29,8 +29,8 @@ class UserServiceTest {
     @Test
     void getAllUsers() {
         List<User> expectedUsers = new ArrayList<>();
-        expectedUsers.add(new User("danial.rehman35@gmail.com", "1234", "username","USER"));
-        expectedUsers.add(new User("daniel.rehman36@gmail.com", "2345", "username1","ADMIN"));
+        expectedUsers.add(new User("danial.rehman35@gmail.com", "1234", "username","USER", "profileImage"));
+        expectedUsers.add(new User("daniel.rehman36@gmail.com", "2345", "username1","ADMIN", "profileImage"));
 
         when(userService.getAllUsers()).thenReturn(expectedUsers);
         List<User> actualUsers = userService.getAllUsers();
@@ -41,7 +41,7 @@ class UserServiceTest {
 
     @Test
     void getUserByEmail() {
-        User expectedUser = new User("some@gmail.com", "2345", "username1","ADMIN");
+        User expectedUser = new User("some@gmail.com", "2345", "username1","ADMIN", "profileImage");
 
         when(userService.getUserByEmail("some@gmail.com")).thenReturn(expectedUser);
         User actualuser = userService.getUserByEmail("some@gmail.com");
@@ -52,7 +52,7 @@ class UserServiceTest {
 
     @Test
     void signUpUser() {
-        User user = new User("some@gmail.com", "2345", "username1","USER");
+        User user = new User("some@gmail.com", "2345", "username1","USER", "profileImage");
 
         when(userService.signUpUser(user)).thenReturn(user);
         User signedUpUser = userService.signUpUser(user);
@@ -64,8 +64,8 @@ class UserServiceTest {
 
     @Test
     void saveUser() {
-        User oldUser = new User("mail@example.com","old1234", "oldUsername","USER");
-        User newUser = new User("mail@example.com","new1234", "newUsername", "USER");
+        User oldUser = new User("mail@example.com","old1234", "oldUsername","USER", "profileImage");
+        User newUser = new User("mail@example.com","new1234", "newUsername", "USER","profileImage");
 
         when(userService.getUserByEmail("mail@example.com")).thenReturn(oldUser);
         when(authentication.getName()).thenReturn("mail@example.com");
@@ -78,7 +78,7 @@ class UserServiceTest {
 
     @Test
     void simpleSaveUser() {
-        User expectedUser = new User("some@gmail.com", "2345", "username1","USER");
+        User expectedUser = new User("some@gmail.com", "2345", "username1","USER","profileImage");
 
         when(userService.saveUser(expectedUser)).thenReturn(expectedUser);
         User actualUser = userService.saveUser(expectedUser);

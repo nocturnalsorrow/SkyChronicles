@@ -82,13 +82,13 @@ public class ArticleServiceImpl implements ArticleService {
             article.setImages(articleRepository.getReferenceById(article.getArticleId()).getImages());
             articleRepository.save(article);
         } else {
-            List<Gallery> newImages = processImages(article, imageFiles);
+            List<Gallery> newImages = processArticleImages(article, imageFiles);
             article.setImages(newImages);
             articleRepository.save(article);
         }
     }
 
-    public List<Gallery> processImages(Article article, List<MultipartFile> imageFiles) throws IOException {
+    public List<Gallery> processArticleImages(Article article, List<MultipartFile> imageFiles) throws IOException {
         List<Gallery> newImages = new ArrayList<>();
         for (MultipartFile file : imageFiles) {
             Gallery articleImage = new Gallery();

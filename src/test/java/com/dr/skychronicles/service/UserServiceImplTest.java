@@ -29,8 +29,8 @@ class UserServiceImplTest {
     @Test
     void getAllUsers() {
         List<User> expectedUsers = new ArrayList<>();
-        expectedUsers.add(new User("danial.rehman35@gmail.com", "1234", "username","USER"));
-        expectedUsers.add(new User("daniel.rehman36@gmail.com", "2345", "username1","ADMIN"));
+        expectedUsers.add(new User("danial.rehman35@gmail.com", "1234", "username","USER", "profileImage"));
+        expectedUsers.add(new User("daniel.rehman36@gmail.com", "2345", "username1","ADMIN", "profileImage"));
 
         when(userServiceImpl.getAllUsers()).thenReturn(expectedUsers);
         List<User> actualUsers = userServiceImpl.getAllUsers();
@@ -41,7 +41,7 @@ class UserServiceImplTest {
 
     @Test
     void getUserByEmail() {
-        User expectedUser = new User("some@gmail.com", "2345", "username1","ADMIN");
+        User expectedUser = new User("some@gmail.com", "2345", "username1","ADMIN", "profileImage");
 
         when(userServiceImpl.getUserByEmail("some@gmail.com")).thenReturn(expectedUser);
         User actualuser = userServiceImpl.getUserByEmail("some@gmail.com");
@@ -52,7 +52,7 @@ class UserServiceImplTest {
 
     @Test
     void signUpUser() {
-        User user = new User("some@gmail.com", "2345", "username1","USER");
+        User user = new User("some@gmail.com", "2345", "username1","USER", "profileImage");
 
         when(userServiceImpl.signUpUser(user)).thenReturn(user);
         User signedUpUser = userServiceImpl.signUpUser(user);
@@ -64,8 +64,8 @@ class UserServiceImplTest {
 
     @Test
     void saveUser() {
-        User oldUser = new User("mail@example.com","old1234", "oldUsername","USER");
-        User newUser = new User("mail@example.com","new1234", "newUsername", "USER");
+        User oldUser = new User("mail@example.com","old1234", "oldUsername","USER", "profileImage");
+        User newUser = new User("mail@example.com","new1234", "newUsername", "USER", "profileImage");
 
         when(userServiceImpl.getUserByEmail("mail@example.com")).thenReturn(oldUser);
         when(authentication.getName()).thenReturn("mail@example.com");
@@ -78,7 +78,7 @@ class UserServiceImplTest {
 
     @Test
     void simpleSaveUser() {
-        User expectedUser = new User("some@gmail.com", "2345", "username1","USER");
+        User expectedUser = new User("some@gmail.com", "2345", "username1","USER", "profileImage");
 
         when(userServiceImpl.saveUser(expectedUser)).thenReturn(expectedUser);
         User actualUser = userServiceImpl.saveUser(expectedUser);

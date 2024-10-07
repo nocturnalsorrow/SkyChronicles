@@ -76,9 +76,9 @@ class ArticleServiceTest {
     @Test
     void getArticlesByCategoryId() {
         List<Article> expectedArticles = new ArrayList<>();
-        expectedArticles.add(new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(1L, "Name", "photo_url", new ArrayList<>()), new ArrayList<>()));
-        expectedArticles.add(new Article(2L, "Title 2", "Content 2", Date.valueOf("2002-04-14"), new Category(1L, "Name 2", "photo_url", new ArrayList<>()), new ArrayList<>()));
-        expectedArticles.add(new Article(3L, "Title 3", "Content 3", Date.valueOf("2002-04-15"), new Category(2L, "Name 3", "photo_url", new ArrayList<>()), new ArrayList<>()));
+        expectedArticles.add(new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(1L, "Name", new ArrayList<>()), new ArrayList<>()));
+        expectedArticles.add(new Article(2L, "Title 2", "Content 2", Date.valueOf("2002-04-14"), new Category(1L, "Name 2", new ArrayList<>()), new ArrayList<>()));
+        expectedArticles.add(new Article(3L, "Title 3", "Content 3", Date.valueOf("2002-04-15"), new Category(2L, "Name 3", new ArrayList<>()), new ArrayList<>()));
 
         when(articleService.getArticlesByCategoryId(1L)).thenReturn(expectedArticles);
         List<Article> actualArticles = articleService.getArticlesByCategoryId(1L);
@@ -90,9 +90,9 @@ class ArticleServiceTest {
     @Test
     void getArticlesByCategoryIdPage() {
         List<Article> expectedArticles = new ArrayList<>();
-        expectedArticles.add(new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(1L, "Name", "photo_url", new ArrayList<>()), new ArrayList<>()));
-        expectedArticles.add(new Article(2L, "Title 2", "Content 2", Date.valueOf("2002-04-14"), new Category(1L, "Name 2", "photo_url", new ArrayList<>()), new ArrayList<>()));
-        expectedArticles.add(new Article(3L, "Title 3", "Content 3", Date.valueOf("2002-04-15"), new Category(2L, "Name 3", "photo_url", new ArrayList<>()), new ArrayList<>()));
+        expectedArticles.add(new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(1L, "Name", new ArrayList<>()), new ArrayList<>()));
+        expectedArticles.add(new Article(2L, "Title 2", "Content 2", Date.valueOf("2002-04-14"), new Category(1L, "Name 2", new ArrayList<>()), new ArrayList<>()));
+        expectedArticles.add(new Article(3L, "Title 3", "Content 3", Date.valueOf("2002-04-15"), new Category(2L, "Name 3", new ArrayList<>()), new ArrayList<>()));
         Page<Article> expectedPage = new PageImpl<>(expectedArticles);
 
         when(articleService.getArticlesByCategoryId(1L, PageRequest.of(0, 5))).thenReturn(expectedPage);

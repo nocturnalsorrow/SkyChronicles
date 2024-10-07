@@ -28,30 +28,11 @@ h6 {
     font-weight: bolder
 }
 
-.email {
+.social-media {
     text-decoration: none;
-}
-.email:hover {
-    text-decoration: underline;
+    color: inherit;
 }
 
-.linkedin {
-    text-decoration: none;
-}
-.linkedin:hover {
-    text-decoration: underline;
-}
-
-.facebook {
-    text-decoration: none;
-}
-.facebook:hover {
-    text-decoration: underline;
-}
-
-.instagram {
-    text-decoration: none;
-}
-.instagram:hover {
+.social-media:hover {
     text-decoration: underline;
 }

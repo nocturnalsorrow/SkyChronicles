@@ -94,8 +94,8 @@ class HomeControllerTest {
         int pageSize = 8;
 
         List<Category> categories = new ArrayList<>();
-        categories.add(new Category(1L, "Category 1", "Photo", new ArrayList<>()));
-        categories.add(new Category(2L, "Category 2", "Photo2", new ArrayList<>()));
+        categories.add(new Category(1L, "Category 1", new ArrayList<>()));
+        categories.add(new Category(2L, "Category 2", new ArrayList<>()));
 
         Long defaultCategoryId = categories.getFirst().getCategoryId();
 
@@ -106,7 +106,7 @@ class HomeControllerTest {
         Page<Article> articlePage = new PageImpl<>(articles);
 
         when(categoryService.getAllCategories()).thenReturn(categories);
-        when(categoryService.getCategoryById(defaultCategoryId)).thenReturn(Optional.of(new Category(defaultCategoryId, "Category 1", "Photo", new ArrayList<>())));
+        when(categoryService.getCategoryById(defaultCategoryId)).thenReturn(Optional.of(new Category(defaultCategoryId, "Category 1", new ArrayList<>())));
         when(articleService.getArticlesByCategoryId(defaultCategoryId, PageRequest.of(currentPage - 1, pageSize))).thenReturn(articlePage);
         when(articleService.getArticlesSortedByDate()).thenReturn(new ArrayList<>());
 
@@ -128,8 +128,8 @@ class HomeControllerTest {
         int pageSize = 8;
 
         List<Category> categories = new ArrayList<>();
-        categories.add(new Category(1L, "Category 1", "Photo", new ArrayList<>()));
-        categories.add(new Category(2L, "Category 2", "Photo2", new ArrayList<>()));
+        categories.add(new Category(1L, "Category 1", new ArrayList<>()));
+        categories.add(new Category(2L, "Category 2",new ArrayList<>()));
 
         List<Article> articles = new ArrayList<>();
         articles.add(new Article(1L, "Title", "Content", Date.valueOf("2002-04-13"), new Category(), new ArrayList<>()));
@@ -137,7 +137,7 @@ class HomeControllerTest {
         Page<Article> articlePage = new PageImpl<>(articles);
 
         when(categoryService.getAllCategories()).thenReturn(categories);
-        when(categoryService.getCategoryById(categoryId)).thenReturn(Optional.of(new Category(categoryId, "Category 1", "Photo", new ArrayList<>())));
+        when(categoryService.getCategoryById(categoryId)).thenReturn(Optional.of(new Category(categoryId, "Category 1", new ArrayList<>())));
         when(articleService.getArticlesByCategoryId(categoryId, PageRequest.of(currentPage - 1, pageSize))).thenReturn(articlePage);
         when(articleService.getArticlesSortedByDate()).thenReturn(new ArrayList<>());
 
@@ -156,6 +156,6 @@ class HomeControllerTest {
     void getAboutUs() throws Exception {
         mockMvc.perform(get("/aboutUs"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("aboutSkyChronicles"));
+                .andExpect(view().name("about"));
     }
 }

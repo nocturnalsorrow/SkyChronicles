@@ -21,7 +21,7 @@ class UserRepositoryTest {
 
     @Test
     void testGetUserByEmail() {
-        User expectedUser = new User("test2@example.com", "pass124", "username2", "USER");
+        User expectedUser = new User("test2@example.com", "pass124", "username2", "USER", "profileImage");
 
         when(userRepository.getUserByEmail("test2@example.com")).thenReturn(expectedUser);
         User actualUser = userRepository.getUserByEmail("test2@example.com");
@@ -32,7 +32,7 @@ class UserRepositoryTest {
 
     @Test
     void testDeleteUserByEmail() {
-        User userToDelete = new User("test@example.com", "password", "username", "USER");
+        User userToDelete = new User("test@example.com", "password", "username", "USER", "profileImage");
         userRepository.save(userToDelete);
 
         assertNotNull(userToDelete);

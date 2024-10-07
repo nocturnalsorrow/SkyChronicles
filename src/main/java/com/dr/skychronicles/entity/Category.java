@@ -16,8 +16,6 @@ public class Category {
     private Long categoryId;
     @Column(name = "name", nullable = false, length = 255)
     private String name;
-    @Column(name = "photo_url")
-    private String photoUrl;
     @OneToMany(mappedBy = "categoryId")
     private Collection<Article> articlesByCategoryId;
 }

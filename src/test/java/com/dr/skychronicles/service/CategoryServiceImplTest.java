@@ -38,7 +38,7 @@ class CategoryServiceImplTest {
 
     @Test
     void getCategoryById() {
-        Category expectedCategory = new Category(3L, "Name3", "photo_url", new ArrayList<>());
+        Category expectedCategory = new Category(3L, "Name3", new ArrayList<>());
 
         when(categoryServiceImpl.getCategoryById(3L)).thenReturn(Optional.of(expectedCategory));
         Optional<Category> actualCategory = categoryServiceImpl.getCategoryById(3L);
@@ -48,7 +48,7 @@ class CategoryServiceImplTest {
 
     @Test
     void saveCategory() {
-        Category expectedCategory = new Category(3L, "Name3", "photo_url", new ArrayList<>());
+        Category expectedCategory = new Category(3L, "Name3", new ArrayList<>());
 
         when(categoryServiceImpl.saveCategory(expectedCategory)).thenReturn(expectedCategory);
         Category actualCategory = categoryServiceImpl.saveCategory(expectedCategory);
