@@ -15,17 +15,33 @@
 
 <header th:replace="~{/fragments/header :: header}"></header>
 
-<div class="container">
-    <div class="row mt-3">
-        <strong><span th:text="#{profile.label.username}"></span></strong><span th:text="${user.username}"> </span>
-        <strong><span th:text="#{profile.label.email} "></span></strong><span th:text="${user.email}"> </span>
-        <h4 class="front-weight-bold blue-text">
+<div class="container mt-4">
+    <div class="row align-items-center">
+        <div class="col-md-4 text-center">
+            <img th:src="'data:image/jpeg;base64,' + ${user.profileImage}"
+                 alt="Profile Image"
+                 class="rounded-circle shadow"
+                 style="width: 200px; height: 200px; object-fit: cover;">
+        </div>
+
+        <div class="col-md-8">
+            <div class="d-flex flex-column">
+                <p>
+                    <strong><span th:text="#{profile.label.username}"></span>: </strong>
+                    <span th:text="${user.username}"></span>
+                </p>
+                <p>
+                    <strong><span th:text="#{profile.label.email}"></span>: </strong>
+                    <span th:text="${user.email}"></span>
+                </p>
+            </div>
             <button type="button" class="edit btn form-group mt-2" data-bs-toggle="modal"
                     data-bs-target="#profileEditModal" th:text="#{profile.label.edit}">
             </button>
-        </h4>
+        </div>
     </div>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade mt-5" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditModalLabel" aria-hidden="true">
@@ -37,7 +53,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form th:action="@{/profile/edit}" th:method="POST">
+                    <form th:action="@{/profile/edit}" th:method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label><strong><span th:text="#{profile.label.username} "></span></strong></label>
                             <input name="username" type="text" th:field="${user.username}" th:value="${user.username}"
@@ -48,6 +64,10 @@
                             <label><strong><span th:text="#{profile.label.password} "></span></strong></label>
                             <input name="password" type="password" required="required" th:field="${user.password}"
                                    class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label><strong><span th:text="#{profile.label.profileImage} "></span></strong></label>
+                            <input name="imageFile" type="file" class="form-control" accept="image/*"/>
                         </div>
                         <div class="form-group mt-2">
                             <button type="submit" class="submit btn mt-3" th:text="#{profile.button.save}"></button>

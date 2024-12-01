@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -67,9 +68,16 @@ class UserServiceTest {
         User oldUser = new User("mail@example.com","old1234", "oldUsername","USER", "profileImage");
         User newUser = new User("mail@example.com","new1234", "newUsername", "USER","profileImage");
 
+        MockMultipartFile imageFile = new MockMultipartFile(
+                "imageFile",                 // Название параметра
+                "profile.jpg",               // Имя файла
+                "image/jpeg",                // Тип контента
+                "Test Image Content".getBytes() // Контент изображения
+        );
+
         when(userService.getUserByEmail("mail@example.com")).thenReturn(oldUser);
         when(authentication.getName()).thenReturn("mail@example.com");
-        userService.saveUser(newUser, authentication);
+        userService.saveUser(newUser, imageFile, authentication);
 
         assertEquals("mail@example.com", authentication.getName());
         assertEquals("new1234", newUser.getPassword());

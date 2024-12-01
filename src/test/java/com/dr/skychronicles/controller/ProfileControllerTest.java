@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.core.Authentication;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -17,10 +18,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -73,12 +72,23 @@ class ProfileControllerTest {
         // Given
         Authentication authentication = mock(Authentication.class);
         User updatedUser = new User();
+        MockMultipartFile imageFile = new MockMultipartFile(
+                "imageFile",
+                "profile.jpg",
+                "image/jpeg",
+                "Test Image Content".getBytes()
+        );
+
+        when(authentication.getName()).thenReturn("user@example.com");
 
         // When and Then
-        mockMvc.perform(post("/profile/edit").principal(authentication).flashAttr("updatedUser", updatedUser))
+        mockMvc.perform(multipart("/profile/edit")
+                        .file(imageFile)
+                        .flashAttr("updatedUser", updatedUser)
+                        .principal(authentication))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/profile"));
 
-        verify(userService, times(1)).saveUser(updatedUser, authentication);
+        verify(userService, times(1)).saveUser(updatedUser, imageFile, authentication);
     }
 }

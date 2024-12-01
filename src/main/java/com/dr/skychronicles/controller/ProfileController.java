@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class ProfileController {
@@ -29,8 +30,8 @@ public class ProfileController {
     }
 
     @PostMapping("/profile/edit")
-    public String edit(@ModelAttribute User updatedUser, Authentication authentication){
-        userService.saveUser(updatedUser, authentication);
+    public String edit(@ModelAttribute User updatedUser, MultipartFile imageFile, Authentication authentication) {
+        userService.saveUser(updatedUser, imageFile, authentication);
 
         return "redirect:/profile";
     }
