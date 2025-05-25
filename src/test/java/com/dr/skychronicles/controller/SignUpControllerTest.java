@@ -66,12 +66,31 @@ class SignUpControllerTest {
     void signUpSubmit() throws Exception {
         // Given
         User user = new User();
+        user.setEmail("test@example.com");
+        user.setPassword("securePassword");
+
+        when(userService.signUpUser(any(User.class))).thenReturn(true);
 
         // When and Then
         mockMvc.perform(post("/signUp").flashAttr("user", user))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/login"));
 
-        verify(userService, times(1)).signUpUser(user);
+        verify(userService, times(1)).signUpUser(any(User.class));
+    }
+
+    @Test
+    void signUpSubmit_UserAlreadyExists() throws Exception {
+        User user = new User();
+        user.setEmail("existing@example.com");
+        user.setPassword("pass");
+
+        when(userService.signUpUser(any(User.class))).thenReturn(false);
+
+        mockMvc.perform(post("/signUp").flashAttr("user", user))
+                .andExpect(status().isOk()) // 200, because no redirect
+                .andExpect(view().name("signUpPage"));
+
+        verify(userService, times(1)).signUpUser(any(User.class));
     }
 }

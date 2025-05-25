@@ -2,20 +2,22 @@ package com.dr.skychronicles.service;
 
 import com.dr.skychronicles.entity.Category;
 import com.dr.skychronicles.repository.CategoryRepository;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    private final CategoryRepository categoryRepository;
+    CategoryRepository categoryRepository;
 
     public CategoryServiceImpl(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
-
 
     @Override
     public List<Category> getAllCategories() {

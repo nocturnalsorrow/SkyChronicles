@@ -2,6 +2,8 @@ package com.dr.skychronicles.securityConfig;
 
 import com.dr.skychronicles.entity.User;
 import com.dr.skychronicles.repository.UserRepository;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -9,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-    private final UserRepository userRepository;
+
+    UserRepository userRepository;
 
     public UserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;

@@ -11,12 +11,11 @@ public interface UserService {
 
     User getUserByEmail(String email);
 
-
-    User signUpUser(User user);
+    boolean signUpUser(User user);
 
     User saveUser(User user);
 
-    User saveUser(User user, MultipartFile imageFile, Authentication authentication);
+    void saveUser(User user, MultipartFile imageFile, Authentication authentication);
 
     void deleteUserByEmail(String email);
 }

@@ -28,6 +28,7 @@
                         <div class="mb-3">
                             <label for="email" class="form-label" th:text="#{signUp.label.email}"></label>
                             <input id="email" type="email" class="form-control" name="email" th:field="*{email}" required th:placeholder="'example@gmail.com'" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                            <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label" th:text="#{signUp.label.password}"></label>

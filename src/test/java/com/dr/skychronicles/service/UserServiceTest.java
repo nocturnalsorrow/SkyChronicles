@@ -1,6 +1,7 @@
 package com.dr.skychronicles.service;
 
 import com.dr.skychronicles.entity.User;
+import com.dr.skychronicles.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -16,6 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class UserServiceTest {
+
+    @Mock
+    private UserRepository userRepository;
+
     @Mock
     private UserService userService;
 
@@ -52,16 +57,44 @@ class UserServiceTest {
     }
 
     @Test
-    void signUpUser() {
-        User user = new User("some@gmail.com", "2345", "username1","USER", "profileImage");
+    void signUpUser_ShouldReturnTrue_WhenUserIsNew() {
+        User user = new User("some@gmail.com", "2345", "username1", null, "profileImage");
 
-        when(userService.signUpUser(user)).thenReturn(user);
-        User signedUpUser = userService.signUpUser(user);
+        // Пользователя с таким email не существует
+        when(userRepository.getUserByEmail("some@gmail.com")).thenReturn(null);
 
-        assertEquals("USER", signedUpUser.getRole());
-        assertTrue(new BCryptPasswordEncoder().matches(signedUpUser.getPassword(), "$2a$12$kaypgTAzmN5KDnJDwDnqm.Hur/WKfkFhGUFWVouyQ/m5f4LHvrWv6"));
-        verify(userService).signUpUser(user);
+        // Создаем UserServiceImpl с только userRepository (PasswordEncoder внутри метода)
+        UserServiceImpl userServiceImpl = new UserServiceImpl(userRepository);
+
+        // Act
+        boolean result = userServiceImpl.signUpUser(user);
+
+        // Assert
+        assertTrue(result);
+        assertEquals("USER", user.getRole());
+
+        // Проверяем, что пароль действительно захэширован
+        assertTrue(new BCryptPasswordEncoder().matches("2345", user.getPassword()));
+
+        // Проверка, что пользователь был сохранён
+        verify(userRepository).save(user);
     }
+
+    @Test
+    void signUpUser_ShouldReturnFalse_WhenUserAlreadyExists() {
+        // Given
+        User user = new User("some@gmail.com", "2345", "username1", null, "profileImage");
+
+        when(userRepository.getUserByEmail("some@gmail.com")).thenReturn(new User());
+
+        UserServiceImpl userService = new UserServiceImpl(userRepository);
+        boolean result = userService.signUpUser(user);
+
+        // Then
+        assertFalse(result);
+        verify(userRepository, never()).save(any());
+    }
+
 
     @Test
     void saveUser() {

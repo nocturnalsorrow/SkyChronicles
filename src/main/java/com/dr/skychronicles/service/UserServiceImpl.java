@@ -2,6 +2,8 @@ package com.dr.skychronicles.service;
 
 import com.dr.skychronicles.entity.User;
 import com.dr.skychronicles.repository.UserRepository;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,10 +13,11 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+    UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -31,10 +34,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User signUpUser(User user) {
+    public boolean signUpUser(User user) {
+
+        // check if user exists
+        if (userRepository.getUserByEmail(user.getEmail()) != null) return false;
+
         user.setRole("USER");
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        return userRepository.save(user);
+        userRepository.save(user);
+        return true;
     }
 
     @Override
@@ -43,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User saveUser(User user, MultipartFile imageFile, Authentication authentication) {
+    public void saveUser(User user, MultipartFile imageFile, Authentication authentication) {
         User oldUser = userRepository.getUserByEmail(authentication.getName());
 
         oldUser.setUsername(user.getUsername());
@@ -59,9 +67,8 @@ public class UserServiceImpl implements UserService {
             }
         }
 
-        return userRepository.save(oldUser);
+        userRepository.save(oldUser);
     }
-
 
     @Override
     public void deleteUserByEmail(String email) {

@@ -1,6 +1,7 @@
 package com.dr.skychronicles.service;
 
 import com.dr.skychronicles.entity.User;
+import com.dr.skychronicles.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -16,6 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class UserServiceImplTest {
+
+    @Mock
+    private UserRepository userRepository;
+
     @Mock
     private UserServiceImpl userServiceImpl;
 
@@ -52,15 +57,27 @@ class UserServiceImplTest {
     }
 
     @Test
-    void signUpUser() {
-        User user = new User("some@gmail.com", "2345", "username1","USER", "profileImage");
+    void signUpUser_ShouldReturnTrue_WhenUserIsNew() {
+        User user = new User("some@gmail.com", "2345", "username1", null, "profileImage");
 
-        when(userServiceImpl.signUpUser(user)).thenReturn(user);
-        User signedUpUser = userServiceImpl.signUpUser(user);
+        // Пользователя с таким email не существует
+        when(userRepository.getUserByEmail("some@gmail.com")).thenReturn(null);
 
-        assertEquals("USER", signedUpUser.getRole());
-        assertTrue(new BCryptPasswordEncoder().matches(signedUpUser.getPassword(), "$2a$12$kaypgTAzmN5KDnJDwDnqm.Hur/WKfkFhGUFWVouyQ/m5f4LHvrWv6"));
-        verify(userServiceImpl).signUpUser(user);
+        // Создаем UserServiceImpl с только userRepository (PasswordEncoder внутри метода)
+        UserServiceImpl userServiceImpl = new UserServiceImpl(userRepository);
+
+        // Act
+        boolean result = userServiceImpl.signUpUser(user);
+
+        // Assert
+        assertTrue(result);
+        assertEquals("USER", user.getRole());
+
+        // Проверяем, что пароль действительно захэширован
+        assertTrue(new BCryptPasswordEncoder().matches("2345", user.getPassword()));
+
+        // Проверка, что пользователь был сохранён
+        verify(userRepository).save(user);
     }
 
     @Test

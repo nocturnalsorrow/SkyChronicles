@@ -2,25 +2,32 @@ package com.dr.skychronicles.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Data
 public class User {
+
     @Id
     @Column(name = "email")
-    private String email;
+    String email;
+
     @Basic
     @Column(name = "password")
-    private String password;
+    String password;
+
     @Basic
     @Column(name = "username")
-    private String username;
+    String username;
+
     @Basic
     @Column(name = "role")
-    private String role;
+    String role;
+
     @Lob
     @Column(columnDefinition = "LONGBLOB", name = "profile_image")
-    private String profileImage;
+    String profileImage;
 }
